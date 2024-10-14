@@ -1,0 +1,1022 @@
+[
+  {
+    "id": 1,
+    "Name": "现金",
+    "Configuration": "1",
+    "Text": ""
+  },
+  {
+    "id": 2,
+    "Name": "员工经验",
+    "Configuration": "2",
+    "Text": ""
+  },
+  {
+    "id": 3,
+    "Name": "鱼类声望",
+    "Configuration": "3",
+    "Text": ""
+  },
+  {
+    "id": 4,
+    "Name": "体力",
+    "Configuration": "4",
+    "Text": ""
+  },
+  {
+    "id": 5,
+    "Name": "设施声望",
+    "Configuration": "5",
+    "Text": ""
+  },
+  {
+    "id": 6,
+    "Name": "员工声望",
+    "Configuration": "6",
+    "Text": ""
+  },
+  {
+    "id": 7,
+    "Name": "钻石",
+    "Configuration": "7",
+    "Text": ""
+  },
+  {
+    "id": 8,
+    "Name": "积分",
+    "Configuration": "8",
+    "Text": ""
+  },
+  {
+    "id": 9,
+    "Name": "营养液",
+    "Configuration": "9",
+    "Text": ""
+  },
+  {
+    "id": 10,
+    "Name": "流水",
+    "Configuration": "10",
+    "Text": ""
+  },
+  {
+    "id": 101,
+    "Name": "idle",
+    "Configuration": "4",
+    "Text": ""
+  },
+  {
+    "id": 102,
+    "Name": "move",
+    "Configuration": "4",
+    "Text": ""
+  },
+  {
+    "id": 201,
+    "Name": "work1",
+    "Configuration": "4",
+    "Text": ""
+  },
+  {
+    "id": 202,
+    "Name": "work2",
+    "Configuration": "4",
+    "Text": ""
+  },
+  {
+    "id": 203,
+    "Name": "work3",
+    "Configuration": "4",
+    "Text": ""
+  },
+  {
+    "id": 301,
+    "Name": "action1",
+    "Configuration": "4",
+    "Text": ""
+  },
+  {
+    "id": 900,
+    "Name": "现金不足",
+    "Configuration": "10",
+    "Text": ""
+  },
+  {
+    "id": 901,
+    "Name": "员工经验不足",
+    "Configuration": "10",
+    "Text": ""
+  },
+  {
+    "id": 902,
+    "Name": "体力不足",
+    "Configuration": "10",
+    "Text": ""
+  },
+  {
+    "id": 1000,
+    "Name": "买鱼特殊顾客概率",
+    "Configuration": "5_0",
+    "Text": ""
+  },
+  {
+    "id": 2000,
+    "Name": "切鱼图片",
+    "Configuration": "500001;500002;500003;500004;500005;500006",
+    "Text": "410000;410001;410002;410003"
+  },
+  {
+    "id": 10001,
+    "Name": "时长收益",
+    "Configuration": "1_1_30",
+    "Text": ""
+  },
+  {
+    "id": 10002,
+    "Name": "结账收益加成",
+    "Configuration": "默认基础值，默认为1",
+    "Text": ""
+  },
+  {
+    "id": 10003,
+    "Name": "时长时间上限",
+    "Configuration": "0",
+    "Text": ""
+  },
+  {
+    "id": 10004,
+    "Name": "来客速度",
+    "Configuration": "11000_13000",
+    "Text": ""
+  },
+  {
+    "id": 10005,
+    "Name": "单次来客数量",
+    "Configuration": "500_1_3",
+    "Text": ""
+  },
+  {
+    "id": 10006,
+    "Name": "捞鱼来客数量上限",
+    "Configuration": "8",
+    "Text": ""
+  },
+  {
+    "id": 10007,
+    "Name": "初始货币",
+    "Configuration": "1_150;4_30",
+    "Text": ""
+  },
+  {
+    "id": 10008,
+    "Name": "体力恢复",
+    "Configuration": "180000_1",
+    "Text": ""
+  },
+  {
+    "id": 10009,
+    "Name": "彩蛋顾客来客时间",
+    "Configuration": "120000_240000",
+    "Text": ""
+  },
+  {
+    "id": 10010,
+    "Name": "初始任务ID",
+    "Configuration": "1",
+    "Text": ""
+  },
+  {
+    "id": 10011,
+    "Name": "视频鱼类界面货币不足收益",
+    "Configuration": "2_10_5",
+    "Text": ""
+  },
+  {
+    "id": 10012,
+    "Name": "杀鱼体力上限",
+    "Configuration": "30",
+    "Text": ""
+  },
+  {
+    "id": 10013,
+    "Name": "基础广告钱收益(已废弃）",
+    "Configuration": "1_700_10",
+    "Text": ""
+  },
+  {
+    "id": 10014,
+    "Name": "鱼缸一顾客上限",
+    "Configuration": "5_4",
+    "Text": ""
+  },
+  {
+    "id": 10015,
+    "Name": "鱼缸二顾客上限",
+    "Configuration": "6_2",
+    "Text": ""
+  },
+  {
+    "id": 10016,
+    "Name": "鱼缸三顾客上限",
+    "Configuration": "7_2",
+    "Text": ""
+  },
+  {
+    "id": 10017,
+    "Name": "鱼缸四顾客上限",
+    "Configuration": "8_2",
+    "Text": ""
+  },
+  {
+    "id": 10018,
+    "Name": "鱼缸五顾客上限",
+    "Configuration": "16_2",
+    "Text": ""
+  },
+  {
+    "id": 10019,
+    "Name": "默认出现特殊广告ID",
+    "Configuration": "1",
+    "Text": ""
+  },
+  {
+    "id": 10020,
+    "Name": "特殊广告开放任务ID",
+    "Configuration": "1",
+    "Text": ""
+  },
+  {
+    "id": 10021,
+    "Name": "杀鱼藏品替换价格",
+    "Configuration": "1_2;1_4;1_8",
+    "Text": ""
+  },
+  {
+    "id": 10022,
+    "Name": "手指引导结束等级",
+    "Configuration": "3",
+    "Text": ""
+  },
+  {
+    "id": 10023,
+    "Name": "垃圾出现时间",
+    "Configuration": "20000_30000",
+    "Text": ""
+  },
+  {
+    "id": 10024,
+    "Name": "垃圾差评间隔",
+    "Configuration": "10000",
+    "Text": ""
+  },
+  {
+    "id": 10025,
+    "Name": "杀鱼免费换藏品上限",
+    "Configuration": "2",
+    "Text": ""
+  },
+  {
+    "id": 10026,
+    "Name": "杀鱼免费换藏品回复时间",
+    "Configuration": "1800000",
+    "Text": ""
+  },
+  {
+    "id": 10027,
+    "Name": "杀鱼换藏必得的次数",
+    "Configuration": "5",
+    "Text": ""
+  },
+  {
+    "id": 10028,
+    "Name": "营养液数据",
+    "Configuration": "30_1_60000",
+    "Text": ""
+  },
+  {
+    "id": 10029,
+    "Name": "市场商店更新时间",
+    "Configuration": "1800000",
+    "Text": ""
+  },
+  {
+    "id": 10030,
+    "Name": "市场商品刷新消耗",
+    "Configuration": "7_10",
+    "Text": ""
+  },
+  {
+    "id": 10031,
+    "Name": "孵化商店更新时间",
+    "Configuration": "86400000",
+    "Text": ""
+  },
+  {
+    "id": 10032,
+    "Name": "孵化商品刷新消耗",
+    "Configuration": "7_1",
+    "Text": ""
+  },
+  {
+    "id": 10033,
+    "Name": "孵化商品数量上限",
+    "Configuration": "8",
+    "Text": ""
+  },
+  {
+    "id": 10034,
+    "Name": "每次孵化抽取消耗",
+    "Configuration": "9_1;7_1",
+    "Text": ""
+  },
+  {
+    "id": 10035,
+    "Name": "自动合成上限时间",
+    "Configuration": "300000",
+    "Text": ""
+  },
+  {
+    "id": 10036,
+    "Name": "加速能量条可消耗时间",
+    "Configuration": "20",
+    "Text": ""
+  },
+  {
+    "id": 10037,
+    "Name": "加速能量条每秒恢复持续时间",
+    "Configuration": "0.3",
+    "Text": ""
+  },
+  {
+    "id": 10038,
+    "Name": "第几个任务前1秒出任务引导",
+    "Configuration": "10",
+    "Text": "1"
+  },
+  {
+    "id": 10039,
+    "Name": "默认初始的好评ID",
+    "Configuration": "10",
+    "Text": ""
+  },
+  {
+    "id": 10040,
+    "Name": "第几个任务前秒出手指引导",
+    "Configuration": "5",
+    "Text": ""
+  },
+  {
+    "id": 10041,
+    "Name": "鱼泡探寻次数",
+    "Configuration": "3600",
+    "Text": "3"
+  },
+  {
+    "id": 10042,
+    "Name": "鱼泡探寻消耗",
+    "Configuration": "1_10000_180",
+    "Text": "10"
+  },
+  {
+    "id": 10043,
+    "Name": "藏品属性增加倍数",
+    "Configuration": "1",
+    "Text": ""
+  },
+  {
+    "id": 10044,
+    "Name": "藏品时间",
+    "Configuration": "720",
+    "Text": "36000"
+  },
+  {
+    "id": 10045,
+    "Name": "视频孵化免费次数",
+    "Configuration": "5",
+    "Text": ""
+  },
+  {
+    "id": 10046,
+    "Name": "小游戏卡牌",
+    "Configuration": "120_5;150_6;180_6",
+    "Text": ""
+  },
+  {
+    "id": 10047,
+    "Name": "小游戏抽鱼数量",
+    "Configuration": "8_10",
+    "Text": ""
+  },
+  {
+    "id": 10048,
+    "Name": "小游戏额外道具",
+    "Configuration": "7_5_10_2;2_3_10_1",
+    "Text": ""
+  },
+  {
+    "id": 10049,
+    "Name": "小游戏堆叠",
+    "Configuration": "0_2",
+    "Text": "5_10"
+  },
+  {
+    "id": 10050,
+    "Name": "小游戏次数",
+    "Configuration": "3",
+    "Text": "999999"
+  },
+  {
+    "id": 10051,
+    "Name": "小游戏失败奖励继承",
+    "Configuration": "1_50;7_50;2_50",
+    "Text": ""
+  },
+  {
+    "id": 11000,
+    "Name": "市场调研评价限时上限",
+    "Configuration": "10",
+    "Text": ""
+  },
+  {
+    "id": 11500,
+    "Name": "广告参数",
+    "Configuration": "1",
+    "Text": ""
+  },
+  {
+    "id": 11601,
+    "Name": "员工移速加成",
+    "Configuration": "",
+    "Text": ""
+  },
+  {
+    "id": 11602,
+    "Name": "捞鱼速度加成",
+    "Configuration": "",
+    "Text": ""
+  },
+  {
+    "id": 11603,
+    "Name": "杀鱼速度加成",
+    "Configuration": "",
+    "Text": ""
+  },
+  {
+    "id": 11604,
+    "Name": "收银速度加成",
+    "Configuration": "",
+    "Text": ""
+  },
+  {
+    "id": 11605,
+    "Name": "来客速度加成",
+    "Configuration": "",
+    "Text": ""
+  },
+  {
+    "id": 11606,
+    "Name": "结账收益加成",
+    "Configuration": "",
+    "Text": ""
+  },
+  {
+    "id": 11607,
+    "Name": "顾客移动速度",
+    "Configuration": "",
+    "Text": ""
+  },
+  {
+    "id": 12000,
+    "Name": "时长收益加成比",
+    "Configuration": "",
+    "Text": ""
+  },
+  {
+    "id": 12001,
+    "Name": "结账收益加成比",
+    "Configuration": "",
+    "Text": ""
+  },
+  {
+    "id": 12002,
+    "Name": "来客速度加成比",
+    "Configuration": "0.5_3",
+    "Text": ""
+  },
+  {
+    "id": 12003,
+    "Name": "捞鱼速度加成比",
+    "Configuration": "0.5_3",
+    "Text": ""
+  },
+  {
+    "id": 12004,
+    "Name": "切鱼速度加成比",
+    "Configuration": "0.5_3",
+    "Text": ""
+  },
+  {
+    "id": 12005,
+    "Name": "结账速度加成比",
+    "Configuration": "0.5_3",
+    "Text": ""
+  },
+  {
+    "id": 12006,
+    "Name": "看广告额外增加钱",
+    "Configuration": "",
+    "Text": ""
+  },
+  {
+    "id": 12007,
+    "Name": "时长时间上限",
+    "Configuration": "",
+    "Text": ""
+  },
+  {
+    "id": 12008,
+    "Name": "彩蛋顾客来客时间加成比",
+    "Configuration": "0.5_3",
+    "Text": ""
+  },
+  {
+    "id": 20000,
+    "Name": "时长收益",
+    "Configuration": "0_1_0",
+    "Text": ""
+  },
+  {
+    "id": 21000,
+    "Name": "结账收益加成",
+    "Configuration": "0_1_0",
+    "Text": ""
+  },
+  {
+    "id": 60000,
+    "Name": "时长收益加成比",
+    "Configuration": "0_0_10",
+    "Text": ""
+  },
+  {
+    "id": 61000,
+    "Name": "结账收益加成比",
+    "Configuration": "0_0_10",
+    "Text": ""
+  },
+  {
+    "id": 62000,
+    "Name": "广告来客速度（已废弃）",
+    "Configuration": "60000_0_10",
+    "Text": ""
+  },
+  {
+    "id": 70102,
+    "Name": "中级捞鱼皮肤",
+    "Configuration": "p2",
+    "Text": "202"
+  },
+  {
+    "id": 70103,
+    "Name": "高级捞鱼皮肤",
+    "Configuration": "p3",
+    "Text": "203"
+  },
+  {
+    "id": 70202,
+    "Name": "中级切鱼皮肤",
+    "Configuration": "p2",
+    "Text": "212"
+  },
+  {
+    "id": 70203,
+    "Name": "高级切鱼皮肤",
+    "Configuration": "p3",
+    "Text": "213"
+  },
+  {
+    "id": 70302,
+    "Name": "中级收银皮肤",
+    "Configuration": "p2",
+    "Text": "222"
+  },
+  {
+    "id": 70303,
+    "Name": "高级收银皮肤",
+    "Configuration": "p3",
+    "Text": "223"
+  },
+  {
+    "id": 70502,
+    "Name": "中级辅助捞鱼皮肤",
+    "Configuration": "p2",
+    "Text": "202"
+  },
+  {
+    "id": 70503,
+    "Name": "高级辅助捞鱼皮肤",
+    "Configuration": "p3",
+    "Text": "203"
+  },
+  {
+    "id": 100010,
+    "Name": "时长收益",
+    "Configuration": "{0}分钟",
+    "Text": ""
+  },
+  {
+    "id": 100020,
+    "Name": "结账收益",
+    "Configuration": "+{0}",
+    "Text": ""
+  },
+  {
+    "id": 100030,
+    "Name": "时长时间上限",
+    "Configuration": "{0}分钟",
+    "Text": ""
+  },
+  {
+    "id": 100040,
+    "Name": "来客速度加成",
+    "Configuration": "+{0}%",
+    "Text": ""
+  },
+  {
+    "id": 100050,
+    "Name": "单次来客数量",
+    "Configuration": "+{0}",
+    "Text": ""
+  },
+  {
+    "id": 100060,
+    "Name": "捞鱼来客数量上限",
+    "Configuration": "+{0}",
+    "Text": ""
+  },
+  {
+    "id": 100070,
+    "Name": "初始货币",
+    "Configuration": "+{0}",
+    "Text": ""
+  },
+  {
+    "id": 100080,
+    "Name": "体力恢复",
+    "Configuration": "+{0}",
+    "Text": ""
+  },
+  {
+    "id": 100090,
+    "Name": "彩蛋顾客来客时间",
+    "Configuration": "+{0}%",
+    "Text": ""
+  },
+  {
+    "id": 100100,
+    "Name": "店铺声望值",
+    "Configuration": "+{0}",
+    "Text": ""
+  },
+  {
+    "id": 100110,
+    "Name": "结账收益加成",
+    "Configuration": "+{0}%",
+    "Text": ""
+  },
+  {
+    "id": 100120,
+    "Name": "捞鱼速度加成",
+    "Configuration": "+{0}%",
+    "Text": ""
+  },
+  {
+    "id": 100130,
+    "Name": "时长收益",
+    "Configuration": "+{0}/分",
+    "Text": ""
+  },
+  {
+    "id": 100140,
+    "Name": "广告钱加成",
+    "Configuration": "+[0]",
+    "Text": ""
+  },
+  {
+    "id": 100150,
+    "Name": "时长收益加成",
+    "Configuration": "+{0}%",
+    "Text": ""
+  },
+  {
+    "id": 100160,
+    "Name": "捞鱼速度加成",
+    "Configuration": "+{0}%",
+    "Text": ""
+  },
+  {
+    "id": 100170,
+    "Name": "切鱼速度加成",
+    "Configuration": "+{0}%",
+    "Text": ""
+  },
+  {
+    "id": 100180,
+    "Name": "结账速度加成",
+    "Configuration": "+{0}%",
+    "Text": ""
+  },
+  {
+    "id": 100190,
+    "Name": "鱼类声望",
+    "Configuration": "+{0}",
+    "Text": ""
+  },
+  {
+    "id": 100200,
+    "Name": "员工声望",
+    "Configuration": "+{0}",
+    "Text": ""
+  },
+  {
+    "id": 100210,
+    "Name": "设施声望",
+    "Configuration": "+{0}",
+    "Text": ""
+  },
+  {
+    "id": 199998,
+    "Name": "二楼按钮开放任务",
+    "Configuration": "131",
+    "Text": "1"
+  },
+  {
+    "id": 199999,
+    "Name": "垃圾开放任务",
+    "Configuration": "5",
+    "Text": "1"
+  },
+  {
+    "id": 200000,
+    "Name": "白鲢广告不弹钱任务",
+    "Configuration": "6",
+    "Text": "1"
+  },
+  {
+    "id": 200001,
+    "Name": "员工不弹钱任务",
+    "Configuration": "7",
+    "Text": "1"
+  },
+  {
+    "id": 200002,
+    "Name": "吆喝/加速开启的任务",
+    "Configuration": "15",
+    "Text": "1"
+  },
+  {
+    "id": 200003,
+    "Name": "广告泡泡开启任务",
+    "Configuration": "100",
+    "Text": "1"
+  },
+  {
+    "id": 200004,
+    "Name": "开启藏品引导任务",
+    "Configuration": "17",
+    "Text": "0"
+  },
+  {
+    "id": 200005,
+    "Name": "七日签到任务引导",
+    "Configuration": "24",
+    "Text": "0"
+  },
+  {
+    "id": 200006,
+    "Name": "彩蛋顾客引导",
+    "Configuration": "100",
+    "Text": "0"
+  },
+  {
+    "id": 200007,
+    "Name": "鲫鱼升级引导",
+    "Configuration": "6",
+    "Text": "0"
+  },
+  {
+    "id": 200008,
+    "Name": "离线收益引导",
+    "Configuration": "23",
+    "Text": "0"
+  },
+  {
+    "id": 200009,
+    "Name": "流水引导",
+    "Configuration": "26",
+    "Text": "1"
+  },
+  {
+    "id": 200010,
+    "Name": "合成引导",
+    "Configuration": "9",
+    "Text": "0"
+  },
+  {
+    "id": 200011,
+    "Name": "老板接待",
+    "Configuration": "9",
+    "Text": "1"
+  },
+  {
+    "id": 200012,
+    "Name": "鱼泡解锁",
+    "Configuration": "58",
+    "Text": "1"
+  },
+  {
+    "id": 200013,
+    "Name": "外卖解锁",
+    "Configuration": "40",
+    "Text": "0"
+  },
+  {
+    "id": 300001,
+    "Name": "红色鱼卵(1级)",
+    "Configuration": "6_10",
+    "Text": "2个红色鱼卵(1级)可以合成红色鱼卵(2级)"
+  },
+  {
+    "id": 300002,
+    "Name": "红色鱼卵(2级)",
+    "Configuration": "7_20",
+    "Text": "2个红色鱼卵(2级)可以合成红色鱼卵(3级)"
+  },
+  {
+    "id": 300003,
+    "Name": "红色鱼卵(3级)",
+    "Configuration": "8_30",
+    "Text": "2个红色鱼卵(3级)可以合成红色鱼卵(4级)"
+  },
+  {
+    "id": 300004,
+    "Name": "红色鱼卵(4级)",
+    "Configuration": "9_40",
+    "Text": "2个红色鱼卵(4级)可以合成红色鱼卵(5级)"
+  },
+  {
+    "id": 300005,
+    "Name": "红色鱼卵(5级)",
+    "Configuration": "10_50",
+    "Text": "2个红色鱼卵(5级)可以合成红色鱼仔"
+  },
+  {
+    "id": 300006,
+    "Name": "红色鱼仔",
+    "Configuration": "11_100",
+    "Text": "用于解锁新品种的鱼类"
+  },
+  {
+    "id": 300011,
+    "Name": "橙色鱼卵(1级)",
+    "Configuration": "6_10",
+    "Text": "2个橙色鱼卵(1级)可以合成橙色鱼卵(2级)"
+  },
+  {
+    "id": 300012,
+    "Name": "橙色鱼卵(2级)",
+    "Configuration": "7_20",
+    "Text": "2个橙色鱼卵(2级)可以合成橙色鱼卵(3级)"
+  },
+  {
+    "id": 300013,
+    "Name": "橙色鱼卵(3级)",
+    "Configuration": "8_30",
+    "Text": "2个橙色鱼卵(3级)可以合成橙色鱼卵(4级)"
+  },
+  {
+    "id": 300014,
+    "Name": "橙色鱼卵(4级)",
+    "Configuration": "9_40",
+    "Text": "2个橙色鱼卵(4级)可以合成橙色鱼卵(5级)"
+  },
+  {
+    "id": 300015,
+    "Name": "橙色鱼卵(5级)",
+    "Configuration": "10_50",
+    "Text": "2个橙色鱼卵(5级)可以合成橙色鱼仔"
+  },
+  {
+    "id": 300016,
+    "Name": "橙色鱼仔",
+    "Configuration": "11_100",
+    "Text": "用于解锁新品种的鱼类"
+  },
+  {
+    "id": 300021,
+    "Name": "蓝色鱼卵(1级)",
+    "Configuration": "6_10",
+    "Text": "2个蓝色鱼卵(1级)可以合成蓝色鱼卵(2级)"
+  },
+  {
+    "id": 300022,
+    "Name": "蓝色鱼卵(2级)",
+    "Configuration": "7_20",
+    "Text": "2个蓝色鱼卵(2级)可以合成蓝色鱼卵(3级)"
+  },
+  {
+    "id": 300023,
+    "Name": "蓝色鱼卵(3级)",
+    "Configuration": "8_30",
+    "Text": "2个蓝色鱼卵(3级)可以合成蓝色鱼卵(4级)"
+  },
+  {
+    "id": 300024,
+    "Name": "蓝色鱼卵(4级)",
+    "Configuration": "9_40",
+    "Text": "2个蓝色鱼卵(4级)可以合成蓝色鱼卵(5级)"
+  },
+  {
+    "id": 300025,
+    "Name": "蓝色鱼卵(5级)",
+    "Configuration": "10_50",
+    "Text": "2个蓝色鱼卵(5级)可以合成蓝色鱼仔"
+  },
+  {
+    "id": 300026,
+    "Name": "蓝色鱼仔",
+    "Configuration": "11_100",
+    "Text": "用于解锁新品种的鱼类"
+  },
+  {
+    "id": 300031,
+    "Name": "绿色鱼卵(1级)",
+    "Configuration": "6_10",
+    "Text": "2个绿色鱼卵(1级)可以合成绿色鱼卵(2级)"
+  },
+  {
+    "id": 300032,
+    "Name": "绿色鱼卵(2级)",
+    "Configuration": "7_20",
+    "Text": "2个绿色鱼卵(2级)可以合成绿色鱼卵(3级)"
+  },
+  {
+    "id": 300033,
+    "Name": "绿色鱼卵(3级)",
+    "Configuration": "8_30",
+    "Text": "2个绿色鱼卵(3级)可以合成绿色鱼卵(4级)"
+  },
+  {
+    "id": 300034,
+    "Name": "绿色鱼卵(4级)",
+    "Configuration": "9_40",
+    "Text": "2个绿色鱼卵(4级)可以合成绿色鱼卵(5级)"
+  },
+  {
+    "id": 300035,
+    "Name": "绿色鱼卵(5级)",
+    "Configuration": "10_50",
+    "Text": "2个绿色鱼卵(5级)可以合成绿色鱼仔"
+  },
+  {
+    "id": 300036,
+    "Name": "绿色鱼仔",
+    "Configuration": "11_100",
+    "Text": "用于解锁新品种的鱼类"
+  },
+  {
+    "id": 300041,
+    "Name": "紫色鱼卵(1级)",
+    "Configuration": "6_10",
+    "Text": "2个紫色鱼卵(1级)可以合成紫色鱼卵(2级)"
+  },
+  {
+    "id": 300042,
+    "Name": "紫色鱼卵(2级)",
+    "Configuration": "7_20",
+    "Text": "2个紫色鱼卵(2级)可以合成紫色鱼卵(3级)"
+  },
+  {
+    "id": 300043,
+    "Name": "紫色鱼卵(3级)",
+    "Configuration": "8_30",
+    "Text": "2个紫色鱼卵(3级)可以合成紫色鱼卵(4级)"
+  },
+  {
+    "id": 300044,
+    "Name": "紫色鱼卵(4级)",
+    "Configuration": "9_40",
+    "Text": "2个紫色鱼卵(4级)可以合成紫色鱼卵(5级)"
+  },
+  {
+    "id": 300045,
+    "Name": "紫色鱼卵(5级)",
+    "Configuration": "10_50",
+    "Text": "2个紫色鱼卵(5级)可以合成紫色鱼仔"
+  },
+  {
+    "id": 300046,
+    "Name": "紫色鱼仔",
+    "Configuration": "11_100",
+    "Text": "用于解锁新品种的鱼类"
+  }
+]

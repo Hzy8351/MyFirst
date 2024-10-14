@@ -1,0 +1,191 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb9f256d0bf45f94c9de9ae8187475c7, type: 3}
+  m_Name: AssetGroups
+  m_EditorClassIdentifier: Assembly-CSharp-Editor:Assets.Editor:AssetGroups
+  groups:
+  - GroupName: "\u6D4B\u8BD5"
+    Active: 1
+    GroupDescription: ui
+    Rules:
+    - name: BuffPopupUI
+      target: {fileID: 5197264116201895333, guid: cae6829a148e2ac4faabe0879a983a14, type: 3}
+      target_uid: 
+      target_path: 
+      Filters: 00000000
+      BundleType: 0
+      DepType: 1
+      EnableLoad: 1
+    - name: CaesareanRewardUI
+      target: {fileID: 3711600099667671739, guid: aee813e436c2f9948883f0cfaf63e107, type: 3}
+      target_uid: 
+      target_path: 
+      Filters: 00000000
+      BundleType: 0
+      DepType: 1
+      EnableLoad: 1
+    - name: CollectFishListUI
+      target: {fileID: 8089400130196271023, guid: eef7e76f39eb0fd42ada66db4ef6451f, type: 3}
+      target_uid: 
+      target_path: 
+      Filters: 00000000
+      BundleType: 0
+      DepType: 1
+      EnableLoad: 1
+  - GroupName: "\u56FE\u6807"
+    Active: 1
+    GroupDescription: icon
+    Rules:
+    - name: Icon_1
+      target: {fileID: 2800000, guid: c5a2e5ea7c8faaf4cab78cb47715c1e0, type: 3}
+      target_uid: 
+      target_path: 
+      Filters: 00000000
+      BundleType: 0
+      DepType: 1
+      EnableLoad: 1
+    - name: Icon_2
+      target: {fileID: 2800000, guid: 92562b2b790f58543a7116a69042040d, type: 3}
+      target_uid: 
+      target_path: 
+      Filters: 00000000
+      BundleType: 0
+      DepType: 1
+      EnableLoad: 1
+    - name: Icon_3
+      target: {fileID: 2800000, guid: 04c1a19fc044893439169156b0b6f388, type: 3}
+      target_uid: 
+      target_path: 
+      Filters: 00000000
+      BundleType: 0
+      DepType: 1
+      EnableLoad: 1
+    - name: Icon_4
+      target: {fileID: 2800000, guid: d8ae8f18083da7f4cbbd31ed5a6b8022, type: 3}
+      target_uid: 
+      target_path: 
+      Filters: 00000000
+      BundleType: 0
+      DepType: 1
+      EnableLoad: 1
+    - name: Icon_5
+      target: {fileID: 2800000, guid: 17a35ed2ab49a2c4cb6dae0e3dbb90c3, type: 3}
+      target_uid: 
+      target_path: 
+      Filters: 00000000
+      BundleType: 0
+      DepType: 1
+      EnableLoad: 1
+    - name: Icon_6
+      target: {fileID: 2800000, guid: abb9542f3a120d54fb22a5a9e2c59fac, type: 3}
+      target_uid: 
+      target_path: 
+      Filters: 00000000
+      BundleType: 0
+      DepType: 1
+      EnableLoad: 1
+  - GroupName: "\u8868"
+    Active: 1
+    GroupDescription: tb
+    Rules:
+    - name: AdvertisementTb
+      target: {fileID: 4900000, guid: 5293c36012a026c4da7c7ca6fc669b79, type: 3}
+      target_uid: 
+      target_path: 
+      Filters: 00000000
+      BundleType: 0
+      DepType: 1
+      EnableLoad: 1
+  - GroupName: "\u76EE\u5F55\u8D44\u6E90"
+    Active: 1
+    GroupDescription: scene
+    Rules:
+    - name: 
+      target: {fileID: 102900000, guid: ad7fcd6703be52e468c4f4fd04979fbf, type: 3}
+      target_uid: 
+      target_path: 
+      Filters: 00000000
+      BundleType: 0
+      DepType: 1
+      EnableLoad: 1
+    - name: 
+      target: {fileID: 2800000, guid: bb0a02e198891294caf26097c220066f, type: 3}
+      target_uid: 
+      target_path: 
+      Filters: 00000000
+      BundleType: 0
+      DepType: 1
+      EnableLoad: 1
+    - name: 
+      target: {fileID: 2800000, guid: b198c186530d11c499a4f75ab9dc2c3c, type: 3}
+      target_uid: 
+      target_path: 
+      Filters: 0000000000000000
+      BundleType: 0
+      DepType: 1
+      EnableLoad: 1
+    - name: 
+      target: {fileID: 2800000, guid: d7587f1ccf7f3364289d96ffd34a0ff2, type: 3}
+      target_uid: 
+      target_path: 
+      Filters: 00000000
+      BundleType: 0
+      DepType: 1
+      EnableLoad: 1
+    - name: 
+      target: {fileID: 0}
+      target_uid: 
+      target_path: 
+      Filters: 00000000
+      BundleType: 0
+      DepType: 1
+      EnableLoad: 1
+    - name: 
+      target: {fileID: 2800000, guid: dd8fab069750b4d47b9cd9e8f3792a5a, type: 3}
+      target_uid: 
+      target_path: 
+      Filters: 00000000
+      BundleType: 0
+      DepType: 1
+      EnableLoad: 1
+    - name: 
+      target: {fileID: 0}
+      target_uid: 
+      target_path: 
+      Filters: 00000000
+      BundleType: 0
+      DepType: 1
+      EnableLoad: 1
+    - name: 
+      target: {fileID: 0}
+      target_uid: 
+      target_path: 
+      Filters: 00000000
+      BundleType: 0
+      DepType: 1
+      EnableLoad: 1
+    - name: 
+      target: {fileID: 0}
+      target_uid: 
+      target_path: 
+      Filters: 00000000
+      BundleType: 0
+      DepType: 1
+      EnableLoad: 1
+    - name: 
+      target: {fileID: 0}
+      target_uid: 
+      target_path: 
+      Filters: 00000000
+      BundleType: 0
+      DepType: 1
+      EnableLoad: 1

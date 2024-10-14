@@ -1,0 +1,641 @@
+[
+  {
+    "id": 1,
+    "Describe": "顾客结账",
+    "Type": 5,
+    "Condition": "0_1",
+    "Reward": "1_50",
+    "Jump": "14_1",
+    "New_Task": 2
+  },
+  {
+    "id": 2,
+    "Describe": "解锁老旧清洗台",
+    "Type": 1,
+    "Condition": "17_1",
+    "Reward": "1_50",
+    "Jump": "4_17",
+    "New_Task": 3
+  },
+  {
+    "id": 3,
+    "Describe": "与顾客交互1次",
+    "Type": 2,
+    "Condition": "0_1",
+    "Reward": "1_80",
+    "Jump": "8_1",
+    "New_Task": 4
+  },
+  {
+    "id": 4,
+    "Describe": "解锁简易桌子",
+    "Type": 1,
+    "Condition": "18_1",
+    "Reward": "1_50",
+    "Jump": "4_18",
+    "New_Task": 5
+  },
+  {
+    "id": 5,
+    "Describe": "打扫店铺垃圾",
+    "Type": 11,
+    "Condition": "0_1",
+    "Reward": "1_230",
+    "Jump": "13_1",
+    "New_Task": 6
+  },
+  {
+    "id": 6,
+    "Describe": "升级鲫鱼到2星",
+    "Type": 8,
+    "Condition": "1_2",
+    "Reward": "1_800",
+    "Jump": "5_1",
+    "New_Task": 7
+  },
+  {
+    "id": 7,
+    "Describe": "解锁保鲜柜",
+    "Type": 1,
+    "Condition": "6_1",
+    "Reward": "1_30",
+    "Jump": "4_6",
+    "New_Task": 8
+  },
+  {
+    "id": 8,
+    "Describe": "与顾客交互2次",
+    "Type": 2,
+    "Condition": "0_2",
+    "Reward": "1_50",
+    "Jump": "8_1",
+    "New_Task": 9
+  },
+  {
+    "id": 9,
+    "Describe": "解锁白鲢",
+    "Type": 8,
+    "Condition": "2_1",
+    "Reward": "1_80",
+    "Jump": "11_1",
+    "New_Task": 10
+  },
+  {
+    "id": 10,
+    "Describe": "获得收益50",
+    "Type": 3,
+    "Condition": "1_50",
+    "Reward": "1_1000",
+    "Jump": "9_1",
+    "New_Task": 11
+  },
+  {
+    "id": 11,
+    "Describe": "解锁蒲扇",
+    "Type": 1,
+    "Condition": "3_1",
+    "Reward": "1_80",
+    "Jump": "4_3",
+    "New_Task": 12
+  },
+  {
+    "id": 12,
+    "Describe": "升级鲫鱼到3星",
+    "Type": 8,
+    "Condition": "1_3",
+    "Reward": "1_80",
+    "Jump": "5_1",
+    "New_Task": 13
+  },
+  {
+    "id": 13,
+    "Describe": "打扫店铺垃圾",
+    "Type": 11,
+    "Condition": "0_1",
+    "Reward": "1_30",
+    "Jump": "13_1",
+    "New_Task": 14
+  },
+  {
+    "id": 14,
+    "Describe": "升级白鲢到2星",
+    "Type": 8,
+    "Condition": "2_2",
+    "Reward": "1_80",
+    "Jump": "5_2",
+    "New_Task": 15
+  },
+  {
+    "id": 15,
+    "Describe": "获得收益100",
+    "Type": 3,
+    "Condition": "1_100",
+    "Reward": "1_900",
+    "Jump": "9_1",
+    "New_Task": 16
+  },
+  {
+    "id": 16,
+    "Describe": "解锁树脂招牌",
+    "Type": 1,
+    "Condition": "10_1",
+    "Reward": "1_60",
+    "Jump": "4_10",
+    "New_Task": 17
+  },
+  {
+    "id": 17,
+    "Describe": "处理1条鱼",
+    "Type": 7,
+    "Condition": "0_1",
+    "Reward": "1_30",
+    "Jump": "2_0",
+    "New_Task": 18
+  },
+  {
+    "id": 18,
+    "Describe": "解锁辅助捞鱼工",
+    "Type": 9,
+    "Condition": "5_1",
+    "Reward": "1_10",
+    "Jump": "6_5",
+    "New_Task": 19
+  },
+  {
+    "id": 19,
+    "Describe": "与顾客交互3次",
+    "Type": 2,
+    "Condition": "0_3",
+    "Reward": "1_275",
+    "Jump": "8_1",
+    "New_Task": 20
+  },
+  {
+    "id": 20,
+    "Describe": "升级白鲢到3星",
+    "Type": 8,
+    "Condition": "2_3",
+    "Reward": "1_600",
+    "Jump": "5_2",
+    "New_Task": 21
+  },
+  {
+    "id": 21,
+    "Describe": "解锁绿萝",
+    "Type": 1,
+    "Condition": "4_1",
+    "Reward": "1_100",
+    "Jump": "4_4",
+    "New_Task": 22
+  },
+  {
+    "id": 22,
+    "Describe": "升级店铺到3级",
+    "Type": 4,
+    "Condition": "1_3",
+    "Reward": "1_800",
+    "Jump": "1_1",
+    "New_Task": 23
+  },
+  {
+    "id": 23,
+    "Describe": "领取时长收益",
+    "Type": 6,
+    "Condition": "1_1",
+    "Reward": "1_200",
+    "Jump": "7_1",
+    "New_Task": 24
+  },
+  {
+    "id": 24,
+    "Describe": "解锁二手小型冰柜",
+    "Type": 1,
+    "Condition": "7_1",
+    "Reward": "1_100",
+    "Jump": "4_7",
+    "New_Task": 25
+  },
+  {
+    "id": 25,
+    "Describe": "打扫店铺垃圾",
+    "Type": 11,
+    "Condition": "0_1",
+    "Reward": "1_80",
+    "Jump": "13_1",
+    "New_Task": 26
+  },
+  {
+    "id": 26,
+    "Describe": "解锁草鱼",
+    "Type": 8,
+    "Condition": "3_1",
+    "Reward": "1_600",
+    "Jump": "11_1",
+    "New_Task": 27
+  },
+  {
+    "id": 27,
+    "Describe": "获得收益300",
+    "Type": 3,
+    "Condition": "1_200",
+    "Reward": "1_80",
+    "Jump": "9_1",
+    "New_Task": 28
+  },
+  {
+    "id": 28,
+    "Describe": "升级鲫鱼到6星",
+    "Type": 8,
+    "Condition": "1_6",
+    "Reward": "1_1100",
+    "Jump": "5_1",
+    "New_Task": 29
+  },
+  {
+    "id": 29,
+    "Describe": "合成1次",
+    "Type": 12,
+    "Condition": "0_1",
+    "Reward": "7_5",
+    "Jump": "10_1",
+    "New_Task": 30
+  },
+  {
+    "id": 30,
+    "Describe": "解锁水产专用缸",
+    "Type": 1,
+    "Condition": "5_2",
+    "Reward": "1_220",
+    "Jump": "4_5",
+    "New_Task": 31
+  },
+  {
+    "id": 31,
+    "Describe": "店铺收益达到1万",
+    "Type": 16,
+    "Condition": "0_10000",
+    "Reward": "1_820",
+    "Jump": "9_1",
+    "New_Task": 32
+  },
+  {
+    "id": 32,
+    "Describe": "合成3次",
+    "Type": 12,
+    "Condition": "0_3",
+    "Reward": "1_180",
+    "Jump": "10_1",
+    "New_Task": 33
+  },
+  {
+    "id": 33,
+    "Describe": "处理1条鱼",
+    "Type": 7,
+    "Condition": "0_1",
+    "Reward": "1_300",
+    "Jump": "2_0",
+    "New_Task": 34
+  },
+  {
+    "id": 34,
+    "Describe": "升星白鲢5星",
+    "Type": 8,
+    "Condition": "2_5",
+    "Reward": "1_1400",
+    "Jump": "5_2",
+    "New_Task": 35
+  },
+  {
+    "id": 35,
+    "Describe": "获得收益500",
+    "Type": 3,
+    "Condition": "1_500",
+    "Reward": "1_100",
+    "Jump": "9_1",
+    "New_Task": 36
+  },
+  {
+    "id": 36,
+    "Describe": "升级收银员到2级",
+    "Type": 9,
+    "Condition": "3_2",
+    "Reward": "1_100",
+    "Jump": "6_1",
+    "New_Task": 37
+  },
+  {
+    "id": 37,
+    "Describe": "解锁木质切鱼台",
+    "Type": 1,
+    "Condition": "14_2",
+    "Reward": "1_800",
+    "Jump": "4_14",
+    "New_Task": 38
+  },
+  {
+    "id": 38,
+    "Describe": "升级鲫鱼到7星",
+    "Type": 8,
+    "Condition": "1_7",
+    "Reward": "1_600",
+    "Jump": "5_1",
+    "New_Task": 39
+  },
+  {
+    "id": 39,
+    "Describe": "与顾客交互3次",
+    "Type": 2,
+    "Condition": "0_3",
+    "Reward": "1_300",
+    "Jump": "8_1",
+    "New_Task": 40
+  },
+  {
+    "id": 40,
+    "Describe": "升级切鱼工到2级",
+    "Type": 9,
+    "Condition": "2_2",
+    "Reward": "1_800",
+    "Jump": "6_2",
+    "New_Task": 41
+  },
+  {
+    "id": 41,
+    "Describe": "解锁基围虾",
+    "Type": 8,
+    "Condition": "4_1",
+    "Reward": "1_1300",
+    "Jump": "11_1",
+    "New_Task": 42
+  },
+  {
+    "id": 42,
+    "Describe": "解锁木质收银台",
+    "Type": 1,
+    "Condition": "12_2",
+    "Reward": "1_1000",
+    "Jump": "4_12",
+    "New_Task": 43
+  },
+  {
+    "id": 43,
+    "Describe": "打扫店铺垃圾",
+    "Type": 11,
+    "Condition": "0_2",
+    "Reward": "1_500",
+    "Jump": "13_1",
+    "New_Task": 44
+  },
+  {
+    "id": 44,
+    "Describe": "解锁木制保鲜柜",
+    "Type": 1,
+    "Condition": "6_2",
+    "Reward": "1_2000",
+    "Jump": "4_6",
+    "New_Task": 45
+  },
+  {
+    "id": 45,
+    "Describe": "流水达到2.5万",
+    "Type": 16,
+    "Condition": "0_25000",
+    "Reward": "1_820",
+    "Jump": "9_1",
+    "New_Task": 46
+  },
+  {
+    "id": 46,
+    "Describe": "合成5次",
+    "Type": 12,
+    "Condition": "0_5",
+    "Reward": "1_780",
+    "Jump": "10_1",
+    "New_Task": 47
+  },
+  {
+    "id": 47,
+    "Describe": "解锁小型冰柜",
+    "Type": 1,
+    "Condition": "7_2",
+    "Reward": "1_600",
+    "Jump": "4_7",
+    "New_Task": 48
+  },
+  {
+    "id": 48,
+    "Describe": "升星白鲢7星",
+    "Type": 8,
+    "Condition": "2_7",
+    "Reward": "1_1000",
+    "Jump": "5_2",
+    "New_Task": 49
+  },
+  {
+    "id": 49,
+    "Describe": "解锁鲤鱼",
+    "Type": 8,
+    "Condition": "5_1",
+    "Reward": "1_1200",
+    "Jump": "11_1",
+    "New_Task": 50
+  },
+  {
+    "id": 50,
+    "Describe": "解锁杂物箱",
+    "Type": 1,
+    "Condition": "18_2",
+    "Reward": "1_1500",
+    "Jump": "4_18",
+    "New_Task": 51
+  },
+  {
+    "id": 51,
+    "Describe": "获得收益1000",
+    "Type": 3,
+    "Condition": "1_1000",
+    "Reward": "1_1000",
+    "Jump": "9_1",
+    "New_Task": 52
+  },
+  {
+    "id": 52,
+    "Describe": "解锁廉价瓷砖",
+    "Type": 1,
+    "Condition": "9_2",
+    "Reward": "1_700",
+    "Jump": "4_9",
+    "New_Task": 53
+  },
+  {
+    "id": 53,
+    "Describe": "与顾客交互3次",
+    "Type": 2,
+    "Condition": "0_3",
+    "Reward": "1_600",
+    "Jump": "8_1",
+    "New_Task": 54
+  },
+  {
+    "id": 54,
+    "Describe": "流水达到4.5万",
+    "Type": 16,
+    "Condition": "0_45000",
+    "Reward": "1_400",
+    "Jump": "12_1",
+    "New_Task": 55
+  },
+  {
+    "id": 55,
+    "Describe": "升星草鱼2星",
+    "Type": 8,
+    "Condition": "3_2",
+    "Reward": "1_200",
+    "Jump": "5_3",
+    "New_Task": 56
+  },
+  {
+    "id": 56,
+    "Describe": "解锁老式绿色风扇",
+    "Type": 1,
+    "Condition": "3_2",
+    "Reward": "1_300",
+    "Jump": "4_3",
+    "New_Task": 57
+  },
+  {
+    "id": 57,
+    "Describe": "处理1条鱼",
+    "Type": 7,
+    "Condition": "0_1",
+    "Reward": "1_100",
+    "Jump": "2_0",
+    "New_Task": 58
+  },
+  {
+    "id": 58,
+    "Describe": "捞鱼工提升至2级",
+    "Type": 9,
+    "Condition": "1_2",
+    "Reward": "1_500",
+    "Jump": "6_3",
+    "New_Task": 59
+  },
+  {
+    "id": 59,
+    "Describe": "解锁灰墙",
+    "Type": 1,
+    "Condition": "2_2",
+    "Reward": "1_1200",
+    "Jump": "4_2",
+    "New_Task": 60
+  },
+  {
+    "id": 60,
+    "Describe": "升星草鱼3星",
+    "Type": 8,
+    "Condition": "3_3",
+    "Reward": "1_400",
+    "Jump": "5_3",
+    "New_Task": 61
+  },
+  {
+    "id": 61,
+    "Describe": "获得收益3000",
+    "Type": 3,
+    "Condition": "1_3000",
+    "Reward": "1_500",
+    "Jump": "9_1",
+    "New_Task": 62
+  },
+  {
+    "id": 62,
+    "Describe": "合成5次",
+    "Type": 12,
+    "Condition": "0_5",
+    "Reward": "1_800",
+    "Jump": "10_1",
+    "New_Task": 63
+  },
+  {
+    "id": 63,
+    "Describe": "解锁格调绿植",
+    "Type": 1,
+    "Condition": "4_2",
+    "Reward": "1_500",
+    "Jump": "4_4",
+    "New_Task": 64
+  },
+  {
+    "id": 64,
+    "Describe": "升星基围虾2星",
+    "Type": 8,
+    "Condition": "4_2",
+    "Reward": "1_1500",
+    "Jump": "5_4",
+    "New_Task": 65
+  },
+  {
+    "id": 65,
+    "Describe": "解锁铁质招牌",
+    "Type": 1,
+    "Condition": "10_2",
+    "Reward": "1_2500",
+    "Jump": "4_10",
+    "New_Task": 66
+  },
+  {
+    "id": 66,
+    "Describe": "清理4处垃圾",
+    "Type": 11,
+    "Condition": "0_4",
+    "Reward": "1_2500",
+    "Jump": "13_1",
+    "New_Task": 67
+  },
+  {
+    "id": 67,
+    "Describe": "处理1条鱼",
+    "Type": 7,
+    "Condition": "0_1",
+    "Reward": "1_1500",
+    "Jump": "2_0",
+    "New_Task": 68
+  },
+  {
+    "id": 68,
+    "Describe": "升星鲤鱼3星",
+    "Type": 8,
+    "Condition": "5_3",
+    "Reward": "1_1500",
+    "Jump": "5_5",
+    "New_Task": 69
+  },
+  {
+    "id": 69,
+    "Describe": "获得收益5000",
+    "Type": 3,
+    "Condition": "1_5000",
+    "Reward": "1_1500",
+    "Jump": "9_1",
+    "New_Task": 70
+  },
+  {
+    "id": 70,
+    "Describe": "解锁石头鱼",
+    "Type": 8,
+    "Condition": "6_1",
+    "Reward": "1_3000",
+    "Jump": "11_1",
+    "New_Task": 71
+  },
+  {
+    "id": 71,
+    "Describe": "升级店铺到4级",
+    "Type": 4,
+    "Condition": "1_4",
+    "Reward": "1_5000",
+    "Jump": "1_1",
+    "New_Task": 0
+  }
+]

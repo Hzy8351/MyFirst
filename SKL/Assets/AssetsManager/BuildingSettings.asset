@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca5892147a776b04e80800675aed7ecf, type: 3}
+  m_Name: BuildingSettings
+  m_EditorClassIdentifier: Assembly-CSharp-Editor:Assets.Editor:BuildSettings
+  PlayModel: 2
+  Settings:
+  - BuildPath: ./Bundles
+    Name: version
+    Active: 1
+    Version: 0.0.1
+    Language: 10
+    remoteUri: 
+    channel: 
+    enableDebugLogger: 0
+    offlineMode: 0
+    startScene: 
+    CurBuildData: 1709193342

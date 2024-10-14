@@ -1,0 +1,69 @@
+<ui:UXML 
+    xmlns:ui="UnityEngine.UIElements" 
+    xmlns:uie="UnityEditor.UIElements" 
+    engine="UnityEngine.UIElements" 
+    editor="UnityEditor.UIElements" 
+    xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" 
+    editor-extension-mode="True"
+>
+    <uie:Toolbar name="Toolbar" style="display: flex; flex-direction: row-reverse;">
+        <ui:Button text="导出" display-tooltip-when-elided="true" name="ExportButton" style="width: 50px; background-color: rgb(56, 147, 58);" />
+        <ui:Button text="导入" display-tooltip-when-elided="true" name="ImportButton" style="width: 50px; background-color: rgb(56, 147, 58);" />
+    </uie:Toolbar>
+    <ui:VisualElement name="ContentContainer" style="flex-grow: 1; flex-direction: row;  border-top-width: 10px; border-bottom-width: 5px;">
+        <ui:VisualElement name="LeftContainer" style="width: 350px; flex-grow: 0.3; background-color: rgb(67, 67, 67); border-top-width: 5px; border-bottom-width: 5px;">
+            <ui:ListView focusable="true" name="SettingListView" item-height="60" virtualization-method="DynamicHeight" style="flex-grow: 1;" />
+            <ui:VisualElement name="SettingListOpr" style="height: 20px; flex-direction: row; justify-content: flex-end;">
+                <ui:Button text=" - " display-tooltip-when-elided="true" name="RemoveBtn" />
+                <ui:Button text=" + " display-tooltip-when-elided="true" name="AddBtn" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="RightContainer" style="flex-direction: column; flex-grow: 1;">
+            <ui:VisualElement name="PublicContainer" style="height: 60px; flex-direction: row; border-left-width: 5px; border-right-width: 5px; border-top-width: 5px; border-bottom-width: 5px;">
+                <ui:VisualElement name="Actions" style="height: 60px; flex-direction: row; justify-content: flex-start;">
+                    <ui:VisualElement name="PlayModel" style="min-width: 100px;"/>
+                    <ui:Button text="1.导出Excel" name="ExportExcels" style="min-width: 100px;"/>
+                    <ui:Button text="2.导出Proto" name="ExportProto" style="min-width: 100px;"/>
+                    <ui:Button text="3.构建AssetBundle" name="BuildBundle" style="min-width: 100px;"/>
+                    <ui:Button text="复制到StreamAsset" name="CopyToStreaming" style="min-width: 100px;"/>
+                    <ui:Button text="发布当前版本" name="PublishBuild" style="min-width: 100px;"/>
+                    <ui:Button text="激活当前设置" name="ActiveSetting" style="min-width: 100px;"/>
+                    <ui:Button text="打包Player" name="BuildPlayer" style="min-width: 100px;"/>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="GroupContainer" style="flex-grow: 1; border-left-width: 5px; border-right-width: 5px; border-top-width: 5px; border-bottom-width: 5px;">
+                <ui:VisualElement name="ActiveRuleContainer" style="height: 20px;" />
+                <ui:ScrollView name="CollectorScrollView" style="flex-grow: 1;" >
+                    <ui:TextField picking-mode="Ignore" label="名字" name="BuildName" />
+                    <ui:VisualElement style="flex-direction: row">
+                        <ui:TextField picking-mode="Ignore" label="构建路径" name="BuildPath" style="flex-grow: 1;"/>
+                        <ui:Button text="刷新构建列表" name="RefreshBuilds"  style="min-width: 100px;"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement style="height: 5px"/>
+                    <ui:Label text="打包设置" style="-unity-text-align: middle-left;"/>
+                    <ui:TextField label="版本号" name="Version"/>
+                    <ui:TextField label="远程设置地址" name="Set.RemoteURL"/>
+                    <ui:TextField label="启动场景" name="Set.StartScene"/>
+                    <ui:TextField label="渠道号" name="Set.Channel"/>
+                    <ui:Toggle label="是否开启Console" name="Set.Console"/>
+                    <ui:Toggle label="是否离线模式" name="Set.Offline"/>
+                    <ui:VisualElement name="Set.Language"/>
+                    <ui:Toggle label="是否使用本地语言" name="Set.LocalLanguage"/>
+                    <ui:VisualElement style="height: 5px"/>
+                    <ui:Label text="多语言设置" style="-unity-text-align: middle-left;"/>
+                    <ui:VisualElement style="height: 5px"/>
+                    <ui:VisualElement name="LanguageContainer" style="height: 50px; flex-direction: row; justify-content: flex-start;">
+                    </ui:VisualElement>
+                    <ui:VisualElement style="height: 5px"/>
+                    <ui:Button text="应用设置" name="ApplySetting" style="min-width: 100px;"/>
+                    <ui:VisualElement style="height: 5px"/>
+                    <ui:VisualElement style="height: 5px"/>
+                    <ui:Label text="当前版本的Build列表" style="flex-grow: 1; -unity-text-align: middle-left;"/>
+                    <ui:VisualElement style="height: 5px"/>
+                    <ui:VisualElement name="CatlogChoose"/>
+                </ui:ScrollView>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
