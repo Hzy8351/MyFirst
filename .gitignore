@@ -1,0 +1,6 @@
+/SKL/*.csproj
+/SKL/Library
+/SKL/Logs
+/SKL/obj
+/SKL/.vs
+/SKL/*.sln
