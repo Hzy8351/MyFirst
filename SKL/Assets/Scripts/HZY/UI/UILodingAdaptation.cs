@@ -65,7 +65,7 @@ public class UILodingAdaptation : MonoBehaviour
             rt.localPosition = pos;
         }
 
-        float d = 0;
+        //float d = 0;
         for (int i = 0; i < rpy.Length; ++i)
         {
             RectTransform rt = rpy[i];
@@ -73,9 +73,9 @@ public class UILodingAdaptation : MonoBehaviour
             float val = Mathf.Abs(pos.y * (sy - 1f));
             if (sy < 1f) { val = -val; }
             pos.y += val;
-            d += val;
+            //d += val;
             rt.localPosition = pos;
-            Debug.Log(d);
+            //Debug.Log(d);
         }
         for (int i = 0; i < lpy.Length; ++i)
         {
