@@ -37,10 +37,12 @@ public class GameManager : MonoSingleton<GameManager>
 
     #endregion
 
-    private void Awake()
+    protected override void Init()
     {
-        DontDestroyOnLoad(gameObject);
+        base.Init();
+        DontDestroyOnLoad(this.gameObject);
         Application.targetFrameRate = 60;
+
     }
 
     private void Update()
