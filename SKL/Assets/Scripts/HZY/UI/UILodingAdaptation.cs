@@ -24,14 +24,14 @@ public class UILodingAdaptation : MonoBehaviour
         float sx = (rtCanvas.rect.width / 1080f);
 
         float minus = sy - sx;
-        Debug.Log("sy = " + sy + ", sx = " + sx + ", minus = " + minus);
-        if (minus <= -0.12f)
-        {
-            sx = sy;
-        }
-        else if (minus >= 0.12f)
+        //Debug.Log("sy = " + sy + ", sx = " + sx + ", minus = " + minus);
+        if (minus <= -0.10f)
         {
             sy = sx;
+        }
+        else if (minus >= 0.10f)
+        {
+            sx = sy;
         }
         else
         {
@@ -64,6 +64,8 @@ public class UILodingAdaptation : MonoBehaviour
             pos.x -= val;
             rt.localPosition = pos;
         }
+
+        float d = 0;
         for (int i = 0; i < rpy.Length; ++i)
         {
             RectTransform rt = rpy[i];
@@ -71,7 +73,9 @@ public class UILodingAdaptation : MonoBehaviour
             float val = Mathf.Abs(pos.y * (sy - 1f));
             if (sy < 1f) { val = -val; }
             pos.y += val;
+            d += val;
             rt.localPosition = pos;
+            Debug.Log(d);
         }
         for (int i = 0; i < lpy.Length; ++i)
         {

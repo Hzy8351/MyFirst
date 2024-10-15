@@ -7,11 +7,8 @@ using UnityEngine.UI;
 
 public class LoadingUI : MonoBehaviour
 {
-    public Text descText;
+    public Text perText1;
     public Text perText;
-    public Image fillImage;
-    public GameObject objMsg;
-    public Button btnClick;
 
     public bool useBundle;
     private int downState;
@@ -21,37 +18,30 @@ public class LoadingUI : MonoBehaviour
     void Awake()
     {
         tick = 0f;
-        maxTick = 1.1f;
-        objMsg.SetActive(false);
-        btnClick.onClick.AddListener(onClick);
-    }
-
-    void onDownFailed()
-    {
-        Debug.Log("onDownFailed");
+        maxTick = 5.1f;
     }
 
     void Update()
     {
-        if (useBundle)
-        {
-            if (downState == 0)
-            {
-                downState = 1;
-                BundleManager.Ins.beginDownload(onDownFailed);
-                return;
-            }
-            if (downState == 1)
-            {
-                setProcess(BundleManager.Ins.getProgress());
-                if (BundleManager.Ins.IsDownComplete())
-                {
-                    downState = 2;
-                    //onTestBundle();
-                }
-                return;
-            }
-        }
+        //if (useBundle)
+        //{
+        //    if (downState == 0)
+        //    {
+        //        downState = 1;
+        //        BundleManager.Ins.beginDownload(onDownFailed);
+        //        return;
+        //    }
+        //    if (downState == 1)
+        //    {
+        //        setProcess(BundleManager.Ins.getProgress());
+        //        if (BundleManager.Ins.IsDownComplete())
+        //        {
+        //            downState = 2;
+        //            //onTestBundle();
+        //        }
+        //        return;
+        //    }
+        //}
 
         tick += Time.deltaTime;
         float amount = (tick / maxTick);
@@ -63,15 +53,8 @@ public class LoadingUI : MonoBehaviour
             return;
         }
 
-        descText.text = "初始化SDK中...";
-
         if (InitController.bInitSDK && InitController.instance.bRealName)
         {
-            if (amount >= 0.99f)
-            {
-                descText.text = "初始化SDK完成...";
-            }
-
             if (amount >= 1f)
             {
                 ohayoo_game_init gr = new ohayoo_game_init(3, "进入游戏");
@@ -85,20 +68,8 @@ public class LoadingUI : MonoBehaviour
 
     private void setProcess(float amount)
     {
-        fillImage.fillAmount = amount;
         int intAmount = (int)(amount * 1000f);
-        perText.text = (intAmount / 10f) + "%";
-    }
-
-    public void showMsgFail()
-    {
-        objMsg.SetActive(true);
-    }
-
-    public void onClick()
-    {
-        objMsg.SetActive(false);
-        OhayooSDKManager.instance.initSDK();
+        perText1.text = perText.text = (intAmount / 10f) + "%";
     }
 
     //private void onTestBundle()

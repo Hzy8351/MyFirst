@@ -23,13 +23,13 @@ public class UIAdaptation : MonoBehaviour
 
         float minus = sy - sx;
         //Debug.Log("sy = " + sy + ", sx = " + sx + ", minus = " + minus);
-        if (minus <= -0.12f)
-        {
-            sx = sy;
-        }
-        else if (minus >= 0.12f)
+        if (minus <= -0.10f)
         {
             sy = sx;
+        }
+        else if (minus >= 0.10f)
+        {
+            sx = sy;
         }
         else
         {
