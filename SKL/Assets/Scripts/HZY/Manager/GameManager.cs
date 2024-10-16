@@ -43,6 +43,7 @@ public class GameManager : MonoSingleton<GameManager>
         DontDestroyOnLoad(this.gameObject);
         Application.targetFrameRate = 60;
 
+        InitLocalData();
     }
 
     private void Update()
@@ -292,20 +293,8 @@ public class GameManager : MonoSingleton<GameManager>
     #region 初始化本地数据
     public bool InitLocalData()
     {
-        CM.Init();
-
         bool bNew = false;
         playerData = UserDatas.GetLocalData(ref bNew);//读取本地持久化玩家数据(包括本土化设置)
-
-        if (!useGuide && bNew)
-        {
-            if (useGuideData)
-            {
-
-            }
-        }
-
-
         return bNew;
     }
 

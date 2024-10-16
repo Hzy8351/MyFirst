@@ -8,6 +8,16 @@ public class MapGrid : MonoBehaviour
 
     public void setSprite(Sprite s)
     {
-        sp.sprite = s;
+        sp.sprite = s; 
+    }
+
+    public void setOrder(int order)
+    {
+        sp.sortingOrder = order;
+    }
+
+    public int getOrder()
+    {
+        return sp.sortingOrder; 
     }
 }
