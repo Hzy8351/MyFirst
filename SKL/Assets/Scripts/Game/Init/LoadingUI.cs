@@ -18,7 +18,7 @@ public class LoadingUI : MonoBehaviour
     void Awake()
     {
         tick = 0f;
-        maxTick = 1.7f;
+        maxTick = 1.5f;
     }
 
     void Update()
@@ -53,7 +53,7 @@ public class LoadingUI : MonoBehaviour
             return;
         }
 
-        if (tick < maxTick + 0.6f)
+        if (tick < maxTick + 0.5f)
         {
             return;
         }
