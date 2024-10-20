@@ -115,6 +115,50 @@ public class WritingData
 
 #endregion
 
+#region MapBlockTb
+public class MapBlockTb
+{
+    public int id;
+    public int Map;
+    public string Sprite;
+    public string Center;
+    public string Size;
+    public int damage;
+}
+
+public class MapBlockData
+{
+    public List<MapBlockTb> cfg;
+    private Dictionary<int, List<MapBlockTb>> dic;
+
+    public void Init(string str)
+    {
+        cfg = JsonMapper.ToObject<List<MapBlockTb>>(str);
+        dic = new Dictionary<int, List<MapBlockTb>>();
+        for (int i = 0; i < cfg.Count; ++i)
+        {
+            if (!dic.ContainsKey(cfg[i].Map))
+            {
+                dic.Add(cfg[i].id, new List<MapBlockTb>());
+            }
+            dic[cfg[i].Map].Add(cfg[i]);
+        }
+    }
+
+    public MapBlockTb getItem(int id)
+    {
+        return cfg.Find((item) => item.id == id);
+    }
+
+    public List<MapBlockTb> getBlocksOfMap(int map)
+    {
+        return dic.ContainsKey(map) ? dic[map] : null;
+    }
+
+}
+
+#endregion
+
 #region GuideTb
 
 public class GuideTb

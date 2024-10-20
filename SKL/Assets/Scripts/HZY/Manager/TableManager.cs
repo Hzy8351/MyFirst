@@ -8,12 +8,15 @@ public class TableManager
     public TaskData dataTask = new TaskData();
     public CommonData dataCommon = new CommonData();
     public WritingData dataWriting = new WritingData();
+    public MapBlockData dataMapBlock = new MapBlockData();
+
 
     public void Init()
     {
         dataTask.Init(TbTool.Read("TaskTb"));
         dataCommon.Init(TbTool.Read("CommonTb"));
         dataWriting.Init(TbTool.Read("WritingTb"));
+        dataMapBlock.Init(TbTool.Read("MapBlockTb"));
     }
 
     public SplitData ParseString(string a0, string a1)

@@ -45,7 +45,7 @@ public class MapManager : MonoSingleton<MapManager>
 
         createMap(1, 15, 15, 2);
         createParts(1, 130, 5);
-        createBlocks(1, 70, 4);
+        createBlocks(1, 70);
         createSides(1);
 
         createUI();
@@ -120,18 +120,18 @@ public class MapManager : MonoSingleton<MapManager>
         }
     }
 
-    public void createBlocks(int mc, int c, int tc)
+    public void createBlocks(int mc, int c)
     {
         string path = pathSpriteGrid + mc + "/";
 
+        List<MapBlockTb> blocks = GameManager.instance.CM.dataMapBlock.getBlocksOfMap(mc);
+
         for (int i = 0; i < c; ++i)
         {
+            MapBlockTb tb = blocks[Random.Range(0, blocks.Count)];
             GameObject go = GameManager.instance.AddPrefab(pathMapBlock, parentBlocks);
             MapBlock mb = go.GetComponent<MapBlock>();
-            int r = Random.Range(0, tc);
-            Sprite sprite = Resources.Load<Sprite>(path + "block" + r);
-            mb.setSprite(sprite);
-
+            mb.inits(path, tb);
             go.transform.localPosition = randomPoint();
             go.SetActive(true);
         }

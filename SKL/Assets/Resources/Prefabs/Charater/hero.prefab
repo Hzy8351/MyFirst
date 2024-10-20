@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 735358234390864705}
   - component: {fileID: 735358234390864706}
   - component: {fileID: 735358234390864707}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Spine GameObject (protagonist_model)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -133,7 +133,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4575634241868029853}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: node
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,7 +167,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7267551352051123526}
   - component: {fileID: 7267551352051123525}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: part1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,7 +184,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -1.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7267551352089919798}
   m_Father: {fileID: 4575634241868029853}
@@ -231,7 +231,10 @@ GameObject:
   - component: {fileID: 7267551352089919799}
   - component: {fileID: 7267551352089919752}
   - component: {fileID: 7267551352089919753}
-  m_Layer: 0
+  - component: {fileID: 648218663504703597}
+  - component: {fileID: 8400215152293983900}
+  - component: {fileID: 3550563650838022820}
+  m_Layer: 6
   m_Name: Spine GameObject (ball)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -248,7 +251,7 @@ Transform:
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7267551352051123526}
   m_RootOrder: 0
@@ -340,9 +343,52 @@ MonoBehaviour:
   disableRenderingOnOverride: 1
   updateTiming: 1
   unscaledTime: 0
-  _animationName: run
+  _animationName: standby
   loop: 1
   timeScale: 1
+--- !u!135 &648218663504703597
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7267551352089919754}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Center: {x: 0, y: 0.8265961, z: 0}
+--- !u!114 &8400215152293983900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7267551352089919754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a149b96bf8b67664db9ad5a37b927536, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hb: {fileID: 2828051808107878842}
+  sc: {fileID: 648218663504703597}
+--- !u!54 &3550563650838022820
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7267551352089919754}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &7267551352737704832
 GameObject:
   m_ObjectHideFlags: 0
@@ -353,7 +399,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7267551352737704847}
   - component: {fileID: 7267551352737704846}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -415,7 +461,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7267551352761666049}
   - component: {fileID: 2828051808107878842}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: hero
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -453,6 +499,9 @@ MonoBehaviour:
   cbInfo:
     speed: 8
     speedBuff: 0
+    cstate: 101
+    radius: 1
+    offvec: {x: 0, y: 0, z: -1.6}
   node: {fileID: 4575634241868029853}
   body: {fileID: 7267551352737704846}
   part1: {fileID: 7267551352051123525}
