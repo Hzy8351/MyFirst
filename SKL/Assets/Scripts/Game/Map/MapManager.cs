@@ -6,6 +6,7 @@ public class MapManager : MonoSingleton<MapManager>
 {
     public CameraBehaviour cameraBehaviour;
     public CharaterManager charManager;
+    public ItemManager itemManager;
     public Transform parentMap;
     public Transform parentParts;
     public Transform parentBlocks;
@@ -52,6 +53,7 @@ public class MapManager : MonoSingleton<MapManager>
 
         charManager.inits();
         createHero();
+        itemManager.createItems();
     }
 
     #region maps

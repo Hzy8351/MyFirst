@@ -9,8 +9,9 @@ public class CharaterBaseInfo
     public float speed = 8.0f;
     public float speedBuff = 0f;
     public CharaterStates cstate = CharaterStates.none;
-    public float radius;
     public Vector3 offvec;
+    //public float radius;
+    public int hp = 10;
 }
 
 public class CharaterBehaviour : MonoBehaviour

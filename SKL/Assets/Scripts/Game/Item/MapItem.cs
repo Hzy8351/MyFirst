@@ -6,16 +6,25 @@ public class MapItem : MapGrid
 {
     public BoxCollider bc;
 
-    public void inits(string spPath, MapBlockTb tb)
+    private MapItemTb tbItem;
+    public MapItemTb TB { get { return tbItem; } }
+
+    private int state;
+    public int State { get { return state; } set { state = value; } }
+
+    public void inits(string spPath, MapItemTb tb)
     {
         Sprite sprite = Resources.Load<Sprite>(spPath + tb.Sprite);
         setSprite(sprite);
 
-        //string[] cets = GameManager.instance.CM.Split(tb.Center, "|");
-        //bc.center = new Vector3(float.Parse(cets[0]), float.Parse(cets[1]), float.Parse(cets[2]));
-
-        //string[] sizes = GameManager.instance.CM.Split(tb.Size, "|");
-        //bc.size = new Vector3(float.Parse(sizes[0]), float.Parse(sizes[1]), float.Parse(sizes[2]));
+        tbItem = tb;
+        state = 0;
     }
 
+    public void destoryThis()
+    {
+        state = 0;
+        tbItem = null;
+        MapManager.instance.itemManager.destoryItem(this);
+    }
 }

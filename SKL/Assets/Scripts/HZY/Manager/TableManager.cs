@@ -9,7 +9,7 @@ public class TableManager
     public CommonData dataCommon = new CommonData();
     public WritingData dataWriting = new WritingData();
     public MapBlockData dataMapBlock = new MapBlockData();
-
+    public MapItemData dataMapItem = new MapItemData();
 
     public void Init()
     {
@@ -17,6 +17,7 @@ public class TableManager
         dataCommon.Init(TbTool.Read("CommonTb"));
         dataWriting.Init(TbTool.Read("WritingTb"));
         dataMapBlock.Init(TbTool.Read("MapBlockTb"));
+        dataMapItem.Init(TbTool.Read("MapItemTb"));
     }
 
     public SplitData ParseString(string a0, string a1)

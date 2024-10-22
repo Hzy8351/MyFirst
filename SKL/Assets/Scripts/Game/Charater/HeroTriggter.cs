@@ -9,23 +9,48 @@ public class HeroTriggter : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("OnTriggerEnter: " + other.name);
+        //Debug.Log("OnTriggerEnter: " + other.name);
         onTrigs(other);
     }
 
     private void OnTriggerStay(Collider other)
     {
-        Debug.Log("OnTriggerStay: " + other.name);
+        //Debug.Log("OnTriggerStay: " + other.name);
         onTrigs(other);
     }
 
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log("OnTriggerExit: " + other.name);
     }
 
     private void onTrigs(Collider other)
     {
+        int layer = other.gameObject.layer;
+        if (layer == 7) //block
+        {
+            onTrigBlock(other.gameObject.GetComponent<MapBlock>());
+            return;
+        }
+        if (layer == 8) //enemy
+        {
+            return;
+        }
+        if (layer == 9) //item
+        {
+            onTrigItem(other.gameObject.GetComponent<MapItem>());
+            return;
+        }
+    }
 
+    private void onTrigBlock(MapBlock mb)
+    {
+
+    }
+
+    private void onTrigItem(MapItem mi)
+    {
+        hb.cbInfo.hp += mi.TB.val;
+        mi.destoryThis();
+        SoundManager.instance.playSound("Chop");
     }
 }

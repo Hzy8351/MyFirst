@@ -165,6 +165,7 @@ public class MapItemTb
     public int id;
     public string Sprite;
     public int type;
+    public int val;
 }
 
 public class MapItemData
