@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class JoyStickControl : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
     public JoyStickUI jsui;
+    public RectTransform rtJoy;
     public RectTransform rtIcon;
     public RectTransform rtRound;
 
@@ -14,13 +15,15 @@ public class JoyStickControl : MonoBehaviour, IBeginDragHandler, IEndDragHandler
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        Debug.Log("OnBeginDrag" + eventData.position);
         if (dragState != 0)
         {
             return;
         }
 
         dragState = 1;
-        onCtrl(eventData);
+
+        rtJoy.transform.position = eventData.position;
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -35,8 +38,10 @@ public class JoyStickControl : MonoBehaviour, IBeginDragHandler, IEndDragHandler
     public void OnEndDrag(PointerEventData eventData)
     {
         dragState = 0;
+        rtJoy.transform.localPosition = Vector3.zero;
         rtIcon.transform.localPosition = Vector3.zero;
         rtRound.transform.localRotation = Quaternion.identity;
+
 
         jsui.joyEnd();
     }

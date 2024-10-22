@@ -9,19 +9,19 @@ public class HeroTriggter : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //Debug.Log("OnTriggerEnter: " + other.name);
+        Debug.Log("OnTriggerEnter: " + other.name);
         onTrigs(other);
     }
 
     private void OnTriggerStay(Collider other)
     {
-        //Debug.Log("OnTriggerStay: " + other.name);
+        Debug.Log("OnTriggerStay: " + other.name);
         onTrigs(other);
     }
 
     private void OnTriggerExit(Collider other)
     {
-        //Debug.Log("OnTriggerExit: " + other.name);
+        Debug.Log("OnTriggerExit: " + other.name);
     }
 
     private void onTrigs(Collider other)

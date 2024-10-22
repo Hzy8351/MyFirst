@@ -159,6 +159,32 @@ public class MapBlockData
 
 #endregion
 
+#region MapItemTb
+public class MapItemTb
+{
+    public int id;
+    public string Sprite;
+    public int type;
+}
+
+public class MapItemData
+{
+    public List<MapItemTb> cfg;
+
+    public void Init(string str)
+    {
+        cfg = JsonMapper.ToObject<List<MapItemTb>>(str);
+    }
+
+    public MapItemTb getItem(int id)
+    {
+        return cfg.Find((item) => item.id == id);
+    }
+
+}
+
+#endregion
+
 #region GuideTb
 
 public class GuideTb
