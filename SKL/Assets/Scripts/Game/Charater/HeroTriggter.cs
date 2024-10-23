@@ -49,6 +49,11 @@ public class HeroTriggter : MonoBehaviour
 
     private void onTrigItem(MapItem mi)
     {
+        if (mi.State != 1)
+        {
+            return;
+        }
+
         hb.cbInfo.hp += mi.TB.val;
         mi.destoryThis();
         SoundManager.instance.playSound("Chop");

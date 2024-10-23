@@ -14,6 +14,7 @@ public class MapManager : MonoSingleton<MapManager>
     public float gridOff = 5f;
     public int xcMax = 15;
     public int zcMax = 15;
+    public float viewMax = 25f;
 
     private string pathMapGrid = "Map/mapGrid";
     private string pathMapPart = "Map/mapPart";
@@ -32,9 +33,13 @@ public class MapManager : MonoSingleton<MapManager>
     private float charZMax;
     private float charZMin;
 
+    //private Dictionary<string, MapGrid> dicMapGrids = new Dictionary<string, MapGrid>(); public Dictionary<string, MapGrid> DMGS() { return dicMapGrids; }
 
-    private Dictionary<string, MapGrid> dicMapGrids = new Dictionary<string, MapGrid>();
-    public Dictionary<string, MapGrid> DMGS() { return dicMapGrids; }
+    private float mapViewTick = 0f;
+    private List<GameObject> mapViewObjs = new List<GameObject>();
+    private MapUsed usedBlocks = new MapUsed(); public MapUsed UBS { get { return usedBlocks; } }
+    private MapUsed usedParts = new MapUsed(); public MapUsed UPS { get { return usedParts; } }
+
 
     protected override void Init()
     {
@@ -44,10 +49,12 @@ public class MapManager : MonoSingleton<MapManager>
         GameManager.instance.CM.Init();
         SoundManager.instance.playMusic("BG");
 
-        createMap(1, 15, 15, 2);
-        createParts(1, 130, 5);
-        createBlocks(1, 70);
+        createMap(1, 15, 15, 3);
         createSides(1);
+        //initsUsePoses();
+
+        createBlocks(1, 70);
+        createParts(1, 130, 5);
 
         createUI();
 
@@ -59,11 +66,11 @@ public class MapManager : MonoSingleton<MapManager>
     #region maps
 
     // mc哪个map, xc横向多少grid, zc竖向多少grid, 边缘多少个grid
-    public void createMap(int mc, int xc, int zc, int sc)
+    private void createMap(int mc, int xc, int zc, int sc)
     {
-        rangeXMax = gridOff * (xc - sc - 1);
+        rangeXMax = gridOff * (xc - sc - 0.5f);
         rangeXMin = -rangeXMax;
-        rangeZMax = gridOff * (zc - sc - 1);
+        rangeZMax = gridOff * (zc - sc - 0.5f);
         rangeZMin = -rangeZMax;
 
         charXMax = gridOff * (xc - sc);
@@ -94,8 +101,9 @@ public class MapManager : MonoSingleton<MapManager>
 
                 go.transform.localPosition = new Vector3(i * gridOff, 0f, k * gridOff);
                 go.SetActive(true);
-
                 --ksc;
+
+                mapViewObjs.Add(go);
             }
 
             --isc;
@@ -104,25 +112,68 @@ public class MapManager : MonoSingleton<MapManager>
 
     }
 
-    // c是数量, tc类型数量
-    public void createParts(int mc, int c, int tc)
+    private void createSides(int mc)
     {
-        string path = pathSpriteGrid + mc + "/";
-
-        for (int i = 0; i < c; ++i)
-        {
-            GameObject go = GameManager.instance.AddPrefab(pathMapPart, parentParts);
-            MapPart mp = go.GetComponent<MapPart>();
-            int r = Random.Range(0, tc);
-            Sprite sprite = Resources.Load<Sprite>(path + "parts" + r);
-            mp.setSprite(sprite);
-
-            go.transform.localPosition = randomPoint();
-            go.SetActive(true);
-        }
     }
 
-    public void createBlocks(int mc, int c)
+    //private void initsUsePoses()
+    //{
+    //    for (int x = (int)rangeXMin; x <= (int)rangeXMax; ++x)
+    //    {
+    //        for (int z = (int)rangeZMin; z <= (int)rangeZMax; ++z)
+    //        {
+    //            if (Mathf.Abs(x) <= 5 && Mathf.Abs(z) <= 5)
+    //            {
+    //                continue;
+    //            }
+
+    //            UBS.addDic(x, z, null);
+    //            UPS.addDic(x, z, null);
+    //            itemManager.UIS.addDic(x, z, null);
+    //        }
+    //    }
+    //}
+
+    private bool isHeroInitPos(Vector3 pos)
+    {
+        return (pos.x >= -2f && pos.x <= 2f) && (pos.z >= -2f && pos.z <= 2f);
+    }
+
+    private Vector3 randBlockPos(Vector3 size)
+    {
+        Vector3 pos;
+        while (true)
+        {
+            pos = randomPoint();
+            if (isHeroInitPos(pos))
+            {
+                continue;
+            }
+
+            if (UBS.isContains((int)pos.x, (int)pos.z))
+            {
+                continue;
+            }
+
+            break;
+        }
+
+        int maxX = (int)(pos.x + size.x + 1);
+        int minX = (int)(pos.x - size.x - 1);
+        int maxZ = (int)(pos.z + size.z + 1);
+        int minZ = (int)(pos.z - size.z - 1);
+        for (int x = minX; x <= maxX; ++x)
+        {
+            for (int z = minZ; z <= maxZ; ++z)
+            {
+                UBS.addDic(x, z);
+            }
+        }
+
+        return pos;
+    }
+
+    private void createBlocks(int mc, int c)
     {
         string path = pathSpriteGrid + mc + "/";
 
@@ -134,14 +185,65 @@ public class MapManager : MonoSingleton<MapManager>
             GameObject go = GameManager.instance.AddPrefab(pathMapBlock, parentBlocks);
             MapBlock mb = go.GetComponent<MapBlock>();
             mb.inits(path, tb);
-            go.transform.localPosition = randomPoint();
+            go.transform.localPosition = randBlockPos(mb.bc.size);
             go.SetActive(true);
+
+            mapViewObjs.Add(go);
         }
     }
 
-    public void createSides(int mc)
-    {
 
+    private Vector3 randPartPos()
+    {
+        Vector3 pos;
+        while (true)
+        {
+            pos = randomPoint();
+            if (UBS.isContains((int)pos.x, (int)pos.z))
+            {
+                continue;
+            }
+
+            if (UPS.isContains((int)pos.x, (int)pos.z))
+            {
+                continue;
+            }
+
+            break;
+        }
+
+        int maxX = (int)(pos.x + 1);
+        int minX = (int)(pos.x - 1);
+        int maxZ = (int)(pos.z + 1);
+        int minZ = (int)(pos.z - 1);
+        for (int x = minX; x <= maxX; ++x)
+        {
+            for (int z = minZ; z <= maxZ; ++z)
+            {
+                UPS.addDic(x, z);
+            }
+        }
+
+        return pos;
+    }
+    
+    // c是数量, tc类型数量
+    private void createParts(int mc, int c, int tc)
+    {
+        string path = pathSpriteGrid + mc + "/";
+
+        for (int i = 0; i < c; ++i)
+        {
+            GameObject go = GameManager.instance.AddPrefab(pathMapPart, parentParts);
+            MapPart mp = go.GetComponent<MapPart>();
+            int r = Random.Range(1, tc + 1);
+            Sprite sprite = Resources.Load<Sprite>(path + "parts" + r);
+            mp.setSprite(sprite);
+            go.transform.localPosition = randPartPos();
+            go.SetActive(true);
+
+            mapViewObjs.Add(go);
+        }
     }
 
     public Vector3 randomPoint()
@@ -152,7 +254,7 @@ public class MapManager : MonoSingleton<MapManager>
     #endregion
 
     #region charaters
-    public void createHero()
+    private void createHero()
     {
         GameObject go = GameManager.instance.AddPrefab(pathHero, charManager.transform);
         HeroBehaviour hb = go.GetComponent<HeroBehaviour>();
@@ -207,4 +309,32 @@ public class MapManager : MonoSingleton<MapManager>
         UIManager.instance.Show(UIEnum.JoyStickUI);
     }
     #endregion
+
+    void FixedUpdate()
+    {
+        updateMapViews();
+    }
+
+    private void updateMapViews()
+    {
+        if (charManager.HB == null)
+        {
+            return;
+        }
+
+        mapViewTick += Time.deltaTime;
+        if (mapViewTick <= 0.5f)
+        {
+            return;
+        }
+        mapViewTick = 0f;
+
+        Vector3 pos = charManager.HB.gameObject.transform.localPosition;
+        for (int i = 0; i < mapViewObjs.Count; ++i)
+        {
+            GameObject obj = mapViewObjs[i];
+            Vector3 v = obj.transform.localPosition;
+            obj.SetActive(Vector3.Distance(pos, v) <= viewMax);
+        }
+    }
 }

@@ -15,7 +15,7 @@ public class JoyStickControl : MonoBehaviour, IBeginDragHandler, IEndDragHandler
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        Debug.Log("OnBeginDrag" + eventData.position);
+        //Debug.Log("OnBeginDrag" + eventData.position);
         if (dragState != 0)
         {
             return;

@@ -18,7 +18,7 @@ public class MapItem : MapGrid
         setSprite(sprite);
 
         tbItem = tb;
-        state = 0;
+        state = 1;
     }
 
     public void destoryThis()
