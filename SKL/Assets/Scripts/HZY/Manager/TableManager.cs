@@ -10,6 +10,8 @@ public class TableManager
     public WritingData dataWriting = new WritingData();
     public MapBlockData dataMapBlock = new MapBlockData();
     public MapItemData dataMapItem = new MapItemData();
+    public StageData dataStage = new StageData();
+    public EnemyData dataEnemy = new EnemyData();
 
     public void Init()
     {
@@ -18,6 +20,8 @@ public class TableManager
         dataWriting.Init(TbTool.Read("WritingTb"));
         dataMapBlock.Init(TbTool.Read("MapBlockTb"));
         dataMapItem.Init(TbTool.Read("MapItemTb"));
+        dataStage.Init(TbTool.Read("StageTb"));
+        dataEnemy.Init(TbTool.Read("EnemyTb"));
     }
 
     public SplitData ParseString(string a0, string a1)

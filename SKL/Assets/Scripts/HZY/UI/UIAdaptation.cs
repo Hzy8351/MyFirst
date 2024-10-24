@@ -18,18 +18,18 @@ public class UIAdaptation : MonoBehaviour
     void Awake()
     {
         RectTransform rtCanvas = CanvasManager.instance.tranUI;
-        float sy = (rtCanvas.rect.height / 2400);// 1920f);
+        float sy = (rtCanvas.rect.height / 1920);
         float sx = (rtCanvas.rect.width / 1080);
 
         float minus = sy - sx;
         //Debug.Log("sy = " + sy + ", sx = " + sx + ", minus = " + minus);
-        if (minus <= -0.10f)
-        {
-            sy = sx;
-        }
-        else if (minus >= 0.10f)
+        if (minus <= -0.11f)
         {
             sx = sy;
+        }
+        else if (minus >= 0.11f)
+        {
+            sy = sx;
         }
         else
         {

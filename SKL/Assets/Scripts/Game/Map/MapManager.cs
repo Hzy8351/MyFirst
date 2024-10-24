@@ -51,7 +51,6 @@ public class MapManager : MonoSingleton<MapManager>
 
         createMap(1, 15, 15, 3);
         createSides(1);
-        //initsUsePoses();
 
         createBlocks(1, 70);
         createParts(1, 130, 5);
@@ -59,7 +58,7 @@ public class MapManager : MonoSingleton<MapManager>
         createUI();
 
         charManager.inits();
-        createHero();
+        createHero(1, 1);
         itemManager.createItems();
     }
 
@@ -115,24 +114,6 @@ public class MapManager : MonoSingleton<MapManager>
     private void createSides(int mc)
     {
     }
-
-    //private void initsUsePoses()
-    //{
-    //    for (int x = (int)rangeXMin; x <= (int)rangeXMax; ++x)
-    //    {
-    //        for (int z = (int)rangeZMin; z <= (int)rangeZMax; ++z)
-    //        {
-    //            if (Mathf.Abs(x) <= 5 && Mathf.Abs(z) <= 5)
-    //            {
-    //                continue;
-    //            }
-
-    //            UBS.addDic(x, z, null);
-    //            UPS.addDic(x, z, null);
-    //            itemManager.UIS.addDic(x, z, null);
-    //        }
-    //    }
-    //}
 
     private bool isHeroInitPos(Vector3 pos)
     {
@@ -254,7 +235,7 @@ public class MapManager : MonoSingleton<MapManager>
     #endregion
 
     #region charaters
-    private void createHero()
+    private void createHero(int map, int stage)
     {
         GameObject go = GameManager.instance.AddPrefab(pathHero, charManager.transform);
         HeroBehaviour hb = go.GetComponent<HeroBehaviour>();
@@ -262,6 +243,9 @@ public class MapManager : MonoSingleton<MapManager>
         cameraBehaviour.setCB(hb);
         ((JoyStickUI)UIManager.instance.GetUI(UIEnum.JoyStickUI)).setCB(hb);
         charManager.HB = hb;
+
+        StageTb stb = GameManager.instance.CM.dataStage.getStageOfMapStage(map, stage);
+        ((BattleHeroUI)UIManager.instance.GetUI(UIEnum.BattleHeroUI)).inits(hb, stb);
     }
 
     public void checkCharaterRange(CharaterBehaviour cb)
@@ -301,13 +285,11 @@ public class MapManager : MonoSingleton<MapManager>
     #region ui
     public void createUI()
     {
-        createJoyUI();
+        UIManager.instance.Show(UIEnum.JoyStickUI);
+        UIManager.instance.Show(UIEnum.BattleHeroUI);
     }
 
-    private void createJoyUI()
-    {
-        UIManager.instance.Show(UIEnum.JoyStickUI);
-    }
+
     #endregion
 
     void FixedUpdate()

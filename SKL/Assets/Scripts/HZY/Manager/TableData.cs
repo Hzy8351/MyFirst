@@ -186,6 +186,102 @@ public class MapItemData
 
 #endregion
 
+#region StageTb
+public class StageTb
+{
+    public int id;
+    public int map;
+    public int stage;
+    public int hphero;
+    public string enemys;
+    public string scores;
+}
+
+public class StageData
+{
+    public List<StageTb> cfg;
+    private Dictionary<int, List<StageTb>> dic;
+
+    public void Init(string str)
+    {
+        cfg = JsonMapper.ToObject<List<StageTb>>(str);
+        dic = new Dictionary<int, List<StageTb>>();
+        for (int i = 0; i < cfg.Count; ++i)
+        {
+            if (!dic.ContainsKey(cfg[i].map))
+            {
+                dic.Add(cfg[i].id, new List<StageTb>());
+            }
+            dic[cfg[i].map].Add(cfg[i]);
+        }
+    }
+
+    public StageTb getItem(int id)
+    {
+        return cfg.Find((item) => item.id == id);
+    }
+
+    public List<StageTb> getStagesOfMap(int map)
+    {
+        return dic.ContainsKey(map) ? dic[map] : null;
+    }
+
+    public StageTb getStageOfMapStage(int map, int stage)
+    {
+        List<StageTb> lists = getStagesOfMap(map);
+        if (lists == null)
+        {
+            return null;
+        }
+        for (int i=0; i<lists.Count; ++i)
+        {
+            StageTb tb = lists[i];
+            if (tb.stage == stage)
+            {
+                return tb;
+            }
+        }
+
+        return null;
+    }
+}
+
+#endregion
+
+#region EnemyTb
+public class EnemyTb
+{
+    public int id;
+    public string name;
+    public string spine;
+    public string attack;
+    public string skill;
+    public int speed;
+    public int score;
+    public int radius;
+    public int range;
+    public int hit;
+    public int hp;
+}
+
+public class EnemyData
+{
+    public List<EnemyTb> cfg;
+
+    public void Init(string str)
+    {
+        cfg = JsonMapper.ToObject<List<EnemyTb>>(str);
+    }
+
+    public EnemyTb getItem(int id)
+    {
+        return cfg.Find((item) => item.id == id);
+    }
+
+}
+
+#endregion
+
 #region GuideTb
 
 public class GuideTb

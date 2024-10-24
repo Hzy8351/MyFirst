@@ -15,6 +15,11 @@ public class JoyStickControl : MonoBehaviour, IBeginDragHandler, IEndDragHandler
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (BattleHeroUI.isBattlePause)
+        {
+            return;
+        }
+
         //Debug.Log("OnBeginDrag" + eventData.position);
         if (dragState != 0)
         {
@@ -28,6 +33,11 @@ public class JoyStickControl : MonoBehaviour, IBeginDragHandler, IEndDragHandler
 
     public void OnDrag(PointerEventData eventData)
     {
+        if (BattleHeroUI.isBattlePause)
+        {
+            return;
+        }
+
         if (dragState != 1)
         {
             return;

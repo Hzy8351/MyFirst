@@ -95,6 +95,7 @@ public class ItemManager : MonoBehaviour
     void FixedUpdate()
     {
         itemUpdate();
+        itemCountUpdate();
     }
 
     private void itemUpdate()
@@ -118,5 +119,15 @@ public class ItemManager : MonoBehaviour
             Vector3 v = mi.gameObject.transform.localPosition;
             mi.gameObject.SetActive(Vector3.Distance(pos, v) <= MapManager.instance.viewMax);
         }
+    }
+
+    private void itemCountUpdate()
+    {
+        if (ballItems.Count >= maxBallCount)
+        {
+            return;
+        }
+
+        createItem(1, randItemPos());
     }
 }

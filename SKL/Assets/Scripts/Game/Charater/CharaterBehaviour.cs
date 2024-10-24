@@ -12,6 +12,7 @@ public class CharaterBaseInfo
     public Vector3 offvec;
     //public float radius;
     public int hp = 10;
+    public int lv = 1;
 }
 
 public class CharaterBehaviour : MonoBehaviour

@@ -16,7 +16,7 @@ public class HeroTriggter : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         //Debug.Log("OnTriggerStay: " + other.name);
-        onTrigs(other);
+        //onTrigs(other);
     }
 
     private void OnTriggerExit(Collider other)
@@ -44,7 +44,13 @@ public class HeroTriggter : MonoBehaviour
 
     private void onTrigBlock(MapBlock mb)
     {
-
+        int damage = hb.cbInfo.hp / 2;
+        if (damage <= 0)
+        {
+            return;
+        }
+        hb.cbInfo.hp -= damage;
+        //GameManager.instance.CreateTextTips("-" + damage);
     }
 
     private void onTrigItem(MapItem mi)
