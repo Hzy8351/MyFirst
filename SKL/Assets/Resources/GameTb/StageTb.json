@@ -3,9 +3,20 @@
     "id": 1,
     "map" : 1,
     "stage": 1,
+    "xgrid" : 15,
+    "zgrid" : 15,
+    "gridspirte" : "grid1",
+    "sidegrid" : 3,
+    "sidegridspirte" : "grid2",
+    "blockcount" : 70,
+    "partscount" : 13,
     "hphero": 10,
-    "enemys": "1|2;3|4|5",
-    "scores": "100|400|900|1000"
-   
+    "maxscore" : 1200,
+    "stepscore": "0|100|350|600|900",
+    "enemytype1": "0_0|400_120|400_100|400_80|400_60",
+    "enemytype2": "100_10|101_10;200_7|101_10;201_7;300_5|101_10;201_7;301_5|101_10;201_7;301_5",
+    "enemytype3": "0_0|0_0|0_0|0_0|500_1",
+    "itemtype1" : "1_200",
+    "itemtype2" : "2_30|2_30|2_30|2_20|2_20"
   }
 ]

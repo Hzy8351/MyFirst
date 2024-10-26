@@ -7,9 +7,10 @@ public class ItemManager : MonoBehaviour
     private List<MapItem> ballItems = new List<MapItem>();
     private string pathItem = "Item/mapItem";
     private string pathItemSpirte = "Maps/items/";
-    private int maxBallCount = 220;
     private float viewTick = 0f;
-
+    private StageTb stb;
+    private int itemType1;
+    private int itemType1Count;
     private MapUsed usedItems = new MapUsed(); public MapUsed UIS { get { return usedItems; } }
 
     private Vector3 randItemPos()
@@ -46,17 +47,21 @@ public class ItemManager : MonoBehaviour
         return pos;
     }
 
-    public void createItems()
+    public void createItems(StageTb tb)
     {
-        for (int i = 0; i < maxBallCount; ++i)
+        stb = tb;
+        string[] arrItem1 = GameManager.instance.CM.Split(stb.itemtype1, "_");
+        itemType1 = int.Parse(arrItem1[0]);
+        itemType1Count = int.Parse(arrItem1[1]);
+        for (int i = 0; i < itemType1Count; ++i)
         {
-            createItem(1, randItemPos());
+            createItem(itemType1, randItemPos());
         }
     }
 
-    public void createItem(int id, Vector3 pos)
+    public void createItem(int type, Vector3 pos)
     {
-        MapItemTb tb = GameManager.instance.CM.dataMapItem.getItem(id);
+        MapItemTb tb = GameManager.instance.CM.dataMapItem.randItemOfType(type);
         if (tb == null)
         {
             return;
@@ -64,6 +69,7 @@ public class ItemManager : MonoBehaviour
 
         GameObject go = GameManager.instance.AddPrefab(pathItem, gameObject.transform);
         go.transform.localPosition = pos;
+        go.transform.localScale = new Vector3(tb.scale, tb.scale, tb.scale);
         MapItem mi = go.GetComponent<MapItem>();
         mi.inits(pathItemSpirte, tb);
         ballItems.Add(mi);
@@ -87,6 +93,7 @@ public class ItemManager : MonoBehaviour
         //Debug.Log(UIS.getDicCount());
 
         mi.gameObject.transform.localPosition = new Vector3(GameManager.offHide, 0f, 0f);
+        mi.gameObject.transform.localScale = Vector3.one;
         ballItems.Remove(mi);
         GameManager.instance.DestroyPrefab(pathItem, mi.gameObject);
 
@@ -123,11 +130,11 @@ public class ItemManager : MonoBehaviour
 
     private void itemCountUpdate()
     {
-        if (ballItems.Count >= maxBallCount)
+        if (ballItems.Count >= itemType1Count)
         {
             return;
         }
 
-        createItem(1, randItemPos());
+        createItem(itemType1, randItemPos());
     }
 }

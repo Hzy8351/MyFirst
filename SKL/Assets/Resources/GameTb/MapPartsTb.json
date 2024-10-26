@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "map": 1,
+    "sprite": "parts1",
+    "center": "0|0|0",
+    "size": "1|1|1"
+  },
+  {
+    "id": 1,
+    "map": 1,
+    "sprite": "parts2",
+    "center": "0|0|0",
+    "size": "1|1|1"
+  },
+  {
+    "id": 1,
+    "map": 1,
+    "sprite": "parts3",
+    "center": "0|0|0",
+    "size": "1|1|1"
+  },
+  {
+    "id": 1,
+    "map": 1,
+    "sprite": "parts4",
+    "center": "0|0|0",
+    "size": "1|1|1"
+  }
+]

@@ -7,19 +7,22 @@ public class MapManager : MonoSingleton<MapManager>
     public CameraBehaviour cameraBehaviour;
     public CharaterManager charManager;
     public ItemManager itemManager;
+    public EnemyManager enemyManager;
+    public StepManager stepManager;
     public Transform parentMap;
     public Transform parentParts;
     public Transform parentBlocks;
     public Transform parentSides;
-    public float gridOff = 5f;
-    public int xcMax = 15;
-    public int zcMax = 15;
     public float viewMax = 25f;
+
+    private float gridOff = 5f;
+    private int xcMax = 15;
+    private int zcMax = 15;
 
     private string pathMapGrid = "Map/mapGrid";
     private string pathMapPart = "Map/mapPart";
     private string pathMapBlock = "Map/mapBlock";
-    private string pathMapSide = "Map/mapSide";
+    //private string pathMapSide = "Map/mapSide";
     private string pathSpriteGrid = "Maps/map";
 
     private string pathHero = "Charater/hero";
@@ -32,8 +35,6 @@ public class MapManager : MonoSingleton<MapManager>
     private float charXMin;
     private float charZMax;
     private float charZMin;
-
-    //private Dictionary<string, MapGrid> dicMapGrids = new Dictionary<string, MapGrid>(); public Dictionary<string, MapGrid> DMGS() { return dicMapGrids; }
 
     private float mapViewTick = 0f;
     private List<GameObject> mapViewObjs = new List<GameObject>();
@@ -48,25 +49,34 @@ public class MapManager : MonoSingleton<MapManager>
 
         GameManager.instance.CM.Init();
         SoundManager.instance.playMusic("BG");
+        
 
-        createMap(1, 15, 15, 3);
-        createSides(1);
-
-        createBlocks(1, 70);
-        createParts(1, 130, 5);
-
-        createUI();
+        StageTb stb = GameManager.instance.CM.dataStage.getStageOfMapStage(1, 1);
+        createMap(stb);
+        createSides(stb);
+        createBlocks(stb);
+        createParts(stb);
 
         charManager.inits();
-        createHero(1, 1);
-        itemManager.createItems();
+        charManager.HB = createHero(stb);
+
+        createUI(charManager.HB, stb);
+        cameraBehaviour.setCB(charManager.HB);
+        enemyManager.inits(stb);
+        stepManager.inits(charManager.HB, stb);
+        itemManager.createItems(stb);
     }
 
     #region maps
 
     // mc哪个map, xc横向多少grid, zc竖向多少grid, 边缘多少个grid
-    private void createMap(int mc, int xc, int zc, int sc)
+    private void createMap(StageTb stb)
     {
+        int mc = stb.map;
+        int xc = stb.xgrid;
+        int zc = stb.zgrid;
+        int sc = stb.sidegrid;
+
         rangeXMax = gridOff * (xc - sc - 0.5f);
         rangeXMin = -rangeXMax;
         rangeZMax = gridOff * (zc - sc - 0.5f);
@@ -91,9 +101,8 @@ public class MapManager : MonoSingleton<MapManager>
                 GameObject go = GameManager.instance.AddPrefab(pathMapGrid, parentMap);
                 MapGrid mg = go.GetComponent<MapGrid>();
 
-                // 暂时写死里面为1, 外面为2
                 bool bSideK = (ksc > 0) || (k > zc - sc);
-                string gridName = (bSideI || bSideK) ? "grid2" : "grid1";
+                string gridName = (bSideI || bSideK) ? stb.sidegridspirte : stb.gridspirte;
                 Sprite sprite = Resources.Load<Sprite>(gridPath + gridName);
                 mg.setSprite(sprite);
                 if (bSideI || bSideK) { mg.setOrder(mg.getOrder() - 10); }
@@ -111,7 +120,7 @@ public class MapManager : MonoSingleton<MapManager>
 
     }
 
-    private void createSides(int mc)
+    private void createSides(StageTb stb)
     {
     }
 
@@ -154,8 +163,10 @@ public class MapManager : MonoSingleton<MapManager>
         return pos;
     }
 
-    private void createBlocks(int mc, int c)
+    private void createBlocks(StageTb stb)
     {
+        int c = stb.blockcount;
+        int mc = stb.map;
         string path = pathSpriteGrid + mc + "/";
 
         List<MapBlockTb> blocks = GameManager.instance.CM.dataMapBlock.getBlocksOfMap(mc);
@@ -209,17 +220,20 @@ public class MapManager : MonoSingleton<MapManager>
     }
     
     // c是数量, tc类型数量
-    private void createParts(int mc, int c, int tc)
+    private void createParts(StageTb stb)
     {
+        int c = stb.partscount;
+        int mc = stb.map;
         string path = pathSpriteGrid + mc + "/";
+
+        List<MapPartsTb> parts = GameManager.instance.CM.dataMapParts.getPartsOfMap(mc);
 
         for (int i = 0; i < c; ++i)
         {
+            MapPartsTb tb = parts[Random.Range(0, parts.Count)];
             GameObject go = GameManager.instance.AddPrefab(pathMapPart, parentParts);
             MapPart mp = go.GetComponent<MapPart>();
-            int r = Random.Range(1, tc + 1);
-            Sprite sprite = Resources.Load<Sprite>(path + "parts" + r);
-            mp.setSprite(sprite);
+            mp.setSprite(Resources.Load<Sprite>(path + tb.sprite));
             go.transform.localPosition = randPartPos();
             go.SetActive(true);
 
@@ -235,17 +249,12 @@ public class MapManager : MonoSingleton<MapManager>
     #endregion
 
     #region charaters
-    private void createHero(int map, int stage)
+    private HeroBehaviour createHero(StageTb stb)
     {
         GameObject go = GameManager.instance.AddPrefab(pathHero, charManager.transform);
         HeroBehaviour hb = go.GetComponent<HeroBehaviour>();
         hb.inits();
-        cameraBehaviour.setCB(hb);
-        ((JoyStickUI)UIManager.instance.GetUI(UIEnum.JoyStickUI)).setCB(hb);
-        charManager.HB = hb;
-
-        StageTb stb = GameManager.instance.CM.dataStage.getStageOfMapStage(map, stage);
-        ((BattleHeroUI)UIManager.instance.GetUI(UIEnum.BattleHeroUI)).inits(hb, stb);
+        return hb;
     }
 
     public void checkCharaterRange(CharaterBehaviour cb)
@@ -283,10 +292,10 @@ public class MapManager : MonoSingleton<MapManager>
     #endregion
 
     #region ui
-    public void createUI()
+    public void createUI(HeroBehaviour hb, StageTb tb)
     {
-        UIManager.instance.Show(UIEnum.JoyStickUI);
-        UIManager.instance.Show(UIEnum.BattleHeroUI);
+        ((JoyStickUI)UIManager.instance.Show(UIEnum.JoyStickUI)).setCB(charManager.HB);
+        ((BattleHeroUI)UIManager.instance.Show(UIEnum.BattleHeroUI)).inits(charManager.HB, tb);
     }
 
 

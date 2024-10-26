@@ -14,7 +14,7 @@ public class MapItem : MapGrid
 
     public void inits(string spPath, MapItemTb tb)
     {
-        Sprite sprite = Resources.Load<Sprite>(spPath + tb.Sprite);
+        Sprite sprite = Resources.Load<Sprite>(spPath + tb.sprite);
         setSprite(sprite);
 
         tbItem = tb;

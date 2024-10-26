@@ -22,8 +22,7 @@ public class BattleHeroUI : BaseUI
     private float tickTime;
     private Vector3 iconDefaultPos;
     private float iconWidth;
-
-    private int[] scores;
+    private float scroeMax;
 
     protected override void OnInit()
     {
@@ -64,21 +63,17 @@ public class BattleHeroUI : BaseUI
         tickTime = 0f;
         updateTickTime();
 
-        string[] arr = GameManager.instance.CM.Split(stb.scores, "|");
-        scores = new int[arr.Length];
-        for (int i=0; i<arr.Length; ++i)
-        {
-            scores[i] = int.Parse(arr[i]);
-        }
-
+        scroeMax = stb.maxscore;
         hb.cbInfo.hp = stb.hphero;
         updateHpBar();
+
     }
 
     void FixedUpdate()
     {
         updateTickTime();
         updateHpBar();
+        updateLv();
     }
 
     private void updateTickTime() 
@@ -100,11 +95,16 @@ public class BattleHeroUI : BaseUI
     private void updateHpBar()
     {
         textScore.text = hb.cbInfo.hp.ToString();
-        imgBarHp.fillAmount = hb.cbInfo.hp / (float)scores[scores.Length - 1];
+        imgBarHp.fillAmount = hb.cbInfo.hp / scroeMax;
         if (imgBarHp.fillAmount > 1.0f) { imgBarHp.fillAmount = 1.0f; }
 
         Vector3 pos = rtBarIcon.localPosition;
         pos.x = imgBarHp.fillAmount * iconWidth - iconDefaultPos.x;
         rtBarIcon.localPosition = pos;
+    }
+
+    private void updateLv()
+    {
+        textLv.text = MapManager.instance.stepManager.getStep().ToString();
     }
 }

@@ -9,6 +9,7 @@ public class TableManager
     public CommonData dataCommon = new CommonData();
     public WritingData dataWriting = new WritingData();
     public MapBlockData dataMapBlock = new MapBlockData();
+    public MapPartsData dataMapParts = new MapPartsData();
     public MapItemData dataMapItem = new MapItemData();
     public StageData dataStage = new StageData();
     public EnemyData dataEnemy = new EnemyData();
@@ -19,6 +20,7 @@ public class TableManager
         dataCommon.Init(TbTool.Read("CommonTb"));
         dataWriting.Init(TbTool.Read("WritingTb"));
         dataMapBlock.Init(TbTool.Read("MapBlockTb"));
+        dataMapParts.Init(TbTool.Read("MapPartsTb"));
         dataMapItem.Init(TbTool.Read("MapItemTb"));
         dataStage.Init(TbTool.Read("StageTb"));
         dataEnemy.Init(TbTool.Read("EnemyTb"));
@@ -97,6 +99,16 @@ public class TableManager
     public string[] Split(string src, string s1)
     {
         return src.Split(s1);
+    }
+
+    public void Split(string src, string s1, ref int[] ret)
+    {
+        string [] arr = src.Split(s1);
+        ret = new int[arr.Length];
+        for (int i = 0; i < arr.Length; ++i)
+        {
+            ret[i] = int.Parse(arr[i]);
+        }
     }
 
 }

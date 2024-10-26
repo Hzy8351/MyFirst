@@ -61,4 +61,13 @@ public class CharaterBehaviour : MonoBehaviour
         cbInfo.cstate = cs;
         body.playAni(aniState);
     }
+
+    public void addHp(int val)
+    {
+        cbInfo.hp += val;
+        if (cbInfo.hp < 0)
+        {
+            cbInfo.hp = 0;
+        }
+    }
 }

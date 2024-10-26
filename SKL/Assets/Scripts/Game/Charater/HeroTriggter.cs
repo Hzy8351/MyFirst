@@ -44,12 +44,8 @@ public class HeroTriggter : MonoBehaviour
 
     private void onTrigBlock(MapBlock mb)
     {
-        int damage = hb.cbInfo.hp / 2;
-        if (damage <= 0)
-        {
-            return;
-        }
-        hb.cbInfo.hp -= damage;
+        int damage = (hb.cbInfo.hp >= 20) ? hb.cbInfo.hp / 2 : hb.cbInfo.hp;
+        hb.addHp(-damage);
         //GameManager.instance.CreateTextTips("-" + damage);
     }
 
@@ -60,7 +56,7 @@ public class HeroTriggter : MonoBehaviour
             return;
         }
 
-        hb.cbInfo.hp += mi.TB.val;
+        hb.addHp(mi.TB.val);
         mi.destoryThis();
         SoundManager.instance.playSound("Chop");
     }

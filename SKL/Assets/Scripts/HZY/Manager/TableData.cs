@@ -119,11 +119,10 @@ public class WritingData
 public class MapBlockTb
 {
     public int id;
-    public int Map;
-    public string Sprite;
-    public string Center;
-    public string Size;
-    public int damage;
+    public int map;
+    public string sprite;
+    public string center;
+    public string size;
 }
 
 public class MapBlockData
@@ -137,11 +136,11 @@ public class MapBlockData
         dic = new Dictionary<int, List<MapBlockTb>>();
         for (int i = 0; i < cfg.Count; ++i)
         {
-            if (!dic.ContainsKey(cfg[i].Map))
+            if (!dic.ContainsKey(cfg[i].map))
             {
                 dic.Add(cfg[i].id, new List<MapBlockTb>());
             }
-            dic[cfg[i].Map].Add(cfg[i]);
+            dic[cfg[i].map].Add(cfg[i]);
         }
     }
 
@@ -159,22 +158,92 @@ public class MapBlockData
 
 #endregion
 
+#region MapPartsTb
+public class MapPartsTb
+{
+    public int id;
+    public int map;
+    public string sprite;
+    public string center;
+    public string size;
+}
+
+public class MapPartsData
+{
+    public List<MapPartsTb> cfg;
+    private Dictionary<int, List<MapPartsTb>> dic;
+
+    public void Init(string str)
+    {
+        cfg = JsonMapper.ToObject<List<MapPartsTb>>(str);
+        dic = new Dictionary<int, List<MapPartsTb>>();
+        for (int i = 0; i < cfg.Count; ++i)
+        {
+            if (!dic.ContainsKey(cfg[i].map))
+            {
+                dic.Add(cfg[i].id, new List<MapPartsTb>());
+            }
+            dic[cfg[i].map].Add(cfg[i]);
+        }
+    }
+
+    public MapPartsTb getItem(int id)
+    {
+        return cfg.Find((item) => item.id == id);
+    }
+
+    public List<MapPartsTb> getPartsOfMap(int map)
+    {
+        return dic.ContainsKey(map) ? dic[map] : null;
+    }
+
+}
+
+#endregion
+
 #region MapItemTb
 public class MapItemTb
 {
     public int id;
-    public string Sprite;
+    public string sprite;
     public int type;
+    public float scale;
     public int val;
 }
 
 public class MapItemData
 {
     public List<MapItemTb> cfg;
+    private Dictionary<int, List<MapItemTb>> dic;
 
     public void Init(string str)
     {
         cfg = JsonMapper.ToObject<List<MapItemTb>>(str);
+        dic = new Dictionary<int, List<MapItemTb>>();
+        for (int i = 0; i < cfg.Count; ++i)
+        {
+            if (!dic.ContainsKey(cfg[i].type))
+            {
+                dic.Add(cfg[i].type, new List<MapItemTb>());
+            }
+            dic[cfg[i].type].Add(cfg[i]);
+        }
+    }
+
+    public MapItemTb randItemOfType(int type)
+    {
+        if (!dic.ContainsKey(type))
+        {
+            return null;
+        }
+
+        List<MapItemTb> lists = dic[type];
+        if (lists.Count <= 0)
+        {
+            return null;
+        }
+
+        return lists[Random.Range(0, lists.Count)];
     }
 
     public MapItemTb getItem(int id)
@@ -192,9 +261,21 @@ public class StageTb
     public int id;
     public int map;
     public int stage;
+    public int xgrid;
+    public int zgrid;
+    public string gridspirte;
+    public int sidegrid;
+    public string sidegridspirte;
+    public int blockcount;
+    public int partscount;
     public int hphero;
-    public string enemys;
-    public string scores;
+    public int maxscore;
+    public string stepscore;
+    public string enemytype1;
+    public string enemytype2;
+    public string enemytype3;
+    public string itemtype1;
+    public string itemtype2;
 }
 
 public class StageData
@@ -210,7 +291,7 @@ public class StageData
         {
             if (!dic.ContainsKey(cfg[i].map))
             {
-                dic.Add(cfg[i].id, new List<StageTb>());
+                dic.Add(cfg[i].map, new List<StageTb>());
             }
             dic[cfg[i].map].Add(cfg[i]);
         }
@@ -256,12 +337,12 @@ public class EnemyTb
     public string spine;
     public string attack;
     public string skill;
-    public int speed;
+    public int type;
     public int score;
-    public int radius;
-    public int range;
-    public int hit;
-    public int hp;
+    public float speed;
+    public float radius;
+    public float range;
+    public string hp;
 }
 
 public class EnemyData
