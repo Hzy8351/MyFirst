@@ -29,9 +29,5 @@ public class HeroBehaviour : CharaterBehaviour
         part1.playAni(aniState);
     }
 
-    void Update()
-    {
-
-    }
 
 }

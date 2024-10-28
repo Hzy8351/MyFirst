@@ -5,6 +5,7 @@ using UnityEngine;
 public enum CharaterStates
 {
     none = 0,
+    weak = 100,
     standby = 101,
     run = 102,
     run_up = 103,

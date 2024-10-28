@@ -13,15 +13,15 @@ public class HeroTriggter : MonoBehaviour
         onTrigs(other);
     }
 
-    private void OnTriggerStay(Collider other)
-    {
-        //Debug.Log("OnTriggerStay: " + other.name);
-        //onTrigs(other);
-    }
+    //private void OnTriggerStay(Collider other)
+    //{
+    //    //Debug.Log("OnTriggerStay: " + other.name);
+    //    //onTrigs(other);
+    //}
 
-    private void OnTriggerExit(Collider other)
-    {
-    }
+    //private void OnTriggerExit(Collider other)
+    //{
+    //}
 
     private void onTrigs(Collider other)
     {
@@ -33,11 +33,21 @@ public class HeroTriggter : MonoBehaviour
         }
         if (layer == 8) //enemy
         {
+            onTrigEnemy(other.gameObject.GetComponent<ColliderBehaviour>().objRoot.GetComponent<EnemyBehaviour>());
             return;
         }
         if (layer == 9) //item
         {
             onTrigItem(other.gameObject.GetComponent<MapItem>());
+            return;
+        }
+        if (layer == 10) //boss
+        {
+            onTrigBoss(other.gameObject.GetComponent<ColliderBehaviour>().objRoot.GetComponent<BossBehaviour>());
+            return;
+        }
+        if (layer == 11) //attack
+        {
             return;
         }
     }
@@ -59,5 +69,36 @@ public class HeroTriggter : MonoBehaviour
         hb.addHp(mi.TB.val);
         mi.destoryThis();
         SoundManager.instance.playSound("Chop");
+    }
+
+    private void onTrigEnemy(EnemyBehaviour eb)
+    {
+        if (hb.cbInfo.hp >= eb.cbInfo.hp)
+        {
+            hb.addHp(eb.ETB.score);
+            eb.setDie();
+            return;
+        }
+
+        int damage = (hb.cbInfo.hp >= 20) ? hb.cbInfo.hp / 2 : hb.cbInfo.hp;
+        hb.addHp(-damage);
+    }
+
+    private void onTrigBoss(BossBehaviour bb)
+    {
+        if (hb.cbInfo.hp >= bb.cbInfo.hp)
+        {
+            hb.addHp(bb.ETB.score);
+            bb.setDie();
+            return;
+        }
+
+        int damage = (hb.cbInfo.hp >= 20) ? hb.cbInfo.hp / 2 : hb.cbInfo.hp;
+        hb.addHp(-damage);
+    }
+
+    private void onTrigAttack()
+    {
+
     }
 }

@@ -1,0 +1,10 @@
+countdown.png
+size:210,119
+filter:Linear,Linear
+pma:true
+countdown_biao
+bounds:2,2,115,132
+rotate:90
+countdown_quan
+bounds:136,43,74,72
+rotate:90

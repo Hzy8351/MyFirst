@@ -1,0 +1,16 @@
+warning.png
+size:1944,580
+filter:Linear,Linear
+pma:true
+scale:0.5
+warning_circle_q1
+bounds:2,2,576,576
+warning_circle_q2
+bounds:580,2,576,576
+warning_strip_k1
+bounds:1672,63,515,270
+rotate:90
+warning_strip_k2
+bounds:1158,56,522,512
+offsets:0,0,522,522
+rotate:90

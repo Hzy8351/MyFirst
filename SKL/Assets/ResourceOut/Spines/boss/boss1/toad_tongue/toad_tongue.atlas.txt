@@ -1,0 +1,7 @@
+toad_tongue.png
+size:922,157
+filter:Linear,Linear
+pma:true
+scale:0.5
+1stage_boss_frog_shetou
+bounds:2,2,918,153

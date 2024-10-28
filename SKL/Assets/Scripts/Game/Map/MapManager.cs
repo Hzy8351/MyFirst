@@ -7,7 +7,6 @@ public class MapManager : MonoSingleton<MapManager>
     public CameraBehaviour cameraBehaviour;
     public CharaterManager charManager;
     public ItemManager itemManager;
-    public EnemyManager enemyManager;
     public StepManager stepManager;
     public Transform parentMap;
     public Transform parentParts;
@@ -26,6 +25,7 @@ public class MapManager : MonoSingleton<MapManager>
     private string pathSpriteGrid = "Maps/map";
 
     private string pathHero = "Charater/hero";
+    private string pathEnemy = "Charater/";
 
     private float rangeXMax;
     private float rangeXMin;
@@ -35,6 +35,10 @@ public class MapManager : MonoSingleton<MapManager>
     private float charXMin;
     private float charZMax;
     private float charZMin;
+    private float enemyXMax;
+    private float enemyXMin;
+    private float enemyZMax;
+    private float enemyZMin;
 
     private float mapViewTick = 0f;
     private List<GameObject> mapViewObjs = new List<GameObject>();
@@ -62,7 +66,6 @@ public class MapManager : MonoSingleton<MapManager>
 
         createUI(charManager.HB, stb);
         cameraBehaviour.setCB(charManager.HB);
-        enemyManager.inits(stb);
         stepManager.inits(charManager.HB, stb);
         itemManager.createItems(stb);
     }
@@ -86,6 +89,11 @@ public class MapManager : MonoSingleton<MapManager>
         charXMin = -charXMax;
         charZMax = gridOff * (zc - sc);
         charZMin = -charZMax;
+
+        enemyXMax = gridOff * (xc - sc - 1.5f);
+        enemyXMin = -enemyXMax;
+        enemyZMax = gridOff * (zc - sc - 1.5f);
+        enemyZMin = -enemyZMax;
 
         string gridPath = pathSpriteGrid + mc + "/";
 
@@ -246,9 +254,29 @@ public class MapManager : MonoSingleton<MapManager>
         return new Vector3(Random.Range(rangeXMin, rangeXMax), 0f, Random.Range(rangeZMin, rangeZMax));
     }
 
+    public Vector3 randomEnemyPoint()
+    {
+        return new Vector3(Random.Range(enemyXMin, enemyXMax), 0f, Random.Range(enemyZMin, enemyZMax));
+    }
+
     #endregion
 
     #region charaters
+    public EnemyBehaviour createEnemy(EnemyTb tb)
+    {
+        GameObject go = GameManager.instance.AddPrefab(pathEnemy + tb.spine, charManager.gameObject.transform);
+        EnemyBehaviour eb = go.GetComponent<EnemyBehaviour>();
+        eb.inits(tb);
+        go.transform.localPosition = randomEnemyPoint();
+        return eb;
+    }
+
+    public void destoryEnemy(EnemyBehaviour eb)
+    {
+        eb.transform.localPosition = new Vector3(GameManager.offHide, 0f, 0f);
+        GameManager.instance.DestroyPrefab(pathEnemy + eb.ETB.spine, eb.gameObject);
+    }
+
     private HeroBehaviour createHero(StageTb stb)
     {
         GameObject go = GameManager.instance.AddPrefab(pathHero, charManager.transform);

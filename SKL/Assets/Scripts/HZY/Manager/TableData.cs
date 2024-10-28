@@ -271,11 +271,12 @@ public class StageTb
     public int hphero;
     public int maxscore;
     public string stepscore;
+    public string itemtype1;
+    public string itemtype2;
     public string enemytype1;
     public string enemytype2;
     public string enemytype3;
-    public string itemtype1;
-    public string itemtype2;
+
 }
 
 public class StageData

@@ -234,6 +234,7 @@ GameObject:
   - component: {fileID: 648218663504703597}
   - component: {fileID: 8400215152293983900}
   - component: {fileID: 3550563650838022820}
+  - component: {fileID: 565993522122321526}
   m_Layer: 6
   m_Name: Spine GameObject (ball)
   m_TagString: Untagged
@@ -389,6 +390,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &565993522122321526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7267551352089919754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9d5eb5bed5b17f41af8f757446e24ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objRoot: {fileID: 7267551352761666050}
 --- !u!1 &7267551352737704832
 GameObject:
   m_ObjectHideFlags: 0
@@ -500,8 +514,9 @@ MonoBehaviour:
     speed: 8
     speedBuff: 0
     cstate: 101
-    radius: 1
     offvec: {x: 0, y: 0, z: -1.6}
+    hp: 10
+    lv: 1
   node: {fileID: 4575634241868029853}
   body: {fileID: 7267551352737704846}
   part1: {fileID: 7267551352051123525}
