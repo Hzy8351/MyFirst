@@ -6,6 +6,14 @@ public class CameraBehaviour : MonoBehaviour
 {
     private CharaterBehaviour cb;
 
+    private Camera cam;
+    public Camera CAM { get { return cam; } }
+
+    void Awake()
+    {
+        cam = gameObject.GetComponent<Camera>();
+    }
+
     public void setCB(CharaterBehaviour c)
     {
         cb = c;

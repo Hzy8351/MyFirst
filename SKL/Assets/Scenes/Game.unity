@@ -660,6 +660,7 @@ MonoBehaviour:
   tranTips: {fileID: 8206298683017294356}
   tranClicks: {fileID: 8206298682959212207}
   tranFront: {fileID: 7394029759258116317}
+  camFront: {fileID: 7394029759258116304}
 --- !u!1 &6711357936017836520
 GameObject:
   m_ObjectHideFlags: 0
@@ -708,7 +709,6 @@ MonoBehaviour:
   cameraBehaviour: {fileID: 963194229}
   charManager: {fileID: 7993611265732706532}
   itemManager: {fileID: 1855808851}
-  enemyManager: {fileID: 0}
   stepManager: {fileID: 7993611265732706534}
   parentMap: {fileID: 3732511453784710338}
   parentParts: {fileID: 3732511454484000328}
@@ -722,7 +722,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6711357936340018685}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -915,7 +915,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 800
+  m_SortingOrder: 500
   m_TargetDisplay: 0
 --- !u!1 &7394029759258116316
 GameObject:

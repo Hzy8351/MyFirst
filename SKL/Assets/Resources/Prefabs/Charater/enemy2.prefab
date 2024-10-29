@@ -1,5 +1,66 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1405796653371332512
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1405796653371332543}
+  - component: {fileID: 1405796653371332541}
+  - component: {fileID: 1405796653371332542}
+  m_Layer: 12
+  m_Name: hp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1405796653371332543
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1405796653371332512}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.1, y: 0, z: 3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7580305753090068343}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1405796653371332541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1405796653371332512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd7a2cd88da3d2548be920f51d396a3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eb: {fileID: 7580305753090068339}
+  bc: {fileID: 1405796653371332542}
+  scale: 1.6
+--- !u!65 &1405796653371332542
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1405796653371332512}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.6, y: 1, z: 0.8}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2950974408638809534
 GameObject:
   m_ObjectHideFlags: 0
@@ -214,6 +275,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3645324705413733099}
+  - {fileID: 1405796653371332543}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -232,12 +294,13 @@ MonoBehaviour:
   cbInfo:
     speed: 8
     speedBuff: 0
-    cstate: 102
+    cstate: 101
     offvec: {x: 0, y: 0, z: 0}
     hp: 10
     lv: 1
   node: {fileID: 3645324705413733099}
   body: {fileID: 7580305754525757176}
+  qmHp: {fileID: 1405796653371332541}
 --- !u!1 &7580305754525757174
 GameObject:
   m_ObjectHideFlags: 0
@@ -294,5 +357,9 @@ MonoBehaviour:
     aniTick: 0.467
   - aniName: prepare
     aniTick: 0.2
-  - aniName: run
+  - aniName: standby
+    aniTick: 0
+  - aniName: standby
+    aniTick: 0
+  - aniName: restore
     aniTick: 0.333

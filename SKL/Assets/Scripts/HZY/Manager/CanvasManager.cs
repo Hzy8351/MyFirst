@@ -8,6 +8,7 @@ public class CanvasManager : MonoSingleton<CanvasManager>
     public RectTransform tranTips;
     public RectTransform tranClicks;
     public RectTransform tranFront;
+    public Canvas camFront;
 
     protected override void Init()
     {

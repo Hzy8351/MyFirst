@@ -214,6 +214,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3688396679271334230}
+  - {fileID: 9134392733605982399}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -232,12 +233,13 @@ MonoBehaviour:
   cbInfo:
     speed: 8
     speedBuff: 0
-    cstate: 102
+    cstate: 101
     offvec: {x: 0, y: 0, z: 0}
     hp: 10
     lv: 1
   node: {fileID: 3688396679271334230}
   body: {fileID: 7533322980731761989}
+  qmHp: {fileID: 9134392733605982397}
 --- !u!1 &7533322980731761995
 GameObject:
   m_ObjectHideFlags: 0
@@ -296,3 +298,66 @@ MonoBehaviour:
     aniTick: 0.333
   - aniName: skill1
     aniTick: 1.667
+  - aniName: standby
+    aniTick: 0
+--- !u!1 &9134392733605982398
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9134392733605982399}
+  - component: {fileID: 9134392733605982397}
+  - component: {fileID: 9134392733605982396}
+  m_Layer: 12
+  m_Name: hp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9134392733605982399
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9134392733605982398}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.2, y: 0, z: 5.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7533322978946077898}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9134392733605982397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9134392733605982398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd7a2cd88da3d2548be920f51d396a3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eb: {fileID: 7533322978946077902}
+  bc: {fileID: 9134392733605982396}
+  scale: 2.4
+--- !u!65 &9134392733605982396
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9134392733605982398}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.4, y: 1, z: 1.2}
+  m_Center: {x: 0, y: 0, z: 0}
