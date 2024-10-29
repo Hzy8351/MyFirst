@@ -43,8 +43,10 @@ public class CommonTb
 {
     public int id;
     public string Name;
-    public string Configuration;
-    public string Text;
+    public string Para1;
+    public string Para2;
+    public string Para3;
+    public string Para4;
 }
 
 public class CommonData
@@ -67,20 +69,6 @@ public class CommonData
         return cfg.Find((item) => item.id == id);
     }
 
-    public string getConfiguration(int id)
-    {
-        return getItem(id).Configuration;
-    }
-
-    public string getText(int id)
-    {
-        return getItem(id).Text;
-    }
-
-    public string[] getSplitsConfig(int id, string sp)
-    {
-        return GameManager.instance.CM.Split(getItem(id).Configuration, sp);
-    }
 }
 
 #endregion

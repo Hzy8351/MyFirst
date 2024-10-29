@@ -29,12 +29,6 @@ public class GameManager : MonoSingleton<GameManager>
     private TableManager configManager = new TableManager();
     public TableManager CM { get { return configManager; } }
 
-    //private CfgData cfgData = new CfgData();
-    //public CfgData CFGD { get { return cfgData; } }
-
-    //private GameData gameData = new GameData();
-    //public GameData GD { get { return gameData; } }
-
     #endregion
 
     protected override void Init()
@@ -180,23 +174,6 @@ public class GameManager : MonoSingleton<GameManager>
         long v = GameFormula.func2(count + 0, 0);
         addValNobuf(i, v, reason);
         return v;
-    }
-
-    public void addVal(string reason, string a0, string a1, string a2 = "0", bool bTask = false)
-    {
-        SplitData sd = CM.ParseString(a0, a1);
-        int id = int.Parse(a0);
-        if (id < getValArrLen())
-        {
-            long val = addVal(sd.id, sd.val, reason);
-            //if (bTask)
-            //{
-            //    getTaskManager().onTask(3, sd.id, val);
-            //}
-            return;
-        }
-
-        //Debug.Log("add buff: a0 = " + a0 + ", a1 = " + a1);
     }
 
     public bool dedVal(int i, long count, string reason)

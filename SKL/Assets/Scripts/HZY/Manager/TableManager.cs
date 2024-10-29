@@ -26,35 +26,6 @@ public class TableManager
         dataEnemy.Init(TbTool.Read("EnemyTb"));
     }
 
-    public SplitData ParseString(string a0, string a1)
-    {
-        SplitData sd = new SplitData();
-        int id = int.Parse(a0);
-        if (id >= 20000 && id < 60000)
-        {
-            CommonTb cfg = dataCommon.getItem(id);
-            string[] arr = Split(cfg.Configuration, "_");
-            sd.time = long.Parse(arr[0]);
-            sd.id = int.Parse(arr[1]);
-            sd.val = long.Parse(a1);
-        }
-        else if (id >= 60000 && id < 100000)
-        {
-            CommonTb cfg = dataCommon.getItem(id);
-            string[] arr = Split(cfg.Configuration, "_");
-            sd.time = long.Parse(arr[0]);
-            sd.id = int.Parse(arr[1]);
-            sd.val = long.Parse(arr[2]);
-        }
-        else
-        {
-            sd.id = id;
-            sd.val = long.Parse(a1);
-        }
-
-        return sd;
-    }
-
     public void Split(string src, string s1, string s2, ref List<int[]> ret)
     {
         ret.Clear();

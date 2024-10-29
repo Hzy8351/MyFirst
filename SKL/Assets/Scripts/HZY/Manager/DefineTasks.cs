@@ -55,22 +55,22 @@ public class TaskManager
             return false;
         }
 
-        //List<string> cfgs = new List<string>();
-        for (int i = 0; i < ti.reward.Count; ++i)
-        {
-            string[] arr = ti.reward[i];
-            GameManager.instance.addVal("完成任务获得", arr[0], arr[1]);
-            if (arr[0] == "1")
-            {
-                GameManager.instance.addVal("完成任务获得流水", "10", arr[1]);
-            }
+        ////List<string> cfgs = new List<string>();
+        //for (int i = 0; i < ti.reward.Count; ++i)
+        //{
+        //    string[] arr = ti.reward[i];
+        //    GameManager.instance.addVal("完成任务获得", arr[0], arr[1]);
+        //    if (arr[0] == "1")
+        //    {
+        //        GameManager.instance.addVal("完成任务获得流水", "10", arr[1]);
+        //    }
 
-            //if (int.Parse(arr[0]) < GameManager.instance.getValArrLen())
-            //{
-            //    cfgs.Add(arr[0] + "_" + arr[1] + "_0");
-            //}
-        }
-        //((RewardUI)UIManager.instance.Show(UIEnum.RewardUI)).initViews(cfgs);
+        //    //if (int.Parse(arr[0]) < GameManager.instance.getValArrLen())
+        //    //{
+        //    //    cfgs.Add(arr[0] + "_" + arr[1] + "_0");
+        //    //}
+        //}
+        ////((RewardUI)UIManager.instance.Show(UIEnum.RewardUI)).initViews(cfgs);
 
         endCurrentTask(ti);
         nextTask(ti.nid);

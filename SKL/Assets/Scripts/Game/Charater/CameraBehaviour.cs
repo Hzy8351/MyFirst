@@ -14,6 +14,11 @@ public class CameraBehaviour : MonoBehaviour
         cam = gameObject.GetComponent<Camera>();
     }
 
+    public void setCameraSize(float s)
+    {
+        CAM.orthographicSize = s;
+    }
+
     public void setCB(CharaterBehaviour c)
     {
         cb = c;

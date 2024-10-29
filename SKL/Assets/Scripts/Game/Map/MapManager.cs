@@ -12,11 +12,7 @@ public class MapManager : MonoSingleton<MapManager>
     public Transform parentParts;
     public Transform parentBlocks;
     public Transform parentSides;
-    public float viewMax = 25f;
-
-    private float gridOff = 5f;
-    private int xcMax = 15;
-    private int zcMax = 15;
+    public float viewMapMax = 25f;
 
     private string pathMapGrid = "Map/mapGrid";
     private string pathMapPart = "Map/mapPart";
@@ -44,7 +40,8 @@ public class MapManager : MonoSingleton<MapManager>
     private List<GameObject> mapViewObjs = new List<GameObject>();
     private MapUsed usedBlocks = new MapUsed(); public MapUsed UBS { get { return usedBlocks; } }
     private MapUsed usedParts = new MapUsed(); public MapUsed UPS { get { return usedParts; } }
-
+    private CfgData cfgData = new CfgData(); public CfgData CFGD { get { return cfgData; } }
+    private GameData gameData = new GameData(); public GameData GD { get { return gameData; } }
 
     protected override void Init()
     {
@@ -52,10 +49,10 @@ public class MapManager : MonoSingleton<MapManager>
         DontDestroyOnLoad(this.gameObject);
 
         GameManager.instance.CM.Init();
-        SoundManager.instance.playMusic("BG");
-        
+        initCfgData();
 
         StageTb stb = GameManager.instance.CM.dataStage.getStageOfMapStage(1, 1);
+        initGameData(stb);
         createMap(stb);
         createSides(stb);
         createBlocks(stb);
@@ -68,6 +65,44 @@ public class MapManager : MonoSingleton<MapManager>
         cameraBehaviour.setCB(charManager.HB);
         stepManager.inits(charManager.HB, stb);
         itemManager.createItems(stb);
+
+        SoundManager.instance.playMusic("BG");
+    }
+
+    private void initCfgData()
+    {
+        CommonTb tb1000 = GameManager.instance.CM.dataCommon.getItem(1000);
+        CFGD.xcMax = int.Parse(tb1000.Para1);
+        CFGD.zcMax = int.Parse(tb1000.Para2);
+        CFGD.gridOff = float.Parse(tb1000.Para3);
+        CFGD.mapViewTickMax = float.Parse(tb1000.Para4);
+
+        CommonTb tb1001 = GameManager.instance.CM.dataCommon.getItem(1001);
+        string[] arr1 = GameManager.instance.CM.Split(tb1001.Para1, "_");
+        CFGD.minHeroScale = float.Parse(arr1[0]);
+        CFGD.maxHeroScale = float.Parse(arr1[1]);
+
+        string[] arr2 = GameManager.instance.CM.Split(tb1001.Para2, "_");
+        CFGD.minCameraScale = float.Parse(arr2[0]);
+        CFGD.maxCameraScale = float.Parse(arr2[1]);
+
+        string[] arr3 = GameManager.instance.CM.Split(tb1001.Para3, "_");
+        CFGD.minMapScale = float.Parse(arr3[0]);
+        CFGD.maxMapScale = float.Parse(arr3[1]);
+
+        string[] arr4 = GameManager.instance.CM.Split(tb1001.Para4, "_");
+        CFGD.heroMinHpCheck = int.Parse(arr4[0]);
+        CFGD.heroHpScaleBegin = int.Parse(arr4[1]);
+    }
+
+    private void initGameData(StageTb tb)
+    {
+        GD.maxHerpScoreHp = tb.maxscore;
+
+        float per = 1f / (GD.maxHerpScoreHp - CFGD.heroHpScaleBegin);
+        GD.perHeroScale = (CFGD.maxHeroScale - CFGD.minHeroScale) * per;
+        GD.perCameraScale = (CFGD.maxCameraScale - CFGD.minCameraScale) * per;
+        GD.perMapScale = (CFGD.maxMapScale - CFGD.minMapScale) * per;
     }
 
     #region maps
@@ -80,25 +115,25 @@ public class MapManager : MonoSingleton<MapManager>
         int zc = stb.zgrid;
         int sc = stb.sidegrid;
 
-        rangeXMax = gridOff * (xc - sc - 0.5f);
+        rangeXMax = CFGD.gridOff * (xc - sc - 0.5f);
         rangeXMin = -rangeXMax;
-        rangeZMax = gridOff * (zc - sc - 0.5f);
+        rangeZMax = CFGD.gridOff * (zc - sc - 0.5f);
         rangeZMin = -rangeZMax;
 
-        charXMax = gridOff * (xc - sc);
+        charXMax = CFGD.gridOff * (xc - sc);
         charXMin = -charXMax;
-        charZMax = gridOff * (zc - sc);
+        charZMax = CFGD.gridOff * (zc - sc);
         charZMin = -charZMax;
 
-        enemyXMax = gridOff * (xc - sc - 1.5f);
+        enemyXMax = CFGD.gridOff * (xc - sc - 1.5f);
         enemyXMin = -enemyXMax;
-        enemyZMax = gridOff * (zc - sc - 1.5f);
+        enemyZMax = CFGD.gridOff * (zc - sc - 1.5f);
         enemyZMin = -enemyZMax;
 
         string gridPath = pathSpriteGrid + mc + "/";
 
-        if (xc > xcMax) { xc = xcMax; }
-        if (zc > zcMax) { zc = zcMax; }
+        if (xc > CFGD.xcMax) { xc = CFGD.xcMax; }
+        if (zc > CFGD.zcMax) { zc = CFGD.zcMax; }
         int isc = sc;
         for (int i = -xc; i <= xc; ++i)
         {
@@ -115,7 +150,7 @@ public class MapManager : MonoSingleton<MapManager>
                 mg.setSprite(sprite);
                 if (bSideI || bSideK) { mg.setOrder(mg.getOrder() - 10); }
 
-                go.transform.localPosition = new Vector3(i * gridOff, 0f, k * gridOff);
+                go.transform.localPosition = new Vector3(i * CFGD.gridOff, 0f, k * CFGD.gridOff);
                 go.SetActive(true);
                 --ksc;
 
@@ -331,7 +366,30 @@ public class MapManager : MonoSingleton<MapManager>
 
     void FixedUpdate()
     {
+        updatePer();
         updateMapViews();
+    }
+
+    private void updatePer()
+    {
+        if (charManager.HB == null)
+        {
+            return;
+        }
+
+        int hp = charManager.HB.cbInfo.hp;
+        if (hp <= CFGD.heroHpScaleBegin)
+        {
+            charManager.HB.node.localScale = Vector3.one * CFGD.minHeroScale;
+            viewMapMax = CFGD.minMapScale;
+            cameraBehaviour.setCameraSize(CFGD.minCameraScale);
+            return;
+        }
+
+        int perHp = hp - CFGD.heroHpScaleBegin;
+        charManager.HB.node.localScale = Vector3.one * (CFGD.minHeroScale + perHp * GD.perHeroScale);
+        viewMapMax = CFGD.minMapScale + perHp * GD.perMapScale;
+        cameraBehaviour.setCameraSize(CFGD.minCameraScale + perHp * GD.perCameraScale);
     }
 
     private void updateMapViews()
@@ -342,7 +400,7 @@ public class MapManager : MonoSingleton<MapManager>
         }
 
         mapViewTick += Time.deltaTime;
-        if (mapViewTick <= 0.5f)
+        if (mapViewTick <= CFGD.mapViewTickMax)
         {
             return;
         }
@@ -353,7 +411,7 @@ public class MapManager : MonoSingleton<MapManager>
         {
             GameObject obj = mapViewObjs[i];
             Vector3 v = obj.transform.localPosition;
-            obj.SetActive(Vector3.Distance(pos, v) <= viewMax);
+            obj.SetActive(Vector3.Distance(pos, v) <= viewMapMax);
         }
     }
 }

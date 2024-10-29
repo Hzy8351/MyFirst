@@ -69,5 +69,9 @@ public class CharaterBehaviour : MonoBehaviour
         {
             cbInfo.hp = 0;
         }
+        else if (cbInfo.hp > MapManager.instance.GD.maxHerpScoreHp)
+        {
+            cbInfo.hp = MapManager.instance.GD.maxHerpScoreHp;
+        }
     }
 }
