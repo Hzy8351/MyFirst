@@ -54,8 +54,7 @@ public class HeroTriggter : MonoBehaviour
 
     private void onTrigBlock(MapBlock mb)
     {
-        int damage = (hb.cbInfo.hp >= MapManager.instance.CFGD.heroMinHpCheck) ? hb.cbInfo.hp / 2 : hb.cbInfo.hp;
-        hb.addHp(-damage);
+        int damage = hb.addTrigDamage();
         //GameManager.instance.CreateTextTips("-" + damage);
     }
 
@@ -80,8 +79,7 @@ public class HeroTriggter : MonoBehaviour
             return;
         }
 
-        int damage = (hb.cbInfo.hp >= MapManager.instance.CFGD.heroMinHpCheck) ? hb.cbInfo.hp / 2 : hb.cbInfo.hp;
-        hb.addHp(-damage);
+        int damage = hb.addTrigDamage();
     }
 
     private void onTrigBoss(BossBehaviour bb)
@@ -93,8 +91,7 @@ public class HeroTriggter : MonoBehaviour
             return;
         }
 
-        int damage = (hb.cbInfo.hp >= MapManager.instance.CFGD.heroMinHpCheck) ? hb.cbInfo.hp / 2 : hb.cbInfo.hp;
-        hb.addHp(-damage);
+        int damage = hb.addTrigDamage();
     }
 
     private void onTrigAttack()

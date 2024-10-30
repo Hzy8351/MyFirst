@@ -37,6 +37,7 @@ public class MapManager : MonoSingleton<MapManager>
     private float enemyZMin;
 
     private float mapViewTick = 0f;
+    private List<float> heroScaleList = new List<float>();
     private List<GameObject> mapViewObjs = new List<GameObject>();
     private MapUsed usedBlocks = new MapUsed(); public MapUsed UBS { get { return usedBlocks; } }
     private MapUsed usedParts = new MapUsed(); public MapUsed UPS { get { return usedParts; } }
@@ -47,6 +48,9 @@ public class MapManager : MonoSingleton<MapManager>
     {
         base.Init();
         DontDestroyOnLoad(this.gameObject);
+
+        mapViewTick = 0f;
+        heroScaleList.Clear();
 
         GameManager.instance.CM.Init();
         initCfgData();
@@ -65,6 +69,10 @@ public class MapManager : MonoSingleton<MapManager>
         cameraBehaviour.setCB(charManager.HB);
         stepManager.inits(charManager.HB, stb);
         itemManager.createItems(stb);
+
+        charManager.HB.node.localScale = Vector3.one;
+        viewMapMax = CFGD.minMapScale;
+        cameraBehaviour.setCameraSize(CFGD.minCameraScale);
 
         SoundManager.instance.playMusic("BG");
     }
@@ -91,15 +99,22 @@ public class MapManager : MonoSingleton<MapManager>
         CFGD.maxMapScale = float.Parse(arr3[1]);
 
         string[] arr4 = GameManager.instance.CM.Split(tb1001.Para4, "_");
-        CFGD.heroMinHpCheck = int.Parse(arr4[0]);
-        CFGD.heroHpScaleBegin = int.Parse(arr4[1]);
+        CFGD.heroHpScaleBegin = int.Parse(arr4[0]);
+        CFGD.heroHpScaleEnd = int.Parse(arr4[1]);
+
+        CommonTb tb1002 = GameManager.instance.CM.dataCommon.getItem(1002);
+        CFGD.heroPosRangeInit = int.Parse(tb1002.Para1);
+        CFGD.heroMinHpCheck = int.Parse(tb1002.Para2);
+        CFGD.heroSpeed = float.Parse(tb1002.Para3);
+        CFGD.heroScaleTime = float.Parse(tb1002.Para4);
+
     }
 
     private void initGameData(StageTb tb)
     {
-        GD.maxHerpScoreHp = tb.maxscore;
+        GD.maxHeroScoreHp = tb.maxscore;
 
-        float per = 1f / (GD.maxHerpScoreHp - CFGD.heroHpScaleBegin);
+        float per = 1f / (GD.maxHeroScoreHp - getHpScaleMinusVal());
         GD.perHeroScale = (CFGD.maxHeroScale - CFGD.minHeroScale) * per;
         GD.perCameraScale = (CFGD.maxCameraScale - CFGD.minCameraScale) * per;
         GD.perMapScale = (CFGD.maxMapScale - CFGD.minMapScale) * per;
@@ -123,7 +138,7 @@ public class MapManager : MonoSingleton<MapManager>
         charXMax = CFGD.gridOff * (xc - sc);
         charXMin = -charXMax;
         charZMax = CFGD.gridOff * (zc - sc);
-        charZMin = -charZMax;
+        charZMin = -(CFGD.gridOff * (zc - sc - 0.3f));//-charZMax;
 
         enemyXMax = CFGD.gridOff * (xc - sc - 1.5f);
         enemyXMin = -enemyXMax;
@@ -169,7 +184,7 @@ public class MapManager : MonoSingleton<MapManager>
 
     private bool isHeroInitPos(Vector3 pos)
     {
-        return (pos.x >= -2f && pos.x <= 2f) && (pos.z >= -2f && pos.z <= 2f);
+        return (pos.x >= -CFGD.heroPosRangeInit && pos.x <= CFGD.heroPosRangeInit) && (pos.z >= -CFGD.heroPosRangeInit && pos.z <= CFGD.heroPosRangeInit);
     }
 
     private Vector3 randBlockPos(Vector3 size)
@@ -302,7 +317,23 @@ public class MapManager : MonoSingleton<MapManager>
         GameObject go = GameManager.instance.AddPrefab(pathEnemy + tb.spine, charManager.gameObject.transform);
         EnemyBehaviour eb = go.GetComponent<EnemyBehaviour>();
         eb.inits(tb);
-        go.transform.localPosition = randomEnemyPoint();
+
+        Vector3 pos;
+        while (true)
+        {
+            pos = randomEnemyPoint();
+            if (Vector3.Distance(pos, charManager.HB.transform.localPosition) <= CFGD.heroPosRangeInit)
+            {
+                continue;
+            }
+            if (UBS.isContains((int)pos.x, (int)pos.z))
+            {
+                continue;
+            }
+            break;
+        }
+        go.transform.localPosition = pos;
+
         return eb;
     }
 
@@ -316,7 +347,7 @@ public class MapManager : MonoSingleton<MapManager>
     {
         GameObject go = GameManager.instance.AddPrefab(pathHero, charManager.transform);
         HeroBehaviour hb = go.GetComponent<HeroBehaviour>();
-        hb.inits();
+        hb.inits(CFGD.heroSpeed);
         return hb;
     }
 
@@ -368,6 +399,24 @@ public class MapManager : MonoSingleton<MapManager>
     {
         updatePer();
         updateMapViews();
+        //updateHeroScaleAni();
+    }
+
+    public float getScaleRate()
+    {
+        if (charManager.HB.cbInfo.hp <= CFGD.heroHpScaleBegin)
+        {
+            return 1f;
+        }
+
+        float perHp = (charManager.HB.cbInfo.hp - CFGD.heroHpScaleBegin);
+        float maxHp = (GD.maxHeroScoreHp - getHpScaleMinusVal());
+        return 1f + perHp / maxHp;
+    }
+
+    public int getHpScaleMinusVal()
+    {
+        return CFGD.heroHpScaleBegin + CFGD.heroHpScaleEnd;
     }
 
     private void updatePer()
@@ -377,16 +426,9 @@ public class MapManager : MonoSingleton<MapManager>
             return;
         }
 
-        int hp = charManager.HB.cbInfo.hp;
-        if (hp <= CFGD.heroHpScaleBegin)
-        {
-            charManager.HB.node.localScale = Vector3.one * CFGD.minHeroScale;
-            viewMapMax = CFGD.minMapScale;
-            cameraBehaviour.setCameraSize(CFGD.minCameraScale);
-            return;
-        }
+        int perHp = charManager.HB.cbInfo.hp - getHpScaleMinusVal();
+        if (perHp < 0) { perHp = 0; }
 
-        int perHp = hp - CFGD.heroHpScaleBegin;
         charManager.HB.node.localScale = Vector3.one * (CFGD.minHeroScale + perHp * GD.perHeroScale);
         viewMapMax = CFGD.minMapScale + perHp * GD.perMapScale;
         cameraBehaviour.setCameraSize(CFGD.minCameraScale + perHp * GD.perCameraScale);
@@ -412,6 +454,22 @@ public class MapManager : MonoSingleton<MapManager>
             GameObject obj = mapViewObjs[i];
             Vector3 v = obj.transform.localPosition;
             obj.SetActive(Vector3.Distance(pos, v) <= viewMapMax);
+        }
+    }
+
+    private void updateHeroScaleAni()
+    {
+        for (int i = 0; i < heroScaleList.Count;)
+        {
+            if (heroScaleList[i] <= 0f)
+            {
+                heroScaleList.RemoveAt(i);
+                continue;
+            }
+            float val = heroScaleList[i] * Time.deltaTime;
+
+
+            ++i;
         }
     }
 }

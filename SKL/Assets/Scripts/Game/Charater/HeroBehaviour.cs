@@ -6,8 +6,9 @@ public class HeroBehaviour : CharaterBehaviour
 {
     public AniBehaviour part1;
 
-    public void inits()
+    public void inits(float speed)
     {
+        cbInfo.speed = speed;
         setAni(CharaterStates.standby);
     }
 

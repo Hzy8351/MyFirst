@@ -36,7 +36,7 @@ public class CharaterBehaviour : MonoBehaviour
 
     public float getCurSpeed()
     {
-        return cbInfo.speed + cbInfo.speedBuff;
+        return (cbInfo.speed + cbInfo.speedBuff) * MapManager.instance.getScaleRate();
     }
 
     public void move(Vector3 v)
@@ -65,13 +65,21 @@ public class CharaterBehaviour : MonoBehaviour
     public void addHp(int val)
     {
         cbInfo.hp += val;
-        if (cbInfo.hp < 0)
+        if (cbInfo.hp <= 0)
         {
             cbInfo.hp = 0;
         }
-        else if (cbInfo.hp > MapManager.instance.GD.maxHerpScoreHp)
+        else if (cbInfo.hp > MapManager.instance.GD.maxHeroScoreHp)
         {
-            cbInfo.hp = MapManager.instance.GD.maxHerpScoreHp;
+            cbInfo.hp = MapManager.instance.GD.maxHeroScoreHp;
         }
+    }
+
+    public int addTrigDamage()
+    {
+        int hp = cbInfo.hp;
+        int damage = (hp >= MapManager.instance.CFGD.heroMinHpCheck) ? hp / 2 : hp;
+        addHp(-damage);
+        return damage;
     }
 }

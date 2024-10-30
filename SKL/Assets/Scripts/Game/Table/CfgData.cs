@@ -18,13 +18,18 @@ public class CfgData
     public float minMapScale;
     public float maxMapScale;
 
-    public int heroMinHpCheck;
     public int heroHpScaleBegin;
+    public int heroHpScaleEnd;
+
+    public int heroPosRangeInit;
+    public int heroMinHpCheck;
+    public float heroSpeed;
+    public float heroScaleTime;
 }
 
 public class GameData
 {
-    public int maxHerpScoreHp;
+    public int maxHeroScoreHp;
     public float perHeroScale;
     public float perCameraScale;
     public float perMapScale;

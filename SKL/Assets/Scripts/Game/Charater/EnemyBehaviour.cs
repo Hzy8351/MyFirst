@@ -5,7 +5,6 @@ using UnityEngine;
 public class EnemyBehaviour : CharaterBehaviour
 {
     protected EnemyTb etb; public EnemyTb ETB { get { return etb; } }
-
     protected StepManager sm; public StepManager SM { get { return sm; } }
 
     public QuaryMark qmHp;
