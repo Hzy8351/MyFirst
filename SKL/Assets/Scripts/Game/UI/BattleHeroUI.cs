@@ -65,6 +65,7 @@ public class BattleHeroUI : BaseUI
 
         scroeMax = stb.maxscore;
         hb.cbInfo.hp = stb.hphero;
+        hb.aniHp = stb.hphero;
         updateHpBar();
 
     }

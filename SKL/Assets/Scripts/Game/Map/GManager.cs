@@ -8,7 +8,7 @@ public class GManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            MapManager.instance.charManager.HB.addHp(40);
+            MapManager.instance.charManager.HB.addHp(40, true);
         }
     }
 }

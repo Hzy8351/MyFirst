@@ -16,7 +16,12 @@ public class CameraBehaviour : MonoBehaviour
 
     public void setCameraSize(float s)
     {
-        CAM.orthographicSize = s;
+        cam.orthographicSize = s;
+    }
+
+    public float getCameraSize()
+    {
+        return cam.orthographicSize;
     }
 
     public void setCB(CharaterBehaviour c)

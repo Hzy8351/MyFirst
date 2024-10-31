@@ -54,7 +54,7 @@ public class HeroTriggter : MonoBehaviour
 
     private void onTrigBlock(MapBlock mb)
     {
-        int damage = hb.addTrigDamage();
+        int damage = hb.addTrigDamage(true);
         //GameManager.instance.CreateTextTips("-" + damage);
     }
 
@@ -65,7 +65,7 @@ public class HeroTriggter : MonoBehaviour
             return;
         }
 
-        hb.addHp(mi.TB.val);
+        hb.addHp(mi.TB.val, true);
         mi.destoryThis();
         SoundManager.instance.playSound("Chop");
     }
@@ -74,24 +74,24 @@ public class HeroTriggter : MonoBehaviour
     {
         if (hb.cbInfo.hp >= eb.cbInfo.hp)
         {
-            hb.addHp(eb.ETB.score);
+            hb.addHp(eb.ETB.score, true);
             eb.setDie();
             return;
         }
 
-        int damage = hb.addTrigDamage();
+        int damage = hb.addTrigDamage(true);
     }
 
     private void onTrigBoss(BossBehaviour bb)
     {
         if (hb.cbInfo.hp >= bb.cbInfo.hp)
         {
-            hb.addHp(bb.ETB.score);
+            hb.addHp(bb.ETB.score, true);
             bb.setDie();
             return;
         }
 
-        int damage = hb.addTrigDamage();
+        int damage = hb.addTrigDamage(true);
     }
 
     private void onTrigAttack()

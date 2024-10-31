@@ -124,7 +124,7 @@ public class ItemManager : MonoBehaviour
             }
 
             Vector3 v = mi.gameObject.transform.localPosition;
-            mi.gameObject.SetActive(Vector3.Distance(pos, v) <= MapManager.instance.viewMapMax);
+            mi.gameObject.SetActive(Vector3.Distance(pos, v) <= MapManager.instance.VCMAX);
         }
     }
 

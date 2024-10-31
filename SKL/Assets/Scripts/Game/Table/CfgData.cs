@@ -35,3 +35,11 @@ public class GameData
     public float perMapScale;
 
 }
+
+public class viewScaleData
+{
+    public int hpMax;
+    public int hpLeft;
+    public int mark;
+}
+

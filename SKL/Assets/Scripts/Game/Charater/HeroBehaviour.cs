@@ -6,6 +6,8 @@ public class HeroBehaviour : CharaterBehaviour
 {
     public AniBehaviour part1;
 
+    public int aniHp;
+
     public void inits(float speed)
     {
         cbInfo.speed = speed;

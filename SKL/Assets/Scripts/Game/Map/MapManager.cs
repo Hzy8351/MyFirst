@@ -12,7 +12,6 @@ public class MapManager : MonoSingleton<MapManager>
     public Transform parentParts;
     public Transform parentBlocks;
     public Transform parentSides;
-    public float viewMapMax = 25f;
 
     private string pathMapGrid = "Map/mapGrid";
     private string pathMapPart = "Map/mapPart";
@@ -36,8 +35,9 @@ public class MapManager : MonoSingleton<MapManager>
     private float enemyZMax;
     private float enemyZMin;
 
-    private float mapViewTick = 0f;
-    private List<float> heroScaleList = new List<float>();
+    private float mapViewMax; public float VCMAX { get { return mapViewMax; } }
+    private float mapViewTick;
+    private List<viewScaleData> heroScaleList = new List<viewScaleData>();
     private List<GameObject> mapViewObjs = new List<GameObject>();
     private MapUsed usedBlocks = new MapUsed(); public MapUsed UBS { get { return usedBlocks; } }
     private MapUsed usedParts = new MapUsed(); public MapUsed UPS { get { return usedParts; } }
@@ -71,7 +71,7 @@ public class MapManager : MonoSingleton<MapManager>
         itemManager.createItems(stb);
 
         charManager.HB.node.localScale = Vector3.one;
-        viewMapMax = CFGD.minMapScale;
+        mapViewMax = CFGD.minMapScale;
         cameraBehaviour.setCameraSize(CFGD.minCameraScale);
 
         SoundManager.instance.playMusic("BG");
@@ -395,21 +395,39 @@ public class MapManager : MonoSingleton<MapManager>
 
     #endregion
 
-    void FixedUpdate()
+    void Update()
     {
-        updatePer();
         updateMapViews();
-        //updateHeroScaleAni();
+        updateHeroScaleAni();
+        updatePer();
+    }
+
+    public void addViewScaleList(int hp)
+    {
+        viewScaleData vsd = new viewScaleData();
+        if (hp >= 0)
+        {
+            vsd.hpMax = hp;
+            vsd.hpLeft = hp;
+            vsd.mark = 1;
+        }
+        else
+        {
+            vsd.hpMax = -hp;
+            vsd.hpLeft = -hp;
+            vsd.mark = -1;
+        }
+        heroScaleList.Add(vsd);
     }
 
     public float getScaleRate()
     {
-        if (charManager.HB.cbInfo.hp <= CFGD.heroHpScaleBegin)
+        if (charManager.HB.aniHp <= CFGD.heroHpScaleBegin)
         {
             return 1f;
         }
 
-        float perHp = (charManager.HB.cbInfo.hp - CFGD.heroHpScaleBegin);
+        float perHp = (charManager.HB.aniHp - CFGD.heroHpScaleBegin);
         float maxHp = (GD.maxHeroScoreHp - getHpScaleMinusVal());
         return 1f + perHp / maxHp;
     }
@@ -417,21 +435,6 @@ public class MapManager : MonoSingleton<MapManager>
     public int getHpScaleMinusVal()
     {
         return CFGD.heroHpScaleBegin + CFGD.heroHpScaleEnd;
-    }
-
-    private void updatePer()
-    {
-        if (charManager.HB == null)
-        {
-            return;
-        }
-
-        int perHp = charManager.HB.cbInfo.hp - getHpScaleMinusVal();
-        if (perHp < 0) { perHp = 0; }
-
-        charManager.HB.node.localScale = Vector3.one * (CFGD.minHeroScale + perHp * GD.perHeroScale);
-        viewMapMax = CFGD.minMapScale + perHp * GD.perMapScale;
-        cameraBehaviour.setCameraSize(CFGD.minCameraScale + perHp * GD.perCameraScale);
     }
 
     private void updateMapViews()
@@ -453,7 +456,7 @@ public class MapManager : MonoSingleton<MapManager>
         {
             GameObject obj = mapViewObjs[i];
             Vector3 v = obj.transform.localPosition;
-            obj.SetActive(Vector3.Distance(pos, v) <= viewMapMax);
+            obj.SetActive(Vector3.Distance(pos, v) <= mapViewMax);
         }
     }
 
@@ -461,15 +464,46 @@ public class MapManager : MonoSingleton<MapManager>
     {
         for (int i = 0; i < heroScaleList.Count;)
         {
-            if (heroScaleList[i] <= 0f)
+            viewScaleData vsd = heroScaleList[i];
+            if (vsd.hpLeft <= 0f)
             {
                 heroScaleList.RemoveAt(i);
                 continue;
             }
-            float val = heroScaleList[i] * Time.deltaTime;
 
+            int val = (int)(vsd.hpMax * (Time.deltaTime * CFGD.heroScaleTime));
+            if (val < 1)
+            {
+                val = 1;
+            }
+            vsd.hpLeft -= val;
 
+            charManager.HB.aniHp += (vsd.mark * val);
+            if (charManager.HB.aniHp < 0) { charManager.HB.aniHp = 0; }
+            else if (charManager.HB.aniHp > GD.maxHeroScoreHp) { charManager.HB.aniHp = GD.maxHeroScoreHp; }
             ++i;
+            //Debug.Log("aniHp = " + charManager.HB.aniHp);
         }
     }
+
+    private void updatePer()
+    {
+        if (charManager.HB == null)
+        {
+            return;
+        }
+
+        if (heroScaleList.Count <= 0)
+        {
+            charManager.HB.aniHp = charManager.HB.cbInfo.hp;
+        }
+
+        int perHp = charManager.HB.aniHp - getHpScaleMinusVal();
+        if (perHp < 0) { perHp = 0; }
+
+        charManager.HB.node.localScale = Vector3.one * (CFGD.minHeroScale + perHp * GD.perHeroScale);
+        mapViewMax = CFGD.minMapScale + perHp * GD.perMapScale;
+        cameraBehaviour.setCameraSize(CFGD.minCameraScale + perHp * GD.perCameraScale);
+    }
+
 }

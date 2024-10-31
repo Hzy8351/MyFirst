@@ -62,7 +62,7 @@ public class CharaterBehaviour : MonoBehaviour
         body.playAni(aniState);
     }
 
-    public void addHp(int val)
+    public void addHp(int val, bool aniHp)
     {
         cbInfo.hp += val;
         if (cbInfo.hp <= 0)
@@ -73,13 +73,18 @@ public class CharaterBehaviour : MonoBehaviour
         {
             cbInfo.hp = MapManager.instance.GD.maxHeroScoreHp;
         }
+
+        if (aniHp)
+        {
+            MapManager.instance.addViewScaleList(val);
+        }
     }
 
-    public int addTrigDamage()
+    public int addTrigDamage(bool aniHp)
     {
         int hp = cbInfo.hp;
         int damage = (hp >= MapManager.instance.CFGD.heroMinHpCheck) ? hp / 2 : hp;
-        addHp(-damage);
+        addHp(-damage, aniHp);
         return damage;
     }
 }
