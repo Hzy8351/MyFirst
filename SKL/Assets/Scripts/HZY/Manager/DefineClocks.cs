@@ -19,7 +19,7 @@ public class ClockTextTip : ClockBase
 
     protected override bool onTick()
     {
-        GameManager.instance.CreateTextTips(content, size, dic, sec, "f3c42b");
+        MapManager.instance.CreateTextTips(Vector3.zero, content, size, dic, sec, "f3c42b");
         return true;
     }
 }

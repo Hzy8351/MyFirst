@@ -395,6 +395,26 @@ public class MapManager : MonoSingleton<MapManager>
 
     #endregion
 
+    #region CreateTextTips(string dec,string num)
+    //public void CreateTextTips(string des, string num)
+    //{
+    //    ViewTextTips("<size=45><color=#38a1d7>" + des + ":</color>" + "<color=#63c42b>" + num + "</color></size>");
+    //}
+
+    public void CreateTextTips(Vector3 pos, string des, int size = 80, float dic = 120f, float sec = 0.8f, string color16 = "24d9f1")
+    {
+        ViewTextTips(pos, string.Format("<size={0}><color=#{1}>{2}</color></size>", size, color16, des), dic, sec);
+    }
+
+    private void ViewTextTips(Vector3 pos, string des, float dic = 120f, float sec = 0.5f)
+    {
+        string path = "Prefabs/UI/TextTips";
+        GameObject obj = Instantiate(ResourcesLoad.Instance.Load<GameObject>(path), CanvasManager.instance.tranTips);
+        obj.GetComponent<TextTipsCtrl>().Init(pos, des, dic, sec);
+    }
+
+    #endregion
+
     void Update()
     {
         updateMapViews();

@@ -305,22 +305,6 @@ public class GameManager : MonoSingleton<GameManager>
     }
     #endregion
 
-    #region CreateTextTips
-
-    public void CreateTextTips(string des, int size = 45, float dic = 120f, float sec = 0.8f, string color16 = "24d9f1")
-    {
-        ViewTextTips(string.Format("<size={0}><color=#{1}>{2}</color></size>", size, color16, des), dic, sec);
-    }
-
-    private void ViewTextTips(string des, float dic = 120f, float sec = 0.5f)
-    {
-        string path = "Prefabs/UI/TextTips";
-        GameObject obj = Instantiate(ResourcesLoad.Instance.Load<GameObject>(path), CanvasManager.instance.tranTips);
-        obj.GetComponent<TextTipsCtrl>().Init(des, dic, sec);
-    }
-
-    #endregion
-
     #region audio
     public void setMusicState()
     {

@@ -8,12 +8,14 @@ public class TextTipsCtrl : MonoBehaviour
 {
     public Text msg;
 
-    public void Init(string des, float dic, float sec)
+    public void Init(Vector3 pos, string des, float dic, float sec)
     {
         msg.text = des;
-        transform.localScale = Vector3.zero;
+        transform.position = pos;
+        float cy = transform.localPosition.y;
+        transform.localScale = Vector3.zero * 0.2f;
         transform.DOScale(Vector3.one, 0.2f);
-        transform.DOLocalMoveY(dic, sec).SetEase(Ease.Linear).OnComplete(() =>
+        transform.DOLocalMoveY(cy + dic, sec).SetEase(Ease.Linear).OnComplete(() =>
         {
             Destroy(gameObject);
         });

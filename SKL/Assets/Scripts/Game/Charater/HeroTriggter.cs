@@ -55,7 +55,8 @@ public class HeroTriggter : MonoBehaviour
     private void onTrigBlock(MapBlock mb)
     {
         int damage = hb.addTrigDamage(true);
-        //GameManager.instance.CreateTextTips("-" + damage);
+        hb.createHpTips(-damage);
+        SoundManager.instance.playSound("Hit");
     }
 
     private void onTrigItem(MapItem mi)
@@ -66,8 +67,10 @@ public class HeroTriggter : MonoBehaviour
         }
 
         hb.addHp(mi.TB.val, true);
+        hb.createHpTips(mi.TB.val);
         mi.destoryThis();
         SoundManager.instance.playSound("Chop");
+
     }
 
     private void onTrigEnemy(EnemyBehaviour eb)
@@ -75,11 +78,15 @@ public class HeroTriggter : MonoBehaviour
         if (hb.cbInfo.hp >= eb.cbInfo.hp)
         {
             hb.addHp(eb.ETB.score, true);
+            hb.createHpTips(eb.ETB.score);
             eb.setDie();
+            SoundManager.instance.playSound("Attack");
             return;
         }
 
         int damage = hb.addTrigDamage(true);
+        hb.createHpTips(-damage);
+        SoundManager.instance.playSound("Hit");
     }
 
     private void onTrigBoss(BossBehaviour bb)
@@ -87,11 +94,15 @@ public class HeroTriggter : MonoBehaviour
         if (hb.cbInfo.hp >= bb.cbInfo.hp)
         {
             hb.addHp(bb.ETB.score, true);
+            hb.createHpTips(bb.ETB.score);
             bb.setDie();
+            SoundManager.instance.playSound("Attack");
             return;
         }
 
         int damage = hb.addTrigDamage(true);
+        hb.createHpTips(-damage);
+        SoundManager.instance.playSound("Hit");
     }
 
     private void onTrigAttack()

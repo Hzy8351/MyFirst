@@ -714,7 +714,6 @@ MonoBehaviour:
   parentParts: {fileID: 3732511454484000328}
   parentBlocks: {fileID: 6711357936826719322}
   parentSides: {fileID: 3732511453484479583}
-  viewMax: 25
 --- !u!4 &6711357936340018675
 Transform:
   m_ObjectHideFlags: 0
@@ -915,7 +914,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 500
+  m_SortingOrder: 100
   m_TargetDisplay: 0
 --- !u!1 &7394029759258116316
 GameObject:
@@ -1178,7 +1177,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 25100
+  m_SortingOrder: 200
   m_TargetDisplay: 0
 --- !u!114 &8206298683017294362
 MonoBehaviour:
