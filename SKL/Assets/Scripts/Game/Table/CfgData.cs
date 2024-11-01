@@ -17,6 +17,7 @@ public class CfgData
 
     public float minMapScale;
     public float maxMapScale;
+    public float sideMapViewDisOff;
 
     public int heroHpScaleBegin;
     public int heroHpScaleEnd;

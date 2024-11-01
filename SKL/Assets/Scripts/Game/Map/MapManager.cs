@@ -34,11 +34,13 @@ public class MapManager : MonoSingleton<MapManager>
     private float enemyXMin;
     private float enemyZMax;
     private float enemyZMin;
-
     private float mapViewMax; public float VCMAX { get { return mapViewMax; } }
+
     private float mapViewTick;
     private List<viewScaleData> heroScaleList = new List<viewScaleData>();
     private List<GameObject> mapViewObjs = new List<GameObject>();
+    private List<GameObject> mapSideObjs = new List<GameObject>();
+
     private MapUsed usedBlocks = new MapUsed(); public MapUsed UBS { get { return usedBlocks; } }
     private MapUsed usedParts = new MapUsed(); public MapUsed UPS { get { return usedParts; } }
     private CfgData cfgData = new CfgData(); public CfgData CFGD { get { return cfgData; } }
@@ -51,6 +53,8 @@ public class MapManager : MonoSingleton<MapManager>
 
         mapViewTick = 0f;
         heroScaleList.Clear();
+        mapViewObjs.Clear();
+        mapSideObjs.Clear();
 
         GameManager.instance.CM.Init();
         initCfgData();
@@ -97,6 +101,7 @@ public class MapManager : MonoSingleton<MapManager>
         string[] arr3 = GameManager.instance.CM.Split(tb1001.Para3, "_");
         CFGD.minMapScale = float.Parse(arr3[0]);
         CFGD.maxMapScale = float.Parse(arr3[1]);
+        CFGD.sideMapViewDisOff = float.Parse(arr3[2]);
 
         string[] arr4 = GameManager.instance.CM.Split(tb1001.Para4, "_");
         CFGD.heroHpScaleBegin = int.Parse(arr4[0]);
@@ -191,6 +196,8 @@ public class MapManager : MonoSingleton<MapManager>
             MapSide ms = go.GetComponent<MapSide>();
             ms.inits(path, mst);
             go.SetActive(true);
+
+            mapSideObjs.Add(go);
         }
 
     }
@@ -430,7 +437,7 @@ public class MapManager : MonoSingleton<MapManager>
 
     void Update()
     {
-        //updateMapViews();
+        updateMapViews();
         updateHeroScaleAni();
         updatePer();
     }
@@ -491,6 +498,13 @@ public class MapManager : MonoSingleton<MapManager>
             Vector3 v = obj.transform.localPosition;
             obj.SetActive(Vector3.Distance(pos, v) <= mapViewMax);
         }
+        for (int i = 0; i < mapSideObjs.Count; ++i)
+        {
+            GameObject obj = mapSideObjs[i];
+            Vector3 v = obj.transform.localPosition;
+            obj.SetActive(Vector3.Distance(pos, v) <= mapViewMax + CFGD.sideMapViewDisOff);
+        }
+
     }
 
     private void updateHeroScaleAni()
