@@ -62,6 +62,11 @@ public class CharaterBehaviour : MonoBehaviour
         body.playAni(aniState);
     }
 
+    public virtual float getAniTime(CharaterStates cs)
+    {
+        return body.getAniTime(MapManager.instance.charManager.getAniState(cs));
+    }
+
     public void addHp(int val, bool aniHp)
     {
         cbInfo.hp += val;

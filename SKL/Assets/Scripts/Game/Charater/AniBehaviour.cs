@@ -25,6 +25,19 @@ public class AniBehaviour : MonoBehaviour
         sa.Initialize(true);
     }
 
+    public float getAniTime(string ani)
+    {
+        for (int i = 0; i < aniInfos.Length; ++i)
+        {
+            AniInfo ai = aniInfos[i];
+            if (ai.aniName == ani)
+            {
+                return ai.aniTick;
+            }
+        }
+        return 0f;
+    }
+
     public int playAni(string ani)
     {
         for (int i = 0; i < aniInfos.Length; ++i)
