@@ -10,6 +10,7 @@ public class TableManager
     public WritingData dataWriting = new WritingData();
     public MapBlockData dataMapBlock = new MapBlockData();
     public MapPartsData dataMapParts = new MapPartsData();
+    public MapSideData dataMapSide = new MapSideData();
     public MapItemData dataMapItem = new MapItemData();
     public StageData dataStage = new StageData();
     public EnemyData dataEnemy = new EnemyData();
@@ -21,6 +22,7 @@ public class TableManager
         dataWriting.Init(TbTool.Read("WritingTb"));
         dataMapBlock.Init(TbTool.Read("MapBlockTb"));
         dataMapParts.Init(TbTool.Read("MapPartsTb"));
+        dataMapSide.Init(TbTool.Read("MapSideTb"));
         dataMapItem.Init(TbTool.Read("MapItemTb"));
         dataStage.Init(TbTool.Read("StageTb"));
         dataEnemy.Init(TbTool.Read("EnemyTb"));

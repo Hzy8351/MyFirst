@@ -189,6 +189,50 @@ public class MapPartsData
 
 #endregion
 
+#region MapSideTb
+public class MapSideTb
+{
+    public int id;
+    public int map;
+    public string sprite;
+    public string pos;
+    public string rot;
+    public int order;
+}
+
+public class MapSideData
+{
+    public List<MapSideTb> cfg;
+    private Dictionary<int, List<MapSideTb>> dic;
+
+    public void Init(string str)
+    {
+        cfg = JsonMapper.ToObject<List<MapSideTb>>(str);
+        dic = new Dictionary<int, List<MapSideTb>>();
+        for (int i = 0; i < cfg.Count; ++i)
+        {
+            if (!dic.ContainsKey(cfg[i].map))
+            {
+                dic.Add(cfg[i].id, new List<MapSideTb>());
+            }
+            dic[cfg[i].map].Add(cfg[i]);
+        }
+    }
+
+    public MapSideTb getItem(int id)
+    {
+        return cfg.Find((item) => item.id == id);
+    }
+
+    public List<MapSideTb> getPartsOfMap(int map)
+    {
+        return dic.ContainsKey(map) ? dic[map] : null;
+    }
+
+}
+
+#endregion
+
 #region MapItemTb
 public class MapItemTb
 {

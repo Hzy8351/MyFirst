@@ -16,7 +16,7 @@ public class MapManager : MonoSingleton<MapManager>
     private string pathMapGrid = "Map/mapGrid";
     private string pathMapPart = "Map/mapPart";
     private string pathMapBlock = "Map/mapBlock";
-    //private string pathMapSide = "Map/mapSide";
+    private string pathMapSide = "Map/mapSide";
     private string pathSpriteGrid = "Maps/map";
 
     private string pathHero = "Charater/hero";
@@ -178,8 +178,21 @@ public class MapManager : MonoSingleton<MapManager>
 
     }
 
+
     private void createSides(StageTb stb)
     {
+        string path = pathSpriteGrid + stb.map + "/";
+
+        List<MapSideTb> lists = GameManager.instance.CM.dataMapSide.getPartsOfMap(stb.map);
+        for (int i = 0; i < lists.Count; ++i)
+        {
+            MapSideTb mst = lists[i];
+            GameObject go = GameManager.instance.AddPrefab(pathMapSide, parentSides);
+            MapSide ms = go.GetComponent<MapSide>();
+            ms.inits(path, mst);
+            go.SetActive(true);
+        }
+
     }
 
     private bool isHeroInitPos(Vector3 pos)
@@ -417,7 +430,7 @@ public class MapManager : MonoSingleton<MapManager>
 
     void Update()
     {
-        updateMapViews();
+        //updateMapViews();
         updateHeroScaleAni();
         updatePer();
     }
