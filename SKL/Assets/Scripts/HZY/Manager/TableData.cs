@@ -370,11 +370,12 @@ public class EnemyTb
     public string spine;
     public string attack;
     public string skill;
-    public int type;
-    public int score;
     public float speed;
+    public string standtime;
+    public int score;
     public float radius;
     public float range;
+    public int type;
     public string hp;
 }
 

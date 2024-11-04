@@ -332,6 +332,11 @@ public class MapManager : MonoSingleton<MapManager>
     #endregion
 
     #region charaters
+    public HeroBehaviour getHB()
+    {
+        return charManager.HB;
+    }
+
     public EnemyBehaviour createEnemy(EnemyTb tb)
     {
         GameObject go = GameManager.instance.AddPrefab(pathEnemy + tb.spine, charManager.gameObject.transform);
@@ -401,6 +406,30 @@ public class MapManager : MonoSingleton<MapManager>
         {
             cb.transform.position = pos;
         }
+    }
+
+    public Vector3 checkEnemyRange(Vector3 pos)
+    {
+        if (pos.x > enemyXMax)
+        {
+            pos.x = enemyXMax;
+        }
+        else if (pos.x < enemyXMin)
+        {
+
+            pos.x = enemyXMin;
+        }
+
+        if (pos.z > enemyZMax)
+        {
+            pos.z = enemyZMax;
+        }
+        else if (pos.z < enemyZMin)
+        {
+            pos.z = enemyZMin;
+        }
+
+        return pos;
     }
 
     #endregion

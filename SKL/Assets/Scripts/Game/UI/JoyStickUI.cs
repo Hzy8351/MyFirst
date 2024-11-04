@@ -26,10 +26,7 @@ public class JoyStickUI : BaseUI
             return;
         }
 
-        float sp = cb.getCurSpeed();
-        cb.move(new Vector3(sp * direct.x * Time.deltaTime, 0f, sp * direct.y * Time.deltaTime));
-        cb.setDirect(direct);
-        cb.setAni(cb.isRunUp() ? CharaterStates.run_up : CharaterStates.run);
+        cb.moveTo(direct.x, direct.y); //这里传ui的y就是坐标的z
     }
 
     public void joyEnd()

@@ -9,7 +9,7 @@ public class BossBehaviour : EnemyBehaviour
     public override void inits(EnemyTb tb)
     {
         base.inits(tb);
-        part1.gameObject.SetActive(true);
+        part1.gameObject.SetActive(false);
     }
 
     public override void setDie()

@@ -21,28 +21,36 @@ public class CharaterBehaviour : MonoBehaviour
     public Transform node;
     public AniBehaviour body;
 
-    public void setDirect(Vector3 direct)
+    public void setDirect(float x)
     {
-        float r = (direct.x >= 0f) ? 0f : 180f;
+        float r = (x >= 0f) ? 0f : 180f;
         Quaternion q = node.localRotation;
         q.z = r;
         node.localRotation = q;
     }
 
-    public bool isRunUp()
+    private bool isRunUp()
     {
         return cbInfo.speedBuff > 0f;
     }
 
-    public float getCurSpeed()
+    private float getCurSpeed()
     {
         return (cbInfo.speed + cbInfo.speedBuff) * MapManager.instance.getScaleRate();
     }
 
-    public void move(Vector3 v)
+    private void move(Vector3 v)
     {
         transform.position += v;
         MapManager.instance.checkCharaterRange(this);
+    }
+
+    public void moveTo(float x, float z)
+    {
+        float sp = getCurSpeed();
+        move(new Vector3(sp * x * Time.deltaTime, 0f, sp * z * Time.deltaTime));
+        setDirect(x);
+        setAni(isRunUp() ? CharaterStates.run_up : CharaterStates.run);
     }
 
     public virtual void setAni(CharaterStates cs)

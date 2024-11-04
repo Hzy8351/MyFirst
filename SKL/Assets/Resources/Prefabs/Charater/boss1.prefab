@@ -58,6 +58,8 @@ MonoBehaviour:
     aniTick: 1.667
   - aniName: skill1
     aniTick: 2
+  - aniName: die
+    aniTick: 0.833
   - aniName: weak
     aniTick: 0
 --- !u!1 &1577679480769062270
@@ -70,6 +72,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1577679480769062269}
   - component: {fileID: 1577679480769062265}
+  - component: {fileID: -5288356572976903876}
   m_Layer: 10
   m_Name: boss1
   m_TagString: Untagged
@@ -115,8 +118,21 @@ MonoBehaviour:
     lv: 1
   node: {fileID: 5638901776309891297}
   body: {fileID: 1577679478714942706}
+  aiBehaviour: {fileID: -5288356572976903876}
   qmHp: {fileID: 4513013180323256498}
   part1: {fileID: 6063071457383539278}
+--- !u!114 &-5288356572976903876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1577679480769062270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2482e776cc556b547a8899bec7aea271, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4513013180323256511
 GameObject:
   m_ObjectHideFlags: 0

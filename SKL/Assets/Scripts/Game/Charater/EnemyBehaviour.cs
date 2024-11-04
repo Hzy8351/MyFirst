@@ -4,22 +4,36 @@ using UnityEngine;
 
 public class EnemyBehaviour : CharaterBehaviour
 {
+    public AIBehaviour aiBehaviour;
     public QuaryMark qmHp;
     protected EnemyTb etb; public EnemyTb ETB { get { return etb; } }
     protected StepManager sm; public StepManager SM { get { return sm; } }
 
     protected ClockBase clockDie = new ClockBase();
 
+    protected float standTimeMin;
+    protected float standTimeMax;
+
     public virtual void inits(EnemyTb tb)
     {
         etb = tb;
         setState(CharaterStates.standby);
+        aiBehaviour.inits(this);
+
+        string[] arrStand = GameManager.instance.CM.Split(etb.standtime, "_");
+        standTimeMin = float.Parse(arrStand[0]);
+        standTimeMax = float.Parse(arrStand[1]);
 
         string[] hpStr = GameManager.instance.CM.Split(etb.hp, "_");
         cbInfo.hp = Random.Range(int.Parse(hpStr[0]), int.Parse(hpStr[1]));
         cbInfo.speed = etb.speed;
 
         qmHp.onShowHp(cbInfo.hp.ToString());
+    }
+
+    public float randStandTime() 
+    {
+        return Random.Range(standTimeMin, standTimeMax);
     }
 
     public virtual void setDie()
@@ -32,6 +46,7 @@ public class EnemyBehaviour : CharaterBehaviour
     {
         float sec = getAniTime(cs);
         setAni(cs);
+        aiBehaviour.destorys();
         clockDie.InitTick(sec);
     }
 
@@ -42,12 +57,15 @@ public class EnemyBehaviour : CharaterBehaviour
 
     protected void updateDie()
     {
-        if (cbInfo.cstate == CharaterStates.die)
+        if (cbInfo.cstate != CharaterStates.die)
         {
-            if (clockDie.updateTick())
-            {
-                MapManager.instance.stepManager.destoryEnemy(this);
-            }
+            return;
+        }
+
+        if (clockDie.updateTick())
+        {
+            MapManager.instance.stepManager.destoryEnemy(this);
+            cbInfo.cstate = CharaterStates.none;
         }
     }
 }

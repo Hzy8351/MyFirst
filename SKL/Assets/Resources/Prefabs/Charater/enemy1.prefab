@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2596411312203936329}
   - component: {fileID: 2596411312203936333}
+  - component: {fileID: 2655686716321469119}
   m_Layer: 8
   m_Name: enemy1
   m_TagString: Untagged
@@ -55,7 +56,20 @@ MonoBehaviour:
     lv: 1
   node: {fileID: 9199765796720748501}
   body: {fileID: 2596411314241491910}
+  aiBehaviour: {fileID: 2655686716321469119}
   qmHp: {fileID: 1423482124889011924}
+--- !u!114 &2655686716321469119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2596411312203936330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2482e776cc556b547a8899bec7aea271, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2596411314241491912
 GameObject:
   m_ObjectHideFlags: 0
@@ -157,6 +171,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eb: {fileID: 2596411312203936333}
   bc: {fileID: 1423482124889011927}
+  scale: 1
 --- !u!65 &1423482124889011927
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -64,6 +64,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1125098718647178026}
   - component: {fileID: 1125098718647178030}
+  - component: {fileID: -3954767121011729047}
   m_Layer: 0
   m_Name: spenemy1
   m_TagString: Untagged
@@ -109,7 +110,20 @@ MonoBehaviour:
     lv: 1
   node: {fileID: 6068964677803230902}
   body: {fileID: 1125098717882725029}
+  aiBehaviour: {fileID: -3954767121011729047}
   qmHp: {fileID: 7239560124059648284}
+--- !u!114 &-3954767121011729047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1125098718647178025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2482e776cc556b547a8899bec7aea271, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5646519080283779549
 GameObject:
   m_ObjectHideFlags: 0
@@ -341,6 +355,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eb: {fileID: 1125098718647178030}
   bc: {fileID: 7239560124059648275}
+  scale: 1
 --- !u!65 &7239560124059648275
 BoxCollider:
   m_ObjectHideFlags: 0
