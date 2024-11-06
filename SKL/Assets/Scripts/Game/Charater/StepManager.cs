@@ -90,7 +90,7 @@ public class StepManager : MonoBehaviour
             {
                 fd.tick = 0f;
                 EnemyTb tb = GameManager.instance.CM.dataEnemy.getItem(fd.id);
-                EnemyBehaviour eb = MapManager.instance.createEnemy(tb);
+                EnemyBehaviour eb = MapManager.instance.createSpEnemy(tb);
                 bd.getDicEnemy(tb.spine).enemys.Add(eb);
             }
         }

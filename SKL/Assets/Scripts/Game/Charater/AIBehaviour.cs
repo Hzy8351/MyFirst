@@ -4,15 +4,27 @@ using UnityEngine;
 
 public class AIBehaviour : MonoBehaviour
 {
+    public DrawRange drLook;
+    public DrawRange drRange;
     private AIManager aim = new AIManager();
     private EnemyBehaviour eb;
 
     public void inits(EnemyBehaviour e)
     {
+        drLook.viewRender(false);
+        drRange.viewRender(false);
         eb = e;
         aim.comms.Clear();
         aim.actions.Clear();
-        setRestState();
+
+        if (eb.ETB.type == 1)   // 蚊子这种类型怪
+        {
+            setSpAttack();
+        }
+        else
+        {
+            setRestStateStandby();
+        }
     }
 
     public void destorys()
@@ -23,28 +35,74 @@ public class AIBehaviour : MonoBehaviour
         aim.curState = AIEnum.none;
     }
 
-    public void breakComm()
-    {
-        aim.comms.Clear();
-    }
-
-    public void addAction(AIAction item)
+    private void addAction(AIAction item)
     {
         aim.actions.Enqueue(item);
     }
 
-    public void addComm(AICommand com)
+    private void breakComm()
+    {
+        aim.comms.Clear();
+    }
+
+    private void addComm(AICommand com)
     {
         aim.comms.Add(com);
     }
 
-    public void setRestState()
+    private void setSpAttack()
+    {
+        aim.curState = AIEnum.spattack;
+        addComSpAttack();
+    }
+
+    private void setRestStateStandby()
     {
         aim.curState = AIEnum.rest;
         addComStandby();
     }
 
-    public void addComStandby()
+    private void setRestStateRun()
+    {
+        aim.curState = AIEnum.rest;
+        addComRun();
+    }
+
+    private void setEscape()
+    {
+        breakComm();
+
+        AICommand acm = new AICommand();
+        acm.comState = CommEnum.escape;
+        acm.target = MapManager.instance.charManager.HB;
+        acm.tarPos = eb.transform.localPosition;
+        acm.tarTick = eb.ETB.range;
+        addComm(acm);
+
+    }
+
+    private void setChase()
+    {
+        breakComm();
+
+        AICommand acm = new AICommand();
+        acm.comState = CommEnum.chase;
+        acm.target = MapManager.instance.charManager.HB;
+        acm.tarPos = eb.transform.localPosition;
+        acm.tarTick = eb.ETB.range;
+        addComm(acm);
+    }
+
+    private void addComSpAttack()
+    {
+        AICommand com = new AICommand();
+        com.comState = CommEnum.spattack;
+        com.target = MapManager.instance.charManager.HB;
+        com.tarTick = 0f;
+        addComm(com);
+    }
+
+    private void addComStandby()
     {
         AICommand com = new AICommand();
         com.comState = CommEnum.standby;
@@ -53,7 +111,7 @@ public class AIBehaviour : MonoBehaviour
         eb.setAni(CharaterStates.standby);
     }
 
-    public void addComRun()
+    private void addComRun()
     {
         AICommand com = new AICommand();
         com.comState = CommEnum.run;
@@ -65,6 +123,11 @@ public class AIBehaviour : MonoBehaviour
 
     void Update()
     {
+        if (BattleHeroUI.isBattlePause)
+        {
+            return;
+        }
+
         updateAI();
     }
 
@@ -74,6 +137,9 @@ public class AIBehaviour : MonoBehaviour
         {
             return;
         }
+
+        drLook.drawCircleRender(transform.position, eb.ETB.radius, Color.red);
+        //drRange.drawCircleRender(transform.position, eb.ETB.range, Color.blue);
 
         updateState();
         updateComms();
@@ -89,39 +155,28 @@ public class AIBehaviour : MonoBehaviour
             updateRest();
             return;
         }
+    }
 
+    private void updateRest()
+    {
+        if (Vector3.Distance(MapManager.instance.getHB().transform.localPosition, eb.transform.localPosition) > eb.ETB.radius)
+        {
+            return;
+        }
+
+        aim.curState = (MapManager.instance.getHB().cbInfo.hp >= eb.cbInfo.hp) ? AIEnum.escape : AIEnum.chase;
         if (aim.curState == AIEnum.escape)
         {
-            updateEscape();
+            setEscape();
             return;
         }
 
         if (aim.curState == AIEnum.chase)
         {
-            updateChase();
+            setChase();
             return;
         }
     }
-
-    private void updateRest()
-    {
-        if (Vector3.Distance(MapManager.instance.getHB().transform.localPosition, eb.transform.localPosition) <= eb.ETB.radius)
-        {
-            aim.curState = (MapManager.instance.getHB().cbInfo.hp >= eb.cbInfo.hp) ? AIEnum.escape : AIEnum.chase;
-            return;
-        }
-
-
-    }
-
-    private void updateEscape()
-    {
-    }
-
-    private void updateChase()
-    {
-    }
-
 
     #endregion
 
@@ -153,6 +208,24 @@ public class AIBehaviour : MonoBehaviour
         if (com.comState == CommEnum.run)
         {
             updateCommRun(com);
+            return;
+        }
+
+        if (com.comState == CommEnum.chase)
+        {
+            updateCommChase(com);
+            return;
+        }
+
+        if (com.comState == CommEnum.escape)
+        {
+            updateCommEscape(com);
+            return;
+        }
+
+        if (com.comState == CommEnum.spattack)
+        {
+            updateCommSpAttack(com);
             return;
         }
     }
@@ -191,6 +264,141 @@ public class AIBehaviour : MonoBehaviour
         addAction(act);
     }
 
+    private void updateCommChase(AICommand com)
+    {
+        if (eb.cbInfo.hp <= com.target.cbInfo.hp || Vector3.Distance(com.tarPos, eb.transform.localPosition) >= com.tarTick)
+        {
+            com.bComplete = true;
+            setRestStateRun();
+            return;
+        }
+
+        Vector3 tarPos = com.target.transform.localPosition;
+
+        AIAction act = new AIAction();
+        act.id = ((int)CommEnum.run).ToString();
+        act.content = tarPos.x + "_" + tarPos.y + "_" + tarPos.z;
+        addAction(act);
+    }
+
+    private void updateCommEscape(AICommand com)
+    {
+        if (eb.cbInfo.hp > com.target.cbInfo.hp || Vector3.Distance(com.tarPos, eb.transform.localPosition) >= com.tarTick)
+        {
+            com.bComplete = true;
+            setRestStateRun();
+            return;
+        }
+
+        Vector3 ebPos = eb.transform.localPosition;
+        Vector3 tarPos = com.target.transform.localPosition;
+        float dis2 = Vector3.Distance(tarPos, ebPos) * 2;
+
+        tarPos.x += (tarPos.x >= ebPos.x) ? -dis2 : dis2;
+        tarPos.z += (tarPos.z >= ebPos.z) ? -dis2 : dis2;
+
+        AIAction act = new AIAction();
+        act.id = ((int)CommEnum.run).ToString();
+        act.content = (tarPos.x) + "_" + tarPos.y + "_" + (tarPos.z);
+        addAction(act);
+    }
+
+    private void updateCommSpAttack(AICommand com)
+    {
+        if (com.state == 0)
+        {
+            updateComSpAttack0(com);
+            return;
+        }
+
+        if (com.state == 1)
+        {
+            updateComSpAttack1(com);
+            return;
+        }
+        
+        if (com.state == 2)
+        {
+            updateComSpAttack2(com);
+            return;
+        }
+
+        updateComSpAttack3(com);
+    }
+    private void updateComSpAttack0(AICommand com)
+    {
+        Vector3 tarPos = com.target.transform.localPosition;
+        if (Vector3.Distance(tarPos, eb.transform.localPosition) <= eb.ETB.range)
+        {
+            com.tarPos = tarPos;
+            com.state = 1;
+            return;
+        }
+
+        AIAction act = new AIAction();
+        act.id = ((int)CommEnum.run).ToString();
+        act.content = (tarPos.x) + "_" + tarPos.y + "_" + (tarPos.z);
+        addAction(act);
+    }
+
+    private void updateComSpAttack1(AICommand com)
+    {
+        Vector3 tarPos = com.tarPos;
+        if (Vector3.Distance(tarPos, eb.transform.localPosition) <= eb.ETB.radius)
+        {
+            eb.setAni(CharaterStates.attack);
+            com.tarTick = eb.getAniTime(CharaterStates.attack) * 0.7f;
+            com.state = 2;
+            return;
+        }
+
+        AIAction act = new AIAction();
+        act.id = ((int)CommEnum.run).ToString();
+        act.content = (tarPos.x) + "_" + tarPos.y + "_" + (tarPos.z);
+        addAction(act);
+    }
+
+    private void updateComSpAttack2(AICommand com)
+    {
+        com.tarTick -= Time.deltaTime;
+        if (com.tarTick > 0f)
+        {
+            return;
+        }
+
+        HeroBehaviour hb = (HeroBehaviour)com.target;
+        if (Vector3.Distance(hb.transform.localPosition, com.tarPos) <= eb.ETB.radius)
+        {
+            int damage = int.Parse(eb.ETB.attack);
+            hb.addHp(-damage, true);
+            hb.createHpTips(-damage);
+            SoundManager.instance.playSound("Hit");
+        }
+
+        com.state = 3;
+        com.tarTick = 2f;
+        com.tarPos = MapManager.instance.randSpEnemyPos();
+    }
+
+    private void updateComSpAttack3(AICommand com)
+    {
+        com.tarTick -= Time.deltaTime;
+        if (com.tarTick <= 0f)
+        {
+            breakComm();
+            MapManager.instance.stepManager.destoryEnemy(eb);
+            eb.cbInfo.cstate = CharaterStates.none;
+            return;
+        }
+
+        Vector3 tarPos = com.tarPos;
+        AIAction act = new AIAction();
+        act.id = ((int)CommEnum.run).ToString();
+        act.content = (tarPos.x) + "_" + tarPos.y + "_" + (tarPos.z);
+        addAction(act);
+    }
+
+
     #endregion
 
     #region actions 
@@ -212,7 +420,6 @@ public class AIBehaviour : MonoBehaviour
             updateActRun(act);
             return;
         }
-
 
     }
 

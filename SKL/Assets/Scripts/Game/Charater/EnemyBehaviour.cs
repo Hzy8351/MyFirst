@@ -28,7 +28,14 @@ public class EnemyBehaviour : CharaterBehaviour
         cbInfo.hp = Random.Range(int.Parse(hpStr[0]), int.Parse(hpStr[1]));
         cbInfo.speed = etb.speed;
 
-        qmHp.onShowHp(cbInfo.hp.ToString());
+        if (ETB.type == 1)   // 蚊子这种类型怪
+        {
+            qmHp.onHide();
+        }
+        else
+        {
+            qmHp.onShowHp(cbInfo.hp.ToString());
+        }   
     }
 
     public float randStandTime() 
@@ -52,6 +59,11 @@ public class EnemyBehaviour : CharaterBehaviour
 
     void Update()
     {
+        if (BattleHeroUI.isBattlePause)
+        {
+            return;
+        }
+
         updateDie();
     }
 

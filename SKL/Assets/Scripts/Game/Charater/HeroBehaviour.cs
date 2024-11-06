@@ -43,4 +43,11 @@ public class HeroBehaviour : CharaterBehaviour
         MapManager.instance.CreateTextTips(CTUtils.World2Screen(tranFont.position), hp.ToString(), 76, 80, 0.5f);
     }
 
+    //void Update()
+    //{
+    //    if (BattleHeroUI.isBattlePause)
+    //    {
+    //        return;
+    //    }
+    //}
 }

@@ -329,6 +329,22 @@ public class MapManager : MonoSingleton<MapManager>
         return new Vector3(Random.Range(enemyXMin, enemyXMax), 0f, Random.Range(enemyZMin, enemyZMax));
     }
 
+    public Vector3 randSpEnemyPos()
+    {
+        Vector3 pos;
+        float dis = CFGD.heroPosRangeInit * 3;
+        while (true)
+        {
+            pos = randomEnemyPoint();
+            if (Vector3.Distance(pos, charManager.HB.transform.localPosition) <= dis)
+            {
+                continue;
+            }
+            break;
+        }
+        return pos;
+    }
+
     #endregion
 
     #region charaters
@@ -341,8 +357,6 @@ public class MapManager : MonoSingleton<MapManager>
     {
         GameObject go = GameManager.instance.AddPrefab(pathEnemy + tb.spine, charManager.gameObject.transform);
         EnemyBehaviour eb = go.GetComponent<EnemyBehaviour>();
-        eb.inits(tb);
-
         Vector3 pos;
         while (true)
         {
@@ -358,6 +372,17 @@ public class MapManager : MonoSingleton<MapManager>
             break;
         }
         go.transform.localPosition = pos;
+        eb.inits(tb);
+
+        return eb;
+    }
+
+    public EnemyBehaviour createSpEnemy(EnemyTb tb)
+    {
+        GameObject go = GameManager.instance.AddPrefab(pathEnemy + tb.spine, charManager.gameObject.transform);
+        EnemyBehaviour eb = go.GetComponent<EnemyBehaviour>();
+        go.transform.localPosition = randSpEnemyPos();
+        eb.inits(tb);
 
         return eb;
     }
@@ -466,6 +491,11 @@ public class MapManager : MonoSingleton<MapManager>
 
     void Update()
     {
+        if (BattleHeroUI.isBattlePause)
+        {
+            return;
+        }
+
         updateMapViews();
         updateHeroScaleAni();
         updatePer();

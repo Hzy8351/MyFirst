@@ -16,6 +16,8 @@ public enum AIEnum
     back = 102,         //»Øµ½ĞİÏ¢·¶Î§
     escape = 103,       //ÌÓÅÜ
     chase = 104,        //×·¸Ï
+    
+    spattack = 200,     //ÎÃ×Ó¹Ö¹Ì¶¨Âß¼­
 
     attack = 400,
     attack1 = 401,
@@ -29,6 +31,10 @@ public enum CommEnum
 
     standby = 101,
     run = 102,
+    escape = 103,
+    chase = 104,
+
+    spattack = 200,
 
     attack = 400,
     skill1 = 501,
@@ -39,8 +45,10 @@ public class AICommand
     public CommEnum comState;
     public bool bComplete;
 
+    public int state;
     public float tarTick;
     public Vector3 tarPos;
+    public CharaterBehaviour target;
 }
 
 public class AIManager

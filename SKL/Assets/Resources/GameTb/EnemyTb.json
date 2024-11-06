@@ -8,7 +8,7 @@
     "speed": 1.2,
     "standtime": "0.3_3",
     "score": 10,
-    "radius" : 3,
+    "radius" : 4,
     "range" : 6,
     "type" : 2,
     "hp" : "10_100"
@@ -22,7 +22,7 @@
     "speed": 1.6,
     "standtime": "0.3_3",
     "score": 10,
-    "radius" : 3,
+    "radius" : 4,
     "range" : 6,
     "type" : 2,
     "hp" : "10_250"
@@ -36,7 +36,7 @@
     "speed": 2.4,
     "standtime": "0.3_2",
     "score": 20,
-    "radius" : 5,
+    "radius" : 6,
     "range" : 10,
     "type" : 2,
     "hp" : "250_400"
@@ -50,7 +50,7 @@
     "speed": 3.2,
     "standtime": "0.3_2",
     "score": 20,
-    "radius" : 5,
+    "radius" : 6,
     "range" : 10,
     "type" : 2,
     "hp" : "250_600"
@@ -64,7 +64,7 @@
     "speed": 4,
     "standtime": "0.3_1.5",
     "score": 30,
-    "radius" : 8,
+    "radius" : 7,
     "range" : 13,
     "type" : 2,
     "hp" : "600_750"
@@ -78,7 +78,7 @@
     "speed": 4.2,
     "standtime": "0.3_1.5",
     "score": 30,
-    "radius" : 8,
+    "radius" : 7,
     "range" : 13,
     "type" : 2,
     "hp" : "600_900"
@@ -87,13 +87,13 @@
     "id": 400,
     "name": "fly",
     "spine": "spenemy1",
-    "attack": "1",
+    "attack": "20",
     "skill": "0",
-    "speed": 8,
+    "speed": 12,
     "standtime": "0_0",
     "score": 0,
-    "radius" : 8,
-    "range" : 13,
+    "radius" : 1,
+    "range" : 1.5,
     "type" : 1,
     "hp" : "1_2"
   },

@@ -20,6 +20,11 @@ public class BossBehaviour : EnemyBehaviour
 
     void Update()
     {
+        if (BattleHeroUI.isBattlePause)
+        {
+            return;
+        }
+
         updateDie();
     }
 }

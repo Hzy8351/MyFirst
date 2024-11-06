@@ -82,7 +82,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 50
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &735358234390864707
 MonoBehaviour:
@@ -337,7 +337,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 50
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &7267551352089919753
 MonoBehaviour:
@@ -551,6 +551,7 @@ MonoBehaviour:
     lv: 1
   node: {fileID: 4575634241868029853}
   body: {fileID: 7267551352737704846}
+  dr: {fileID: 0}
   part1: {fileID: 7267551352051123525}
   tranFont: {fileID: 4218300708612054911}
   aniHp: 0
