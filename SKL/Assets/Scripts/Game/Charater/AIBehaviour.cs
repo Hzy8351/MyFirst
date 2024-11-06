@@ -138,7 +138,7 @@ public class AIBehaviour : MonoBehaviour
             return;
         }
 
-        drLook.drawCircleRender(transform.position, eb.ETB.radius, Color.red);
+        //drLook.drawCircleRender(transform.position, eb.ETB.radius, Color.red);
         //drRange.drawCircleRender(transform.position, eb.ETB.range, Color.blue);
 
         updateState();
@@ -283,10 +283,18 @@ public class AIBehaviour : MonoBehaviour
 
     private void updateCommEscape(AICommand com)
     {
-        if (eb.cbInfo.hp > com.target.cbInfo.hp || Vector3.Distance(com.tarPos, eb.transform.localPosition) >= com.tarTick)
+        float dis = Vector3.Distance(com.tarPos, eb.transform.localPosition);
+        if (eb.cbInfo.hp > com.target.cbInfo.hp || dis >= com.tarTick)
         {
             com.bComplete = true;
             setRestStateRun();
+            return;
+        }
+        
+        if (dis <= 0.2f)
+        {
+            com.bComplete = true;
+            setRestStateStandby();
             return;
         }
 
